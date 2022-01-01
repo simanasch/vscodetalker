@@ -17,6 +17,7 @@ const packageDefinition = protoLoader.loadSync(
 const ttsProto = grpc.loadPackageDefinition(packageDefinition)
 
 const makeTTSService = (port) => {
+  // @ts-ignore
   return new ttsProto.ttscontroller.TTSService('localhost:'+port, grpc.credentials.createInsecure())
 }
 
@@ -27,7 +28,7 @@ const talk = text => {
       LibraryName: "ついな",
       EngineName: "VOICEROID64",
       Body: text,
-      OutputPath: "C://Users//tktos//Desktop//test.wav"
+      OutputPath: ""
     }, (error, response) => {
       if (!error && response.IsSuccess) {
         console.log(response.message) //こんにちわ ID:1太郎

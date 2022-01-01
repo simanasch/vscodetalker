@@ -1,9 +1,11 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const { execFile } = require('child_process');
+const path = require('path');
 const vscode = require('vscode');
 const client = require("./src/client.js");
-// import { sayHello } from './src/client';
+
+let ttsControllerPath = path.join(__dirname,"bin","SpeechGRpcServer.exe");
 let grpcServerProcess;
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -38,7 +40,7 @@ function activate(context) {
 	});
 
 	grpcServerProcess = execFile(
-		"C:/Users/tktos/Documents/repos/descript-to-video/TTSController/src/SpeechGRPCServer/bin/x64/Release/net4.5.2/SpeechGRpcServer.exe",
+		ttsControllerPath,
 		(error, stdout, stderr) => {
 			if (error) {
 				throw error;
