@@ -1,0 +1,73 @@
+﻿// Copyright 2015 gRPC authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.ttscontroller";
+option java_outer_classname = "TTSController";
+option objc_class_prefix = "tts";
+
+package ttscontroller;
+
+// TTSをgRPCから使用する際のサービス定義
+service TTSService{
+  // 指定された名前の音声合成エンジンの情報を返す
+  rpc getSpeechEngineDetail (SpeechEngineRequest) returns (SpeechEngineList) {}
+  // ttsのライブラリ名、テキスト内容を渡して発声させる
+  rpc talk (ttsRequest) returns (ttsResult) {} 
+  rpc record (ttsRequest) returns (ttsResult) {}
+}
+
+message SpeechEngineRequest {
+  string EngineName = 1;
+}
+
+message ttsRequest {
+  string LibraryName = 1;
+  string EngineName = 2;
+  string Body = 3;
+  string OutputPath = 4;
+}
+
+message ttsResult {
+  bool IsSuccess = 1;
+  string LibraryName = 2;
+  string EngineName = 3;
+  string Body = 4;
+  string OutputPath = 5;
+}
+
+// 音声合成エンジンの情報
+message SpeechEngineList {
+  message SpeechEngineDetail {
+    /// <summary>
+    /// 音声合成エンジンの名称
+    /// </summary>
+    string EngineName = 1;
+    /// <summary>
+    /// 音声合成ライブラリの名称
+    /// </summary>
+    string LibraryName = 2;
+    /// <summary>
+    /// 音声合成エンジンのパス(SAPIの場合は空文字)
+    /// </summary>
+    string EnginePath  = 3;
+    /// <summary>
+    /// 音声合成エンジンが64bitプロセスの場合はtrue
+    /// </summary>
+    bool Is64BitProcess = 4;
+  }
+  repeated SpeechEngineDetail detailItem = 1;
+}
