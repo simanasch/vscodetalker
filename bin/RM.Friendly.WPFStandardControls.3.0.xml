@@ -1,0 +1,1921 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RM.Friendly.WPFStandardControls.3.0</name>
+    </assembly>
+    <members>
+        <member name="T:RM.Friendly.WPFStandardControls.AppVarWrapper`1">
+            <summary>
+            This is the base class of AppVar wrappers.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.AppVarWrapper`1.App">
+            <summary>
+            Application manipulation object.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.AppVarWrapper`1.AppVar">
+            <summary>
+            Variable manipulation object within the target application.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.AppVarWrapper`1.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.AppVarWrapper`1.Item(System.String)">
+            <summary>
+            Returns a delegate to invoke static operations in the test application.
+            </summary>
+            <param name="operation">The operation name.</param>
+            <returns>Delegate to invoke static operations in the application.</returns>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.AppVarWrapper`1.Item(System.String,Codeer.Friendly.Async)">
+            <summary>
+            Returns a delegate to invoke static operations in the test application.
+            </summary>
+            <param name="operation">The operation name.</param>
+            <param name="async">Asynchronous execution.</param>
+            <returns>Delegate to invoke static operations in the application.</returns>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.AppVarWrapper`1.Item(System.String,Codeer.Friendly.OperationTypeInfo)">
+            <summary>
+            Returns a delegate to invoke static operations in the test application.
+            </summary>
+            <param name="operation">The operation name.</param>
+            <param name="operationTypeInfo">
+            Operation type information. 
+            Used when there is more than one overload for the operation or you want to call an operation by the same name in a parent class. 
+            Often the operation can be resolved based on its parameters without specifying the operation type info.
+            </param>
+            <returns>Delegate to invoke static operations in the application.</returns>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.AppVarWrapper`1.Item(System.String,Codeer.Friendly.OperationTypeInfo,Codeer.Friendly.Async)">
+            <summary>
+            Returns a delegate to invoke static operations in the test application.
+            </summary>
+            <param name="operation">The operation name.</param>
+            <param name="operationTypeInfo">
+            Operation type information. 
+            Used when there is more than one overload for the operation or you want to call an operation by the same name in a parent class. 
+            Often the operation can be resolved based on its parameters without specifying the operation type info.
+            </param>
+            <param name="async">Asynchronous execution.</param>
+            <returns>Delegate to invoke static operations in the application.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.AppVarWrapper`1.Getter``1(System.String)">
+            <summary>
+            Getter.
+            </summary>
+            <typeparam name="T">Type of return value.</typeparam>
+            <param name="name">name.</param>
+            <returns>Return value.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.AppVarWrapper`1.GetInvokeType">
+            <summary>
+            Type for invoke in target
+            </summary>
+            <returns>Type for invoke in target.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.AppVarWrapper`1.MyAction`1">
+            <summary>
+            Action.
+            </summary>
+            <typeparam name="T1">Type of argument 1.</typeparam>
+            <param name="t1">argument 1.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.AppVarWrapper`1.MyAction`2">
+            <summary>
+            Action.
+            </summary>
+            <typeparam name="T1">Type of argument 1.</typeparam>
+            <typeparam name="T2">Type of argument 2.</typeparam>
+            <param name="t1">argument 1.</param>
+            <param name="t2">argument 2.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.AppVarWrapper`1.MyAction`3">
+            <summary>
+            Action.
+            </summary>
+            <typeparam name="T1">Type of argument 1.</typeparam>
+            <typeparam name="T2">Type of argument 2.</typeparam>
+            <typeparam name="T3">Type of argument 3.</typeparam>
+            <param name="t1">argument 1.</param>
+            <param name="t2">argument 2.</param>
+            <param name="t3">argument 3.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.AppVarWrapper`1.MyAction`4">
+            <summary>
+            Action.
+            </summary>
+            <typeparam name="T1">Type of argument 1.</typeparam>
+            <typeparam name="T2">Type of argument 2.</typeparam>
+            <typeparam name="T3">Type of argument 3.</typeparam>
+            <typeparam name="T4">Type of argument 4.</typeparam>
+            <param name="t1">argument 1.</param>
+            <param name="t2">argument 2.</param>
+            <param name="t3">argument 3.</param>
+            <param name="t4">argument 4.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.AppVarWrapper`1.InvokeStatic(RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.MyAction{`0})">
+            <summary>
+            Invoke static method.
+            </summary>
+            <param name="method">method.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.AppVarWrapper`1.InvokeStatic``1(RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.MyAction{`0,``0},``0)">
+            <summary>
+            Invoke static method.
+            </summary>
+            <typeparam name="T1">Type of argument 1.</typeparam>
+            <param name="method">method.</param>
+            /// <param name="t1">argument 1.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.AppVarWrapper`1.InvokeStatic``2(RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.MyAction{`0,``0,``1},``0,``1)">
+            <summary>
+            Invoke static method.
+            </summary>
+            <typeparam name="T1">Type of argument 1.</typeparam>
+            <typeparam name="T2">Type of argument 2.</typeparam>
+            <param name="method">method.</param>
+            <param name="t1">argument 1.</param>
+            <param name="t2">argument 2.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.AppVarWrapper`1.InvokeStatic``3(RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.MyAction{`0,``0,``1,``2},``0,``1,``2)">
+            <summary>
+            Invoke static method.
+            </summary>
+            <typeparam name="T1">Type of argument 1.</typeparam>
+            <typeparam name="T2">Type of argument 2.</typeparam>
+            <typeparam name="T3">Type of argument 3.</typeparam>
+            <param name="method">method.</param>
+            <param name="t1">argument 1.</param>
+            <param name="t2">argument 2.</param>
+            <param name="t3">argument 3.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.AppVarWrapper`1.InvokeStatic(RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.MyAction{`0},Codeer.Friendly.Async)">
+            <summary>
+            Invoke static method.
+            </summary>
+            <param name="method">method.</param>
+            <param name="async">async.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.AppVarWrapper`1.InvokeStatic``1(RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.MyAction{`0,``0},Codeer.Friendly.Async,``0)">
+            <summary>
+            Invoke static method.
+            </summary>
+            <typeparam name="T1">Type of argument 1.</typeparam>
+            <param name="method">method.</param>
+            <param name="async">async.</param>
+            <param name="t1"></param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.AppVarWrapper`1.InvokeStatic``2(RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.MyAction{`0,``0,``1},Codeer.Friendly.Async,``0,``1)">
+            <summary>
+            Invoke static method.
+            </summary>
+            <typeparam name="T1">Type of argument 1.</typeparam>
+            <typeparam name="T2">Type of argument 2.</typeparam>
+            <param name="method">method.</param>
+            <param name="async">async.</param>
+            <param name="t1">argument 1.</param>
+            <param name="t2">argument 2.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.AppVarWrapper`1.InvokeStatic``3(RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.MyAction{`0,``0,``1,``2},Codeer.Friendly.Async,``0,``1,``2)">
+            <summary>
+            Invoke static method.
+            </summary>
+            <typeparam name="T1">Type of argument 1.</typeparam>
+            <typeparam name="T2">Type of argument 2.</typeparam>
+            <typeparam name="T3">Type of argument 3.</typeparam>
+            <param name="method">method.</param>
+            <param name="async">async.</param>
+            <param name="t1">argument 1.</param>
+            <param name="t2">argument 2.</param>
+            <param name="t3">argument 3.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.AppVarWrapper`1.MyFunc`2">
+            <summary>
+            Func.
+            </summary>
+            <typeparam name="T1">Type of argument 1.</typeparam>
+            <typeparam name="Ret">Type of return value.</typeparam>
+            <param name="t1">argument 1.</param>
+            <returns>return value.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.AppVarWrapper`1.MyFunc`3">
+            <summary>
+            Func.
+            </summary>
+            <typeparam name="T1">Type of argument 1.</typeparam>
+            <typeparam name="T2">Type of argument 2.</typeparam>
+            <typeparam name="Ret">Type of return value.</typeparam>
+            <param name="t1">argument 1.</param>
+            <param name="t2">argument 2.</param>
+            <returns>return value.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.AppVarWrapper`1.MyFunc`4">
+            <summary>
+            Func.
+            </summary>
+            <typeparam name="T1">Type of argument 1.</typeparam>
+            <typeparam name="T2">Type of argument 2.</typeparam>
+            <typeparam name="T3">Type of argument 3.</typeparam>
+            <typeparam name="Ret">Type of return value.</typeparam>
+            <param name="t1">argument 1.</param>
+            <param name="t2">argument 2.</param>
+            <param name="t3">argument 3.</param>
+            <returns>return value.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.AppVarWrapper`1.InvokeStatic``1(RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.MyFunc{`0,``0},RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.Type{``0})">
+            <summary>
+            Invoke static method.
+            </summary>
+            <typeparam name="Ret">Type of return value.</typeparam>
+            <param name="method">method.</param>
+            <param name="retType">The hint of return value type.</param>
+            <returns>return value.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.AppVarWrapper`1.InvokeStatic``2(RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.MyFunc{`0,``0,``1},RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.Type{``1},``0)">
+            <summary>
+            Invoke static method.
+            </summary>
+            <typeparam name="T1">Type of argument 1.</typeparam>
+            <typeparam name="Ret">Type of return value.</typeparam>
+            <param name="method">method.</param>
+            <param name="retType">The hint of return value type.</param>
+            <param name="t1">argument 1.</param>
+            <returns>return value.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.AppVarWrapper`1.InvokeStatic``3(RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.MyFunc{`0,``0,``1,``2},RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.Type{``2},``0,``1)">
+            <summary>
+            Invoke static method.
+            </summary>
+            <typeparam name="T1">Type of argument 1.</typeparam>
+            <typeparam name="T2">Type of argument 2.</typeparam>
+            <typeparam name="Ret">Type of return value.</typeparam>
+            <param name="method">method.</param>
+            <param name="retType">The hint of return value type.</param>
+            <param name="t1">argument 1.</param>
+            <param name="t2">argument 2.</param>
+            <returns>return value.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.AppVarWrapper`1.InvokeStatic``4(RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.MyFunc{`0,``0,``1,``3},RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.Type{``3},``0,``1,``2)">
+            <summary>
+            Invoke static method.
+            </summary>
+            <typeparam name="T1">Type of argument 1.</typeparam>
+            <typeparam name="T2">Type of argument 2.</typeparam>
+            <typeparam name="T3">Type of argument 3.</typeparam>
+            <typeparam name="Ret">Type of return value.</typeparam>
+            <param name="method">method.</param>
+            <param name="retType">The hint of return value type.</param>
+            <param name="t1">argument 1.</param>
+            <param name="t2">argument 2.</param>
+            <param name="t3">argument 3.</param>
+            <returns>return value.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.AppVarWrapper`1.InvokeStaticRetAppVar``1(RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.MyFunc{`0,``0},RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.Type{``0})">
+            <summary>
+            Invoke static method.
+            </summary>
+            <typeparam name="Ret">Type of return value.</typeparam>
+            <param name="method">method.</param>
+            <param name="retType">The hint of return value type.</param>
+            <returns>return value.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.AppVarWrapper`1.InvokeStaticRetAppVar``2(RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.MyFunc{`0,``0,``1},RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.Type{``1},``0)">
+            <summary>
+            Invoke static method.
+            </summary>
+            <typeparam name="T1">Type of argument 1.</typeparam>
+            <typeparam name="Ret">Type of return value.</typeparam>
+            <param name="method">method.</param>
+            <param name="retType">The hint of return value type.</param>
+            <param name="t1">argument 1.</param>
+            <returns>return value.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.AppVarWrapper`1.InvokeStaticRetAppVar``3(RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.MyFunc{`0,``0,``1,``2},RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.Type{``2},``0,``1)">
+            <summary>
+            Invoke static method.
+            </summary>
+            <typeparam name="T1">Type of argument 1.</typeparam>
+            <typeparam name="T2">Type of argument 2.</typeparam>
+            <typeparam name="Ret">Type of return value.</typeparam>
+            <param name="method">method.</param>
+            <param name="retType">The hint of return value type.</param>
+            <param name="t1">argument 1.</param>
+            <param name="t2">argument 2.</param>
+            <returns>return value.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.AppVarWrapper`1.InvokeStaticRetAppVar``4(RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.MyFunc{`0,``0,``1,``3},RM.Friendly.WPFStandardControls.AppVarWrapper{`0}.Type{``3},``0,``1,``2)">
+            <summary>
+            Invoke static method.
+            </summary>
+            <typeparam name="T1">Type of argument 1.</typeparam>
+            <typeparam name="T2">Type of argument 2.</typeparam>
+            <typeparam name="T3">Type of argument 3.</typeparam>
+            <typeparam name="Ret">Type of return value.</typeparam>
+            <param name="method">method.</param>
+            <param name="retType">The hint of return value type.</param>
+            <param name="t1">argument 1.</param>
+            <param name="t2">argument 2.</param>
+            <param name="t3">argument 3.</param>
+            <returns>return value.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.AppVarWrapper`1.Type`1">
+            <summary>
+            The hint of type.
+            </summary>
+            <typeparam name="T">type.</typeparam>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.AppVarWrapper`1.Ret``1">
+            <summary>
+            Get the hint of return value type.
+            </summary>
+            <typeparam name="T">type.</typeparam>
+            <returns>The hint of return value type.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.FrameworkElementSearcher">
+            <summary>
+            Search to FrameworkElement.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.FrameworkElementSearcher.ByName``1(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{``0},System.String)">
+            <summary>
+            Search by Name from FrameworkElement collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">FrameworkElement collection.</param>
+            <param name="name">Name.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.ButtonSearcher">
+            <summary>
+            Search to ButtonBase.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ButtonSearcher.ByCommand``1(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{``0},System.String,System.String)">
+            <summary>
+            Search by Command from ButtonBase collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ButtonBase collection.</param>
+            <param name="ownerType">Owner type.</param>
+            <param name="name">Name.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ButtonSearcher.ByCommand``1(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{``0},System.Windows.Input.RoutedCommand)">
+            <summary>
+            Search by Command from ButtonBase collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ButtonBase collection.</param>
+            <param name="command">Command.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ButtonSearcher.ByCommandParameter``1(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{``0},System.Object)">
+            <summary>
+            Search by CommandParameter from ButtonBase collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ButtonBase collection.</param>
+            <param name="commandParameter">Command parameter.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ButtonSearcher.ByCommandParameter``1(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{``0},Codeer.Friendly.ExplicitAppVar)">
+            <summary>
+            Search by CommandParameter from ButtonBase collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ButtonBase collection.</param>
+            <param name="commandParameter">Command parameter.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ButtonSearcher.ByCommandParameterText``1(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{``0},System.String)">
+            <summary>
+            Search by CommandParameter.ToString() from ButtonBase collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ButtonBase collection.</param>
+            <param name="commandParameterText">Command parameter.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ButtonSearcher.ByIsCancel``1(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{``0})">
+            <summary>
+            Search by flag of IsCancel.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ButtonBase collection.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.FrameworkElementSearcherInTarget">
+            <summary>
+            Search for FrameworkElement.
+            In order to run inside the target process, you will need to injection the RM.Friendly.WPFStandardControls.3.dll.
+            Use the RM.Friendly.WPFStandardControls.WPFStandardControls_3.Injection method.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.FrameworkElementSearcherInTarget.ByName``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Search by Name from FrameworkElement collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">FrameworkElement collection.</param>
+            <param name="name">Name.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.ButtonSearcherInTarget">
+            <summary>
+            Search for ButtonBase.
+            In order to run inside the target process, you will need to injection the RM.Friendly.WPFStandardControls.3.dll.
+            Use the RM.Friendly.WPFStandardControls.WPFStandardControls_3.Injection method.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ButtonSearcherInTarget.ByCommand``1(System.Collections.Generic.IEnumerable{``0},System.Windows.Input.ICommand)">
+            <summary>
+            Search by Command from ButtonBase collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ButtonBase collection.</param>
+            <param name="command">Command.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ButtonSearcherInTarget.ByCommandParameter``1(System.Collections.Generic.IEnumerable{``0},System.Object)">
+            <summary>
+            Search by CommandParameter from ButtonBase collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ButtonBase collection.</param>
+            <param name="commandParameter">Command parameter.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ButtonSearcherInTarget.ByCommandParameterText``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Search by CommandParameter.ToString() from ButtonBase collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ButtonBase collection.</param>
+            <param name="commandParameterText">Command parameter.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ButtonSearcherInTarget.ByIsCancel``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Search by flag of IsCancel.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ButtonBase collection.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.ContentControlSearcher">
+            <summary>
+            Search to ContentControl.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ContentControlSearcher.ByContentText``1(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{``0},System.String)">
+            <summary>
+            Search by Content.ToString() from ContentControl collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ContentControl collection.</param>
+            <param name="contentText">Content text.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.ContentControlSearcherInTarget">
+            <summary>
+            Search for ContentControl.
+            In order to run inside the target process, you will need to injection the RM.Friendly.WPFStandardControls.3.dll.
+            Use the RM.Friendly.WPFStandardControls.WPFStandardControls_3.Injection method.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ContentControlSearcherInTarget.ByContentText``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Search by Content.ToString() from ContentControl collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ContentControl collection.</param>
+            <param name="contentText">Content text.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.Inside.SendInputEx.SendKey(System.Windows.Forms.Keys)">
+            <summary>
+            Send key.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.Inside.SendInputEx.KeyDown(System.Windows.Forms.Keys)">
+            <summary>
+            Key down.
+            </summary>
+            <param name="key">key.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.Inside.SendInputEx.KeyUp(System.Windows.Forms.Keys)">
+            <summary>
+            Key up.
+            </summary>
+            <param name="key">key.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.Inside.HeaderedItemsControlUtility">
+            <summary>
+            HeaderedItemsControlUtility
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.Inside.HeaderedItemsControlUtility.GetChildren``1(System.Windows.Media.Visual,System.Collections.Generic.List{``0})">
+            <summary>
+            GetChildren
+            </summary>
+            <typeparam name="T">Child item type.</typeparam>
+            <param name="v">visual.</param>
+            <param name="itmes">Children.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.Inside.HeaderedItemsControlUtility.GetItemText(System.Windows.Media.Visual)">
+            <summary>
+            Get item text.
+            </summary>
+            <param name="item">Item.</param>
+            <returns>text.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.Inside.InvokeUtility">
+            <summary>
+            InvokeUtility
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.Inside.InvokeUtility.DoEvents">
+            <summary>
+            DoEvents
+            </summary>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.Inside.ResourcesLocal3">
+            <summary>
+            ローカライズ済みリソース。
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.Inside.ResourcesLocal3.Initialize(Codeer.Friendly.Windows.WindowsAppFriend)">
+            <summary>
+            初期化。
+            </summary>
+            <param name="app">アプリケーション操作クラス。</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.Inside.ResourcesLocal3.Initialize">
+            <summary>
+            コンストラクタ。
+            </summary>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.Inside.RichTextBoxUtility">
+            <summary>
+            RichTextBoxUtility.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.Inside.RichTextBoxUtility.GetText(System.Windows.Controls.RichTextBox)">
+            <summary>
+            Get text.
+            </summary>
+            <param name="rich">RichTextBox.</param>
+            <returns>Text.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.Inside.VisualTreeUtility">
+            <summary>
+            VisualTreeUtility
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.Inside.VisualTreeUtility.GetChildren(System.Windows.Media.Visual)">
+            <summary>
+            Enumerate visual tree children.
+            </summary>
+            <param name="v">visual</param>
+            <returns>children</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.Inside.VisualTreeUtility.IsMatchParam`1">
+            <summary>
+            IsMatchParam
+            </summary>
+            <typeparam name="T">Param type.</typeparam>
+            <param name="v">Visual.</param>
+            <param name="param">Param.</param>
+            <returns>Is match.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.Inside.VisualTreeUtility.FindVisualItem``1(System.Windows.Media.Visual,``0,RM.Friendly.WPFStandardControls.Inside.VisualTreeUtility.IsMatchParam{``0})">
+            <summary>
+            FindVisualItem
+            </summary>
+            <typeparam name="T">Param type.</typeparam>
+            <param name="visual">Visual.</param>
+            <param name="param">Param.</param>
+            <param name="isMatchParam">IsMatchParam.</param>
+            <returns>Match object.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.Inside.VisualTreeUtility.GetCoreElement(System.Windows.Media.Visual,System.String)">
+            <summary>
+            GetCoreElement.
+            </summary>
+            <param name="visual">Root.</param>
+            <param name="typeFullName">Type full name.</param>
+            <returns>Match visual.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.Inside.VisualTreeUtility.GetCoreElement(System.Windows.Media.Visual,System.Type)">
+            <summary>
+            GetCoreElement.
+            </summary>
+            <param name="visual">Root.</param>
+            <param name="type">Type.</param>
+            <returns>Match visual.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection`1">
+            <summary>
+            Collection of DependencyObject in target app.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection`1.Count">
+            <summary>
+            Count.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection`1.Item(System.Int32)">
+            <summary>
+            DependencyObject of index in target app .
+            </summary>
+            <param name="index">Index.</param>
+            <returns>DependencyObject of index in target app .</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection`1.Single">
+            <summary>
+            Get only one item.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection`1.SingleOrDefault">
+            <summary>
+            Single or Default.
+            </summary>
+            <returns>DependencyObject.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection`1.First">
+            <summary>
+            First
+            </summary>
+            <returns>DependencyObject.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection`1.FirstOrDefault">
+            <summary>
+            First or Default.
+            </summary>
+            <returns>DependencyObject.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection`1.ToArray">
+            <summary>
+            ToArray.
+            If there are a large number of elements, they are heavy, so filter them according to the conditions and reduce them sufficiently before using.
+            </summary>
+            <returns>AppVar[].</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.Searcher">
+            <summary>
+            Search by binding.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.Searcher.ByBinding``1(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{``0},System.String,Codeer.Friendly.ExplicitAppVar)">
+            <summary>
+            Search by binding from DependencyObject collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">DependencyObject collection.</param>
+            <param name="path">Binding path.</param>
+            <param name="dataItem">DataItem.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.Searcher.ByType``1(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{System.Windows.DependencyObject})">
+            <summary>
+            Search by Type from DependencyObject collection.
+            </summary>
+            <typeparam name="T">Target type.</typeparam>
+            <param name="collection">DependencyObject collection.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.Searcher.ByType(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{System.Windows.DependencyObject},System.String)">
+            <summary>
+            Search by Type from DependencyObject collection.
+            </summary>
+            <param name="collection">DependencyObject collection.</param>
+            <param name="typeFullName">Target type.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.SearcherInTarget">
+            <summary>
+            Search by binding or type.
+            In order to run inside the target process, you will need to injection the RM.Friendly.WPFStandardControls.3.dll.
+            Use the RM.Friendly.WPFStandardControls.WPFStandardControls_3.Injection method.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.SearcherInTarget.ByBinding``1(System.Collections.Generic.IEnumerable{``0},System.String,System.Object)">
+            <summary>
+            Search by binding from DependencyObject collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">DependencyObject collection.</param>
+            <param name="path">Binding path.</param>
+            <param name="dataItem">DataItem.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.SearcherInTarget.ByType``1(System.Collections.Generic.IEnumerable{System.Windows.DependencyObject})">
+            <summary>
+            Search by Type from DependencyObject collection.
+            </summary>
+            <typeparam name="T">Target type.</typeparam>
+            <param name="collection">DependencyObject collection.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.SearcherInTarget.ByType(System.Collections.Generic.IEnumerable{System.Windows.DependencyObject},System.String)">
+            <summary>
+            Search by Type from DependencyObject collection.
+            </summary>
+            <param name="collection">DependencyObject collection.</param>
+            <param name="typeFullName">Target type.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.CompileNeedAssembly3">
+            <summary>
+            Need Compile Assemblys.
+            For TestAssistant plugin.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.CompileNeedAssembly3.GetAssemblies">
+            <summary>
+            Get Assemblys.
+            </summary>
+            <returns>Assemblys.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFContentControlCore`1">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.ContentControl.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFContentControlCore`1.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFContentControlCore`1.Content">
+            <summary>
+            Get Content.
+            </summary>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFContentControl">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.ContentControl.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFContentControl.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFContextMenu">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.ContextMenu.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFContextMenu.OpenByKey">
+            <summary>
+            Open the menu by key?
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFContextMenu.Target">
+            <summary>
+            Focus element at opening.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFContextMenu.AppVar">
+            <summary>
+            ContextMenu.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFContextMenu.GetItem(System.Int32[])">
+            <summary>
+            Get item.
+            </summary>
+            <param name="indices">The array of index to the target item. </param>
+            <returns>Item.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFContextMenu.GetItem(System.String[])">
+            <summary>
+            Get item.
+            </summary>
+            <param name="headerTexts">The array of text to the target item. </param>
+            <returns>Item.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFContextMenu.GetItems">
+            <summary>
+            Get items.
+            </summary>
+            <returns>All items.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFContextMenuItem">
+            <summary>
+            Provides operations on controls of System.Windows.Controls.ContextMenu's item.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFContextMenuItem.IsChecked">
+            <summary>
+            Returns the control's check state.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFContextMenuItem.IsCheckable">
+            <summary>
+            Returns that item is checkable.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFContextMenuItem.Text">
+            <summary>
+            Get item text.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFContextMenuItem.Visibility">
+            <summary>
+            Returns true if the item is set to visible.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFContextMenuItem.IsEnabled">
+            <summary>
+            Returns true if the control is enabled.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFContextMenuItem.GetItems">
+            <summary>
+            Get items.
+            </summary>
+            <returns>All items.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFContextMenuItem.EmulateClick">
+            <summary>
+            Performs a click.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFContextMenuItem.EmulateClick(Codeer.Friendly.Async)">
+            <summary>
+            Performs a click.
+            Executes asynchronously. 
+            </summary>
+            <param name="async">Asynchronous execution.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFExpander">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.Expander.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFExpander.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFExpander.IsExpanded">
+            <summary>
+            Returns the control's expanded state.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFExpander.EmulateOpen">
+            <summary>
+            Open.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFExpander.EmulateOpen(Codeer.Friendly.Async)">
+            <summary>
+            Open.
+            Executes asynchronously. 
+            </summary>
+            <param name="async">Asynchronous execution.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFExpander.EmulateClose">
+            <summary>
+            Close.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFExpander.EmulateClose(Codeer.Friendly.Async)">
+            <summary>
+            Close.
+            Executes asynchronously. 
+            </summary>
+            <param name="async">Asynchronous execution.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFHyperlink">
+            <summary>
+            Provides operations on controls of type System.Windows.Documents.Hyperlink.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFHyperlink.AppVar">
+            <summary>
+            Variable manipulation object within the target application.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFHyperlink.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFHyperlink.EmulateClick">
+            <summary>
+            Performs a click.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFHyperlink.EmulateClick(Codeer.Friendly.Async)">
+            <summary>
+            Performs a click.
+            Executes asynchronously. 
+            </summary>
+            <param name="async">Asynchronous execution.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFPasswordBox">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.PasswordBox.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFPasswordBox.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFPasswordBox.Password">
+            <summary>
+            Returns the control's password.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFPasswordBox.EmulateChangePassword(System.String)">
+            <summary>
+            Sets the control's password.
+            </summary>
+            <param name="password">Password to use.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFPasswordBox.EmulateChangePassword(System.String,Codeer.Friendly.Async)">
+            <summary>
+            Sets the control's password.
+            Executes asynchronously. 
+            </summary>
+            <param name="password">Password to use.</param>
+            <param name="async">Asynchronous execution.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFStandardControls_3">
+            <summary>
+            Initialize RM.Friendly.WPFStandardControls.3.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFStandardControls_3.Injection(Codeer.Friendly.Windows.WindowsAppFriend)">
+            <summary>
+            Install RM.Friendly.WPFStandardControls.3.dll to target process.
+            </summary>
+            <param name="app">Application manipulation object.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.Properties.Resources">
+            <summary>
+              ローカライズされた文字列などを検索するための、厳密に型指定されたリソース クラスです。
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.Properties.Resources.ResourceManager">
+            <summary>
+              このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.Properties.Resources.Culture">
+            <summary>
+              厳密に型指定されたこのリソース クラスを使用して、すべての検索リソースに対し、
+              現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.Properties.Resources.ErrorNotFoundElement">
+            <summary>
+              The desire Visual element was not found. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.Properties.Resources.ErrorNotFoundItem">
+            <summary>
+              The desire item was not found. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.Properties.Resources.NotSingle">
+            <summary>
+              Not single. count = {0} に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.TreeRunDirection">
+            <summary>
+            VisualTree and LogicalTree utility.
+            </summary>
+        </member>
+        <member name="F:RM.Friendly.WPFStandardControls.TreeRunDirection.Descendants">
+            <summary>
+            Descendants.
+            </summary>
+        </member>
+        <member name="F:RM.Friendly.WPFStandardControls.TreeRunDirection.Ancestors">
+            <summary>
+            Ancestors.
+            </summary>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.TreeUtility">
+            <summary>
+            VisualTree and LogicalTree utility.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.TreeUtility.VisualTree(Codeer.Friendly.AppVar,RM.Friendly.WPFStandardControls.TreeRunDirection)">
+            <summary>
+            Enumerate DependencyObject continuing to VisualTree.
+            </summary>
+            <param name="start">Start DependencyObject.</param>
+            <param name="direction">Run direction.</param>
+            <returns>Enumerated DependencyObject.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.TreeUtility.LogicalTree(Codeer.Friendly.AppVar,RM.Friendly.WPFStandardControls.TreeRunDirection)">
+            <summary>
+            Enumerate DependencyObject continuing to LogicalTree.
+            </summary>
+            <param name="start">Start DependencyObject.</param>
+            <param name="direction">Run direction.</param>
+            <returns>Enumerated DependencyObject.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.TreeUtilityInTarget">
+            <summary>
+            VisualTree and LogicalTree utility.
+            In order to run inside the target process, you will need to injection the RM.Friendly.WPFStandardControls.3.dll.
+            Use the RM.Friendly.WPFStandardControls.WPFStandardControls_3.Injection method.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.TreeUtilityInTarget.VisualTree(System.Windows.DependencyObject,RM.Friendly.WPFStandardControls.TreeRunDirection)">
+            <summary>
+            Enumerate DependencyObject continuing to VisualTree.
+            </summary>
+            <param name="start">Start DependencyObject.</param>
+            <param name="direction">Run direction.</param>
+            <returns>Enumerated DependencyObject.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.TreeUtilityInTarget.LogicalTree(System.Windows.DependencyObject,RM.Friendly.WPFStandardControls.TreeRunDirection)">
+            <summary>
+            Enumerate DependencyObject continuing to LogicalTree.
+            </summary>
+            <param name="start">Start DependencyObject.</param>
+            <param name="direction">Run direction.</param>
+            <returns>Enumerated DependencyObject.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFButtonBase">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.Primitives.ButtonBase.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFButtonBase.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFButtonBase.EmulateClick">
+            <summary>
+            Performs a click.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFButtonBase.EmulateClick(Codeer.Friendly.Async)">
+            <summary>
+            Performs a click.
+            Executes asynchronously. 
+            </summary>
+            <param name="async">Asynchronous execution.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFButtonBase.EmulateClick(System.Windows.Controls.Primitives.ButtonBase)">
+            <summary>
+            クリックです。
+            </summary>
+            <param name="button">ボタン。</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFComboBox">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.ComboBox.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFComboBox.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFComboBox.TextBox">
+            <summary>
+            If ComboBox is Editable, You get TextBox.
+            </summary>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFControlBase`1">
+            <summary>
+            This is the base class for classes that operate on basic controls in System.Windows.Controls.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFControlBase`1.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFControlBase`1.Visibility">
+            <summary>
+            Returns true if the item is set to visible.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFControlBase`1.IsEnabled">
+            <summary>
+            Returns true if the control is enabled.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFControlBase`1.Size">
+            <summary>
+            Returns the size of IUIObject.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFControlBase`1.Activate">
+            <summary>
+            Make it active.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFControlBase`1.PointToScreen(System.Drawing.Point)">
+            <summary>
+            Convert IUIObject's client coordinates to screen coordinates.
+            </summary>
+            <param name="clientPoint">client coordinates.</param>
+            <returns>screen coordinates.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFDependencyObjectCollection`1">
+            <summary>
+            Collection of T in target app.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFDependencyObjectCollection`1.AppVar">
+            <summary>
+            List＜T＞ in target app.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFDependencyObjectCollection`1.Count">
+            <summary>
+            Count.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFDependencyObjectCollection`1.Item(System.Int32)">
+            <summary>
+            T of index in target app .
+            </summary>
+            <param name="index">Index.</param>
+            <returns>T of index in target app .</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFDependencyObjectCollection`1.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="appVar">List＜T＞ in target app.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFDependencyObjectCollection`1.#ctor(Codeer.Friendly.IAppVarOwner)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="appVar">List＜T＞ in target app.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFDependencyObjectCollection`1.Single">
+            <summary>
+            Get only one item.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFDependencyObjectCollection`1.SingleOrDefault">
+            <summary>
+            Single or Default.
+            </summary>
+            <returns>DependencyObject.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFDependencyObjectCollection`1.First">
+            <summary>
+            First
+            </summary>
+            <returns>DependencyObject.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFDependencyObjectCollection`1.FirstOrDefault">
+            <summary>
+            First or Default.
+            </summary>
+            <returns>DependencyObject.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFDependencyObjectCollection`1.ToArray">
+            <summary>
+            ToArray.
+            If there are a large number of elements, they are heavy, so filter them according to the conditions and reduce them sufficiently before using.
+            </summary>
+            <returns>AppVar[].</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFListBoxCore`1">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.ListBox.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFListBoxCore`1.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFListBoxCore`1.EnsureVisible(System.Int32)">
+            <summary>
+            It is made for the item of the appointed index to be in a visible state. 
+            A visible state is in the state to which creation of ListBoxItem was attained on VisualTree. 
+            </summary>
+            <param name="index">Item index.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFListBox">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.ListBox.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFListBox.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFListBox.GetItem(System.Int32)">
+            <summary>
+            Getitem.
+            </summary>
+            <param name="index">Item index.</param>
+            <returns>Item.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFListBox`1">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.ListBox.
+            </summary>
+            <typeparam name="TItemUserControlDriver">UserControlDriver of item.</typeparam>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFListBox`1.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFListBox`1.SelectedItemDriver">
+            <summary>
+            UserControlDriver of selected item.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFListBox`1.ActiveItemIndex">
+            <summary>
+            Active item index.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFListBox`1.GetItemDriver(System.Int32)">
+            <summary>
+            Get item's UserControlDriver.
+            </summary>
+            <param name="index">Item index.</param>
+            <returns>UserControlDriver.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFListBox`1.GetInvokeType">
+            <summary>
+            Type for invoke in target
+            </summary>
+            <returns>Type for invoke in target.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFListBoxItemCore`1">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.ListBoxItem.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFListBoxItemCore`1.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFListBoxItemCore`1.IsSelected">
+            <summary>
+            Get selection state.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFListBoxItemCore`1.EmulateChangeSelected(System.Boolean)">
+            <summary>
+            Change Selected.
+            </summary>
+            <param name="isSelected">Item's selection state.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFListBoxItemCore`1.EmulateChangeSelected(System.Boolean,Codeer.Friendly.Async)">
+            <summary>
+            Change Selected.
+            Executes asynchronously. 
+            </summary>
+            <param name="isSelected">Item's selection state.</param>
+            <param name="async">Asynchronous execution.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFListBoxItem">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.ListBoxItem.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFListBoxItem.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFListView">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.ListView.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFListView.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFListView.GetItem(System.Int32)">
+            <summary>
+            Getitem.
+            </summary>
+            <param name="index">Item index.</param>
+            <returns>Item.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFListView`1">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.ListView.
+            </summary>
+            <typeparam name="TItemUserControlDriver">UserControlDriver of item.</typeparam>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFListView`1.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFListView`1.SelectedItemDriver">
+            <summary>
+            UserControlDriver of selected item.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFListView`1.ActiveItemIndex">
+            <summary>
+            Active item index.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFListView`1.GetItemDriver(System.Int32)">
+            <summary>
+            Get item's UserControlDriver.
+            </summary>
+            <param name="index">Item index.</param>
+            <returns>UserControlDriver.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFListView`1.GetInvokeType">
+            <summary>
+            Type for invoke in target
+            </summary>
+            <returns>Type for invoke in target.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFListViewItem">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.ListViewItem.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFListViewItem.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFMenuBase">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.Primitives.MenuBase.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFMenuBase.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFMenuBase.GetItem(System.String[])">
+            <summary>
+            Get item.
+            </summary>
+            <param name="headerTexts">The array of text to the target item. </param>
+            <returns>Item.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFMenuBase.GetItem(System.Int32[])">
+            <summary>
+            Get item.
+            </summary>
+            <param name="indices">The array of index to the target item. </param>
+            <returns>Item.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFTabControl">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.TabControl.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTabControl.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFTextBlock">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.TextBlock.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTextBlock.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFTextBlock.Text">
+            <summary>
+            Returns the control's text.
+            </summary>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFTreeViewItem">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.TreeViewItem.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTreeViewItem.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFTreeViewItem.IsExpanded">
+            <summary>
+            Get expanding state.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFTreeViewItem.IsSelected">
+            <summary>
+            Get selection state.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFTreeViewItem.Text">
+            <summary>
+            Get item text.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFTreeViewItem.HeaderContent">
+            <summary>
+            Get ContentPresenter of Header.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFTreeViewItem.ItemCount">
+            <summary>
+            Returns the number of items.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTreeViewItem.GetCoreElement(System.String)">
+            <summary>
+            Get Visual inside TreeViewItem on VisualTree.
+            </summary>
+            <param name="typeFullName">Type full name.</param>
+            <returns>AppVar corresponding to a Visual. </returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTreeViewItem.GetItem(System.String[])">
+            <summary>
+            Get item.
+            </summary>
+            <param name="headerTexts">The array of text to the target item. </param>
+            <returns>Item.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTreeViewItem.GetItem(System.Int32[])">
+            <summary>
+            Get item.
+            </summary>
+            <param name="indices">The array of index to the target item. </param>
+            <returns>Item.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTreeViewItem.EmulateChangeExpanded(System.Boolean)">
+            <summary>
+            Change Expanded.
+            </summary>
+            <param name="isExpanded">Item's expanding state.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTreeViewItem.EmulateChangeExpanded(System.Boolean,Codeer.Friendly.Async)">
+            <summary>
+            Change Expanded.
+            Executes asynchronously. 
+            </summary>
+            <param name="isExpanded">Item's expanding state.</param>
+            <param name="async">Asynchronous execution.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTreeViewItem.EmulateChangeSelected(System.Boolean)">
+            <summary>
+            Change Selected.
+            </summary>
+            <param name="isSelected">Item's selection state.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTreeViewItem.EmulateChangeSelected(System.Boolean,Codeer.Friendly.Async)">
+            <summary>
+            Change Selected.
+            Executes asynchronously. 
+            </summary>
+            <param name="isSelected">Item's selection state.</param>
+            <param name="async">Asynchronous execution.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFMenuItem">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.MenuItem.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFMenuItem.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFMenuItem.IsChecked">
+            <summary>
+            Returns the control's check state.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFMenuItem.IsCheckable">
+            <summary>
+            Returns that item is checkable.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFMenuItem.Text">
+            <summary>
+            Get item text.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFMenuItem.GetCoreElement(System.String)">
+            <summary>
+            Get Visual inside MenuItem on VisualTree.
+            </summary>
+            <param name="typeFullName">Type full name.</param>
+            <returns>AppVar corresponding to a Visual. </returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFMenuItem.EmulateClick">
+            <summary>
+            Performs a click.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFMenuItem.EmulateClick(Codeer.Friendly.Async)">
+            <summary>
+            Performs a click.
+            Executes asynchronously. 
+            </summary>
+            <param name="async">Asynchronous execution.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFProgressBar">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.ProgressBar.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFProgressBar.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFProgressBar.Value">
+            <summary>
+            Returns the control's value.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFProgressBar.Minimum">
+            <summary>
+            Returns the control's minimum value.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFProgressBar.Maximum">
+            <summary>
+            Returns the control's maximum value.
+            </summary>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFRichTextBox">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.RichTextBox.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFRichTextBox.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFRichTextBox.Text">
+            <summary>
+            Returns the control's text.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFRichTextBox.EmulateClearText">
+            <summary>
+            Clear the control's text.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFRichTextBox.EmulateClearText(Codeer.Friendly.Async)">
+            <summary>
+            Clear the control's text.
+            Executes asynchronously. 
+            </summary>
+            <param name="async">Asynchronous execution.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFRichTextBox.EmulateAppendText(System.String)">
+            <summary>
+            Append text.
+            </summary>
+            <param name="text">Text to use.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFRichTextBox.EmulateAppendText(System.String,Codeer.Friendly.Async)">
+            <summary>
+            Append text.
+            Executes asynchronously. 
+            </summary>
+            <param name="text">Text to use.</param>
+            <param name="async">Asynchronous execution.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFSelectorCore`1">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.Primitives.Selector.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFSelectorCore`1.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFSelectorCore`1.ItemCount">
+            <summary>
+            Returns the number of items in the list.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFSelectorCore`1.SelectedIndex">
+            <summary>
+            Returns the index of the currently selected item.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFSelectorCore`1.EmulateChangeSelectedIndex(System.Int32)">
+            <summary>
+            Selects the item with the specified index.
+            </summary>
+            <param name="index">Item index.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFSelectorCore`1.EmulateChangeSelectedIndex(System.Int32,Codeer.Friendly.Async)">
+            <summary>
+            Selects the item with the specified index.
+            Executes asynchronously. 
+            </summary>
+            <param name="index">Item index.</param>
+            <param name="async">Asynchronous execution.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFSelector">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.Primitives.Selector.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFSelector.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFSlider">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.Slider.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFSlider.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFSlider.Value">
+            <summary>
+            Returns the control's value.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFSlider.Minimum">
+            <summary>
+            Returns the control's minimum value.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFSlider.Maximum">
+            <summary>
+            Returns the control's maximum value.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFSlider.EmulateChangeValue(System.Double)">
+            <summary>
+            Sets the control's value.
+            </summary>
+            <param name="value">value to use.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFSlider.EmulateChangeValue(System.Double,Codeer.Friendly.Async)">
+            <summary>
+            Sets the control's value.
+            Executes asynchronously. 
+            </summary>
+            <param name="value">value to use.</param>
+            <param name="async">Asynchronous execution.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFTextBox">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.TextBox.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTextBox.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFTextBox.Text">
+            <summary>
+            Returns the control's text.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTextBox.EmulateChangeText(System.String)">
+            <summary>
+            Sets the control's text.
+            </summary>
+            <param name="text">Text to use.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTextBox.EmulateChangeText(System.String,Codeer.Friendly.Async)">
+            <summary>
+            Sets the control's text.
+            Executes asynchronously. 
+            </summary>
+            <param name="text">Text to use.</param>
+            <param name="async">Asynchronous execution.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFToggleButton">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.Primitives.ToggleButton.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFToggleButton.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFToggleButton.IsChecked">
+            <summary>
+            Returns the control's check state.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFToggleButton.IsThreeState">
+            <summary>
+            Returns that the control is 3 state.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFToggleButton.EmulateCheck(System.Nullable{System.Boolean})">
+            <summary>
+            Sets the control's check state.
+            Executes asynchronously. 
+            </summary>
+            <param name="value">Check state.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFToggleButton.EmulateCheck(System.Nullable{System.Boolean},Codeer.Friendly.Async)">
+            <summary>
+            Sets the control's check state.
+            Executes asynchronously. 
+            </summary>
+            <param name="value">Check state.</param>
+            <param name="async">Asynchronous execution.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFTreeView">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.WPFTreeView.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTreeView.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTreeView.GetItem(System.String[])">
+            <summary>
+            Get item.
+            </summary>
+            <param name="headerTexts">The array of text to the target item. </param>
+            <returns>Item.</returns>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFTreeView.ItemCount">
+            <summary>
+            Returns the number of items.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTreeView.GetItem(System.Int32[])">
+            <summary>
+            Get item.
+            </summary>
+            <param name="indices">The array of index to the target item. </param>
+            <returns>Item.</returns>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFTreeView.SelectedItem">
+            <summary>
+            Selected Item.
+            </summary>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFTreeView`1">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.WPFTreeView.
+            </summary>
+            <typeparam name="TItemUserControlDriver">UserControlDriver of item.</typeparam>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTreeView`1.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFTreeView`1.SelectedItemDriver">
+            <summary>
+            UserControlDriver of selected item.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFTreeView`1.ActiveItemIndices">
+            <summary>
+            Active item key.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTreeView`1.GetItemDriver(System.String[])">
+            <summary>
+            Get item's UserControlDriver.
+            </summary>
+            <param name="headerTexts">The array of text to the target item. </param>
+            <returns>UserControlDriver.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTreeView`1.GetItemDriver(System.Int32[])">
+            <summary>
+            Get item's UserControlDriver.
+            </summary>
+            <param name="indices">Item index.</param>
+            <returns>UserControlDriver.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTreeView`1.GetInvokeType">
+            <summary>
+            Type for invoke in target
+            </summary>
+            <returns>Type for invoke in target.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFTreeView`1.CustomCaptureCodeGenerator(Codeer.Friendly.AppVar)">
+            <summary>
+            Call during capture.
+            AppVar of Capture Code Generator running in the target process comes over.
+            </summary>
+            <param name="captureCodeGenerator">Capture Code Generator.</param>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFUIElement">
+            <summary>
+            This class generates operation codes for UIElement.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFUIElement.App">
+            <summary>
+            Application manipulation object.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFUIElement.AppVar">
+            <summary>
+            Variable manipulation object within the target application.
+            </summary>
+        </member>
+        <member name="P:RM.Friendly.WPFStandardControls.WPFUIElement.Size">
+            <summary>
+            Returns the size of IUIObject.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFUIElement.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFUIElement.Activate">
+            <summary>
+            Make it active.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFUIElement.PointToScreen(System.Drawing.Point)">
+            <summary>
+            Convert IUIObject's client coordinates to screen coordinates.
+            </summary>
+            <param name="clientPoint">client coordinates.</param>
+            <returns>screen coordinates.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFUserControl">
+            <summary>
+            Provides operations on controls of type System.Windows.Controls.UserControl.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFUserControl.#ctor(Codeer.Friendly.AppVar)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="appVar">Application variable object for the control.</param>
+        </member>
+    </members>
+</doc>

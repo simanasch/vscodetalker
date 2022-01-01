@@ -1,0 +1,304 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RM.Friendly.WPFStandardControls.3.5</name>
+    </assembly>
+    <members>
+        <member name="T:RM.Friendly.WPFStandardControls.FrameworkElementSearcherExtensions">
+            <summary>
+            Search to FrameworkElement.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.FrameworkElementSearcherExtensions.ByName``1(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{``0},System.String)">
+            <summary>
+            Search by Name from FrameworkElement collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">FrameworkElement collection.</param>
+            <param name="name">Name.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.ButtonSearcherExtensions">
+            <summary>
+            Search to ButtonBase.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ButtonSearcherExtensions.ByCommand``1(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{``0},System.String,System.String)">
+            <summary>
+            Search by Command from ButtonBase collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ButtonBase collection.</param>
+            <param name="ownerType">Owner type.</param>
+            <param name="name">Name.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ButtonSearcherExtensions.ByCommand``1(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{``0},System.Windows.Input.RoutedCommand)">
+            <summary>
+            Search by Command from ButtonBase collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ButtonBase collection.</param>
+            <param name="command">Command.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ButtonSearcherExtensions.ByCommandParameter``1(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{``0},System.Object)">
+            <summary>
+            Search by CommandParameter from ButtonBase collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ButtonBase collection.</param>
+            <param name="commandParameter">Command parameter.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ButtonSearcherExtensions.ByCommandParameter``1(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{``0},Codeer.Friendly.ExplicitAppVar)">
+            <summary>
+            Search by CommandParameter from ButtonBase collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ButtonBase collection.</param>
+            <param name="commandParameter">Command parameter.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ButtonSearcherExtensions.ByCommandParameterText``1(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{``0},System.String)">
+            <summary>
+            Search by CommandParameter.ToString() from ButtonBase collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ButtonBase collection.</param>
+            <param name="commandParameterText">Command parameter.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ButtonSearcherExtensions.ByIsCancel``1(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{``0})">
+            <summary>
+            Search by flag of IsCancel.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ButtonBase collection.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.FrameworkElementSearcherInTargetExtensions">
+            <summary>
+            Search for FrameworkElement.
+            In order to run inside the target process, you will need to injection the RM.Friendly.WPFStandardControls.3.dll.
+            Use the RM.Friendly.WPFStandardControls.WPFStandardControls_3.Injection method.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.FrameworkElementSearcherInTargetExtensions.ByName``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Search by Name from FrameworkElement collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">FrameworkElement collection.</param>
+            <param name="name">Name.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.ButtonSearcherInTargetExtensions">
+            <summary>
+            Search for ButtonBase.
+            In order to run inside the target process, you will need to injection the RM.Friendly.WPFStandardControls.3.dll.
+            Use the RM.Friendly.WPFStandardControls.WPFStandardControls_3.Injection method.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ButtonSearcherInTargetExtensions.ByCommand``1(System.Collections.Generic.IEnumerable{``0},System.Windows.Input.ICommand)">
+            <summary>
+            Search by Command from ButtonBase collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ButtonBase collection.</param>
+            <param name="command">Command.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ButtonSearcherInTargetExtensions.ByCommandParameter``1(System.Collections.Generic.IEnumerable{``0},System.Object)">
+            <summary>
+            Search by CommandParameter from ButtonBase collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ButtonBase collection.</param>
+            <param name="commandParameter">Command parameter.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ButtonSearcherInTargetExtensions.ByCommandParameterText``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Search by CommandParameter.ToString() from ButtonBase collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ButtonBase collection.</param>
+            <param name="commandParameterText">Command parameter.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ButtonSearcherInTargetExtensions.ByIsCancel``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Search by flag of IsCancel.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ButtonBase collection.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.ContentControlSearcherExtensions">
+            <summary>
+            Search to ContentControl.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ContentControlSearcherExtensions.ByContentText``1(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{``0},System.String)">
+            <summary>
+            Search by Content.ToString() from ContentControl collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ContentControl collection.</param>
+            <param name="contentText">Content text.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.ContentControlSearcherInTargetExtensions">
+            <summary>
+            Search for ContentControl.
+            In order to run inside the target process, you will need to injection the RM.Friendly.WPFStandardControls.3.dll.
+            Use the RM.Friendly.WPFStandardControls.WPFStandardControls_3.Injection method.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.ContentControlSearcherInTargetExtensions.ByContentText``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Search by Content.ToString() from ContentControl collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">ContentControl collection.</param>
+            <param name="contentText">Content text.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.SearcherExtensions">
+            <summary>
+            Search by binding.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.SearcherExtensions.ByBinding``1(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{``0},System.String,Codeer.Friendly.ExplicitAppVar)">
+            <summary>
+            Search by binding from DependencyObject collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">DependencyObject collection.</param>
+            <param name="path">Binding path.</param>
+            <param name="dataItem">DataItem.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.SearcherExtensions.ByType``1(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{System.Windows.DependencyObject})">
+            <summary>
+            Search by Type from DependencyObject collection.
+            </summary>
+            <typeparam name="T">Target type.</typeparam>
+            <param name="collection">DependencyObject collection.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.SearcherExtensions.ByType(RM.Friendly.WPFStandardControls.IWPFDependencyObjectCollection{System.Windows.DependencyObject},System.String)">
+            <summary>
+            Search by Type from DependencyObject collection.
+            </summary>
+            <param name="collection">DependencyObject collection.</param>
+            <param name="typeFullName">Target type.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.SearcherInTargetExtensions">
+            <summary>
+            Search by binding.
+            In order to run inside the target process, you will need to injection the RM.Friendly.WPFStandardControls.3.5.dll.
+            Use the RM.Friendly.WPFStandardControls.WPFStandardControls_3_5.Injection method.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.SearcherInTargetExtensions.ByBinding``1(System.Collections.Generic.IEnumerable{``0},System.String,System.Object)">
+            <summary>
+            Search by binding from DependencyObject collection.
+            </summary>
+            <typeparam name="T">Type of collection.</typeparam>
+            <param name="collection">DependencyObject collection.</param>
+            <param name="path">Binding path.</param>
+            <param name="dataItem">DataItem.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.SearcherInTargetExtensions.ByType``1(System.Collections.Generic.IEnumerable{System.Windows.DependencyObject})">
+            <summary>
+            Search by Type from DependencyObject collection.
+            </summary>
+            <typeparam name="T">Target type.</typeparam>
+            <param name="collection">DependencyObject collection.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.SearcherInTargetExtensions.ByType(System.Collections.Generic.IEnumerable{System.Windows.DependencyObject},System.String)">
+            <summary>
+            Search by Type from DependencyObject collection.
+            </summary>
+            <param name="collection">DependencyObject collection.</param>
+            <param name="typeFullName">Target type.</param>
+            <returns>Hit elements.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.TreeUtilityExtensions">
+            <summary>
+            VisualTree and LogicalTree utility.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.TreeUtilityExtensions.VisualTree(Codeer.Friendly.AppVar,RM.Friendly.WPFStandardControls.TreeRunDirection)">
+            <summary>
+            Enumerate DependencyObject continuing to VisualTree.
+            </summary>
+            <param name="start">Start DependencyObject.</param>
+            <param name="direction">Run direction.</param>
+            <returns>Enumerated DependencyObject.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.TreeUtilityExtensions.VisualTree(Codeer.Friendly.IAppVarOwner,RM.Friendly.WPFStandardControls.TreeRunDirection)">
+            <summary>
+            Enumerate DependencyObject continuing to VisualTree.
+            </summary>
+            <param name="start">Start DependencyObject.</param>
+            <param name="direction">Run direction.</param>
+            <returns>Enumerated DependencyObject.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.TreeUtilityExtensions.LogicalTree(Codeer.Friendly.AppVar,RM.Friendly.WPFStandardControls.TreeRunDirection)">
+            <summary>
+            Enumerate DependencyObject continuing to LogicalTree.
+            </summary>
+            <param name="start">Start DependencyObject.</param>
+            <param name="direction">Run direction.</param>
+            <returns>Enumerated DependencyObject.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.TreeUtilityExtensions.LogicalTree(Codeer.Friendly.IAppVarOwner,RM.Friendly.WPFStandardControls.TreeRunDirection)">
+            <summary>
+            Enumerate DependencyObject continuing to LogicalTree.
+            </summary>
+            <param name="start">Start DependencyObject.</param>
+            <param name="direction">Run direction.</param>
+            <returns>Enumerated DependencyObject.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.TreeUtilityInTargetExtensions">
+            <summary>
+            VisualTree and LogicalTree utility.
+            In order to run inside the target process, you will need to injection the RM.Friendly.WPFStandardControls.3.5.dll.
+            Use the RM.Friendly.WPFStandardControls.WPFStandardControls_3_5.Injection method.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.TreeUtilityInTargetExtensions.VisualTree(System.Windows.DependencyObject,RM.Friendly.WPFStandardControls.TreeRunDirection)">
+            <summary>
+            Enumerate DependencyObject continuing to VisualTree.
+            </summary>
+            <param name="start">Start DependencyObject.</param>
+            <param name="direction">Run direction.</param>
+            <returns>Enumerated DependencyObject.</returns>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.TreeUtilityInTargetExtensions.LogicalTree(System.Windows.DependencyObject,RM.Friendly.WPFStandardControls.TreeRunDirection)">
+            <summary>
+            Enumerate DependencyObject continuing to LogicalTree.
+            </summary>
+            <param name="start">Start DependencyObject.</param>
+            <param name="direction">Run direction.</param>
+            <returns>Enumerated DependencyObject.</returns>
+        </member>
+        <member name="T:RM.Friendly.WPFStandardControls.WPFStandardControls_3_5">
+            <summary>
+            Initialize RM.Friendly.WPFStandardControls.3.5.
+            </summary>
+        </member>
+        <member name="M:RM.Friendly.WPFStandardControls.WPFStandardControls_3_5.Injection(Codeer.Friendly.Windows.WindowsAppFriend)">
+            <summary>
+            Install RM.Friendly.WPFStandardControls.3.5.dll to target process.
+            </summary>
+            <param name="app">Application manipulation object.</param>
+        </member>
+    </members>
+</doc>

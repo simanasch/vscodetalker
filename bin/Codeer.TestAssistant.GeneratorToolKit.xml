@@ -1,0 +1,1386 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Codeer.TestAssistant.GeneratorToolKit</name>
+    </assembly>
+    <members>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.IItemKey">
+            <summary>
+            Implementing this interface allows you to convert that object to an argument. Used in the property specified by ActiveItemKeyProperty of ItemDriverGetterAttribute.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.IItemKey.GetArguments">
+            <summary>
+            Convert to arguments.
+            </summary>
+            <returns>Arguments</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.IItemKey.GetArgumentsCode">
+            <summary>
+            Convert to code of arguments.
+            </summary>
+            <returns>Code of arguments.</returns>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.AdvancedCaptureCustomizerBase">
+            <summary>
+            Advanced capture customization function.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.AdvancedCaptureCustomizerBase.ShowWaitingMark">
+            <summary>
+            Show waiting mark.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.AdvancedCaptureCustomizerBase.GetVisualItemState(System.Object)">
+            <summary>
+            Get the status of VisualItem.
+            </summary>
+            <param name="driver">Driver.</param>
+            <returns>VisualItemState.</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.AdvancedCaptureCustomizerBase.GetTopLevelWindowAttacDriverInfo(System.IntPtr)">
+            <summary>
+            Get driver attachment information for top level window.
+            </summary>
+            <param name="handle">Window handle.</param>
+            <returns>Attachment information.</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.AdvancedCaptureCustomizerBase.GetAttacDriverInfo(System.Object)">
+            <summary>
+            Get driver attachment information.
+            </summary>
+            <param name="parentDriver">Parent driver.</param>
+            <returns>Attachment information.</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.AdvancedCaptureCustomizerBase.AddVariable(System.String,System.Object)">
+            <summary>
+            Add variable.
+            </summary>
+            <param name="name">Variable name.</param>
+            <param name="driver">Driver.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.AdvancedCaptureCustomizerBase.DeclearVariable(System.String,System.String,System.Object)">
+            <summary>
+            Declear variable.
+            </summary>
+            <param name="name">Variable name.</param>
+            <param name="initialize">Initialize code.</param>
+            <param name="driver">Driver.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.AdvancedCaptureCustomizerBase.AttachCaptoreGenerator(System.String,System.Object)">
+            <summary>
+            Create and attach a generator for capture code generation.
+            </summary>
+            <param name="accessPath">Access path to ControlDriver in generated code.</param>
+            <param name="controlDriver">Control Driver</param>
+            <returns>Caputrue generator in target.</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.AdvancedCaptureCustomizerBase.Initialize(System.Object,System.String,System.String)">
+            <summary>
+            Initialize.
+            </summary>
+            <param name="app">AppFriend.</param>
+            <param name="editingTypeFullName">Type full name of the editing class.</param>
+            <param name="edittingMethodName">Name of the editing method.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.AdvancedCaptureCustomizerBase.RefleshDrivers">
+            <summary>
+            It is called at the timing of updating the driver.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.AdvancedCaptureCustomizerBase.GetCaptureDriverTree">
+            <summary>
+            Get Driver tree attached at capture time.
+            </summary>
+            <returns>Tree.</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.AdvancedCaptureCustomizerBase.GetCaptureDriverTreeMenuAction(System.String)">
+            <summary>
+            Get Menu processing at Capture Attach Tree.
+            </summary>
+            <param name="accessPath">Access path to driver.</param>
+            <returns>Menu processing at Capture Attach Tree.</returns>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.AppInfoAttribute">
+            <summary>
+            Information on the application to be connected.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.AppInfoAttribute.Name">
+            <summary>
+            Name of the application.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.CaptureAdaptor">
+            <summary>
+            Code added at capture.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.CaptureAdaptor.GetCaptureCodeGenerator(System.Object)">
+            <summary>
+            Search CaptureCodeGenerator from Driver.
+            </summary>
+            <param name="driver"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.CaptureAdaptor.AddCode(System.String)">
+            <summary>
+            Add code.
+            </summary>
+            <param name="code">code.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.CaptureAdaptor.AddUsing(System.String)">
+            <summary>
+            Add using.
+            </summary>
+            <param name="using">using.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.CaptureAdaptor.PopCode">
+            <summary>
+            Get code.
+            </summary>
+            <returns>code.</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.CaptureAdaptor.PopUsing">
+            <summary>
+            Get using.
+            </summary>
+            <returns>using.</returns>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorCustomAttribute">
+            <summary>
+            Used to dynamically customize the capture from the driver during capture.
+            Please attach it to the method.
+            The method declaration looks like this:
+            
+            void CustomMethod(AppVar captureCodeGenerator)
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.CaptureDriverTree">
+            <summary>
+            Driver tree attached at capture time
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.CaptureDriverTree.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.CaptureDriverTree.Children">
+            <summary>
+            Children.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.DriverCreatorAdapter">
+            <summary>
+            Adapter with driver creator.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverCreatorAdapter.ClientProjectExtension">
+            <summary>
+            Client project extension.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverCreatorAdapter.SelectedNamespace">
+            <summary>
+            Selected namespace.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverCreatorAdapter.WindowClassNameAndControlDriver">
+            <summary>
+            Window class name and control driver info dictionary.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverCreatorAdapter.TypeFullNameAndControlDriver">
+            <summary>
+            .Net type full name and control driver info dictionary.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverCreatorAdapter.TypeFullNameAndWindowDriver">
+            <summary>
+            .Net type full name and window driver info dictionary.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverCreatorAdapter.WindowClassNameAndWindowDriver">
+            <summary>
+            Window class name and window driver info dictionary.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverCreatorAdapter.WindowTextAndWindowDriver">
+            <summary>
+            Window text and window driver info dictionary.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverCreatorAdapter.TypeFullNameAndUserControlDriver">
+            <summary>
+            .Net type full name and user control driver info dictionary.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverCreatorAdapter.MultiWindowClassNameAndControlDriver">
+            <summary>
+            Window class name and control driver info multi dictionary.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverCreatorAdapter.MultiTypeFullNameAndControlDriver">
+            <summary>
+            .Net type full name and control driver info multi dictionary.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverCreatorAdapter.MultiTypeFullNameAndWindowDriver">
+            <summary>
+            .Net type full name and window driver info multi dictionary.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverCreatorAdapter.MultiWindowClassNameAndWindowDriver">
+            <summary>
+            Window class name and window driver info multi dictionary.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverCreatorAdapter.MultiWindowTextAndWindowDriver">
+            <summary>
+            Window text and window driver info multi dictionary.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverCreatorAdapter.MultiTypeFullNameAndUserControlDriver">
+            <summary>
+            .Net type full name and user control driver info multi dictionary.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.DriverCreatorAdapter.AddDriverElements(System.Object)">
+            <summary>
+            Add driver elements.
+            </summary>
+            <param name="driverElement">Driver element.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.DriverCreatorAdapter.AddCode(System.String,System.String,System.Object)">
+            <summary>
+            Add code.
+            </summary>
+            <param name="fileName">File name.</param>
+            <param name="code">Code.</param>
+            <param name="target">An object of type corresponding to the driver code (or Window handle).</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.DriverCreatorAdapter.AddCodeLineSelectInfo(System.String,System.String,System.Object)">
+            <summary>
+            When the generated code is displayed in the preview, add information on the object to be highlighted when selecting the line of code.
+            </summary>
+            <param name="fileName">File name.</param>
+            <param name="key">What can be uniquely identified in the file with keywords contained in the line.</param>
+            <param name="target">Object to highlight (or Window handle).</param>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.DriverDesignInfo">
+            <summary>
+            Driver design info
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverDesignInfo.ClassName">
+            <summary>
+            class name.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverDesignInfo.Properties">
+            <summary>
+            properties
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverDesignInfo.CreateAttachCode">
+            <summary>
+            do you create attach code.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverDesignInfo.AttachExtensionClass">
+            <summary>
+            attach extention class.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverDesignInfo.AttachMethod">
+            <summary>
+            attach method.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverDesignInfo.ManyExists">
+            <summary>
+            many exists.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.DriverIdentifyInfo">
+            <summary>
+            Driver identify info.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverIdentifyInfo.IsPerfect">
+            <summary>
+            is it a complete identification method?
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverIdentifyInfo.Identify">
+            <summary>
+            identification code.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverIdentifyInfo.DefaultName">
+            <summary>
+            default name.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverIdentifyInfo.ExtensionUsingNamespaces">
+            <summary>
+            Using namespace used in extension methods.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverIdentifyInfo.DriverTypeCandidates">
+            <summary>
+            Driver type candidates
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.DriverPropertyInfo">
+            <summary>
+            Driver property info.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverPropertyInfo.IsPerfect">
+            <summary>
+            is it a complete identification method?
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverPropertyInfo.Element">
+            <summary>
+            element.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverPropertyInfo.TypeFullName">
+            <summary>
+            type full name.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverPropertyInfo.Name">
+            <summary>
+            name.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverPropertyInfo.Identify">
+            <summary>
+            identification code.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DriverPropertyInfo.ExtensionUsingNamespaces">
+            <summary>
+            Using namespace used in extension methods.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.IAnalysisKeyActionCustomizer">
+            <summary>
+            Customize key action at analyze window.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.IAnalysisKeyActionCustomizer.PreviewKey(System.Int32,System.Int32)">
+            <summary>
+            Preview key.
+            </summary>
+            <param name="key">System.Windows.Forms.Keys</param>
+            <param name="modifyKeys">System.Windows.Forms.Keys</param>
+            <returns>Is target key ?</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.IAnalysisKeyActionCustomizer.Invoke(System.Object,System.Int32,System.Int32)">
+            <summary>
+            Customize key action.
+            </summary>
+            <param name="controlObject">selected control object.</param>
+            <param name="key">System.Windows.Forms.Keys</param>
+            <param name="modifyKeys">System.Windows.Forms.Keys</param>
+            <returns>Is handled ?</returns>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.ICaptureAttachTreeMenuAction">
+            <summary>
+            Menu processing at Capture Attach Tree.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.ICaptureAttachTreeMenuAction.GetAction(System.String,System.Object)">
+            <summary>
+            Get Menu processing at Capture Attach Tree.
+            </summary>
+            <param name="accessPath">Access path to driver.</param>
+            <param name="driver">Window driver or UserControl driver or Control driver.</param>
+            <returns>Menu processing at Capture Attach Tree.</returns>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.ICapterAttachTreeMenuAction">
+            <summary>
+            Obsolete.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.ICapterAttachTreeMenuAction.GetAction(System.String,System.Object)">
+            <summary>
+            Obsolete.
+            </summary>
+            <param name="accessPath">Obsolete.</param>
+            <param name="driver">Obsolete.</param>
+            <returns>Obsolete.</returns>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.ICaptureDriverInitializer">
+            <summary>
+            Initialize the driver at the time of capture.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.ICaptureDriverInitializer.SetEditingClassInfo(System.Object,System.String,System.String)">
+            <summary>
+            Set editing class information.
+            </summary>
+            <param name="app">AppFriend.</param>
+            <param name="editingTypeFullName">Type full name of the editing class.</param>
+            <param name="edittingMethodName">Name of the editing method.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.ICaptureDriverInitializer.Initialize(System.Object)">
+            <summary>
+            Initialize driver.
+            </summary>
+            <param name="driver">Driver.</param>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.ICaptureKeyActionCustomizer">
+            <summary>
+            Customize key action at capture window.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.ICaptureKeyActionCustomizer.PreviewKey(System.Int32,System.Int32)">
+            <summary>
+            Preview key.
+            </summary>
+            <param name="key">System.Windows.Forms.Keys</param>
+            <param name="modifyKeys">System.Windows.Forms.Keys</param>
+            <returns>Is target key ?</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.ICaptureKeyActionCustomizer.Invoke(System.Object,System.Int32,System.Int32)">
+            <summary>
+            Customize key action.
+            </summary>
+            <param name="driver">selected driver.</param>
+            <param name="key">System.Windows.Forms.Keys</param>
+            <param name="modifyKeys">System.Windows.Forms.Keys</param>
+            <returns>Is handled ?</returns>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.ICaptureRootDriverNameChanger">
+            <summary>
+            Change the variable name of the root driver.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.ICaptureRootDriverNameChanger.SetEditingClassInfo(System.Object,System.String,System.String)">
+            <summary>
+            Set editing class information.
+            </summary>
+            <param name="app">AppFriend.</param>
+            <param name="editingTypeFullName">Type full name of the editing class.</param>
+            <param name="edittingMethodName">Name of the editing method.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.ICaptureRootDriverNameChanger.ChangeName(System.Object,System.String@,System.Boolean@)">
+            <summary>
+            Change name.
+            </summary>
+            <param name="driver">Driver</param>
+            <param name="name">Name</param>
+            <param name="declear">Declear?</param>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.IDriverDesigner">
+            <summary>
+            Driver Designer.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.IDriverDesigner.Priority">
+            <summary>
+            priority.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.IDriverDesigner.GetAttachExtensionClassCandidates(System.Object)">
+            <summary>
+            candidates of attach extension class.
+            </summary>
+            <param name="obj">obj.</param>
+            <returns>candidates of attach extension class.</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.IDriverDesigner.GetAttachMethodCandidates(System.Object)">
+            <summary>
+            candidates of attach method.
+            </summary>
+            <param name="obj">obj.</param>
+            <returns>candidates of attach method.</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.IDriverDesigner.CanDesign(System.Object)">
+            <summary>
+            can you design a driver for a given object?
+            </summary>
+            <param name="obj">obj.</param>
+            <returns>Can you design a driver for a given object?</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.IDriverDesigner.GetIdentifyingCandidates(System.Object,System.Object)">
+            <summary>
+            candidate code to identify element.
+            </summary>
+            <param name="root">root.</param>
+            <param name="element">elemnet.</param>
+            <returns>candidate code to identify element.</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.IDriverDesigner.GenerateCode(System.Object,Codeer.TestAssistant.GeneratorToolKit.DriverDesignInfo)">
+            <summary>
+            generate code.
+            </summary>
+            <param name="root">root.</param>
+            <param name="info">information.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.IDriverDesigner.CreateDriverClassName(System.Object)">
+            <summary>
+            create driver class name.
+            </summary>
+            <param name="root">root.</param>
+            <returns>driver class name.</returns>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.IExecuteTargetInitializer">
+            <summary>
+            Execute target initializer.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.IExecuteTargetInitializer.Initialize(System.Type,System.Object,System.String,System.Object)">
+            <summary>
+            Initialization of class to execute target.
+            </summary>
+            <param name="targetType">Target type.</param>
+            <param name="target">Target.</param>
+            <param name="methodName">Method name.</param>
+            <param name="appFriend">AppFriend.</param>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.AnalyzeWindow">
+            <summary>
+            Analyze Window.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.AnalyzeWindow.Output">
+            <summary>
+            Output.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.AnalyzeWindowOutput">
+            <summary>
+            Analyze Window Output.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.AnalyzeWindowOutput.Show">
+            <summary>
+            Show Output.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.AnalyzeWindowOutput.WriteLine(System.String)">
+            <summary>
+            Write line to Output.
+            </summary>
+            <param name="line">line.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.AnalyzeWindowOutput.Clear">
+            <summary>
+            Clear Output.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.CaptureSettingAttribute">
+            <summary>
+            Data with this attribute will be transferred to the capture code generator upon capture. 
+            The data must be Serializable.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.ISenderToTarget">
+            <summary>
+            Send info to target.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.ISenderToTarget.Send(System.Object)">
+            <summary>
+            This method is called in the host process when Analyze and CreateDrvier are initialized. 
+            Since the host process loads the dll that started Analyze or CreateDriver, 
+            internally it can acquire the information using reflection etc. Information can be written to 
+            arbitrary memory of target process by app.
+            </summary>
+            <param name="app">WindowsAppFriend.</param>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.AppFriendCustomizerBase">
+            <summary>
+            Used to customize AppFriend. The main use is to support multi-domain applications.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.AppFriendCustomizerBase.CustomCapture(System.String,System.String,System.Object)">
+            <summary>
+            Customize at Capture.
+            </summary>
+            <param name="targetTypeFullName">Target type fullName.</param>
+            <param name="methodName">Method name.</param>
+            <param name="appFriend">AppFriend.</param>
+            <returns>AppFriend.</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.AppFriendCustomizerBase.CustomExecute(System.String,System.String,System.Object)">
+            <summary>
+            Customize at Execute.
+            </summary>
+            <param name="targetTypeFullName">Target type fullName.</param>
+            <param name="methodName">Method name.</param>
+            <param name="appFriend">AppFriend.</param>
+            <returns>AppFriend.</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.AppFriendCustomizerBase.CustomAnalyze(System.String,System.Object)">
+            <summary>
+            Customize at Analyze.
+            </summary>
+            <param name="selecteedNameSpace">Selected Namespace</param>
+            <param name="appFriend">AppFriend.</param>
+            <returns>AppFriend.</returns>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.Logger">
+            <summary>
+            Logger.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.Logger.WriteLine(System.String)">
+            <summary>
+            Write line to log.
+            </summary>
+            <param name="line">line.</param>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.MenuAction">
+            <summary>
+            Menu Action.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.TestAssistantMode">
+            <summary>
+            Test Assistant Pro Mode.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.TestAssistantMode.Mode">
+            <summary>
+            Mode
+            </summary>
+        </member>
+        <member name="F:Codeer.TestAssistant.GeneratorToolKit.TestAssistantMode.Mode.Non">
+            <summary>
+            Non.
+            </summary>
+        </member>
+        <member name="F:Codeer.TestAssistant.GeneratorToolKit.TestAssistantMode.Mode.Analyze">
+            <summary>
+            Analyze.
+            </summary>
+        </member>
+        <member name="F:Codeer.TestAssistant.GeneratorToolKit.TestAssistantMode.Mode.Capture">
+            <summary>
+            Capture.
+            </summary>
+        </member>
+        <member name="F:Codeer.TestAssistant.GeneratorToolKit.TestAssistantMode.Mode.Execute">
+            <summary>
+            Execute.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.TestAssistantMode.CurrentMode">
+            <summary>
+            Current mode.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.TestAssistantMode.IsCreatingMode">
+            <summary>
+            If CurrentMode is Analyze or Capture, it return true.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.UserControlDriverAttribute">
+            <summary>
+            Attribute to indicate that it is a user control driver.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.UserControlDriverAttribute.TypeFullName">
+            <summary>
+            Type full name of the .Net class that the driver corresponds to.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.ControlDriverIdentifyAttribute">
+            <summary>
+            Attribute indicating that it is an extension method for getting ControlDriver.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.ControlDriverIdentifyAttribute.CustomMethod">
+            <summary>
+            Name of the method that supports ControlDriver identification when generating capture code.
+            T must be defined in the same class.
+            The type is next.
+            <para>public static UserControlDriver AttachFunction(this Driver driver, T identifier);</para>
+            <para>public static T[] CustomFunction(Driver driver);</para>
+            <para></para>
+            <para>public static void AttachFunction(this Driver driver, T1 identifier1, T2 identifier2);</para>
+            <para>public static void CustomFunction(this Driver driver, out T1[] identifier1, out T2[] identifier2);</para>
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.UserControlDriverInfo">
+            <summary>
+            UserControl driver info.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.UserControlDriverInfo.DriverTypeFullName">
+            <summary>
+            Driver type full name.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.UserControlDriverInfo.ConstructorArguments">
+            <summary>
+            Constructor Arguments.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.WindowDriverAttribute">
+            <summary>
+            Attribute to indicate that it is a window driver.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.WindowDriverAttribute.TypeFullName">
+            <summary>
+            Type full name of the .Net class that the driver corresponds to.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.WindowDriverInfo">
+            <summary>
+            Window driver info.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.WindowDriverInfo.DriverTypeFullName">
+            <summary>
+            Driver type full name.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.WindowDriverInfo.ConstructorArguments">
+            <summary>
+            Constructor Arguments.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.TokenAsyncType">
+            <summary>
+            Async token type.
+            </summary>
+        </member>
+        <member name="F:Codeer.TestAssistant.GeneratorToolKit.TokenAsyncType.Argument">
+            <summary>
+            Argument.
+            </summary>
+        </member>
+        <member name="F:Codeer.TestAssistant.GeneratorToolKit.TokenAsyncType.MethodSuffix">
+            <summary>
+            Method suffix.
+            </summary>
+        </member>
+        <member name="F:Codeer.TestAssistant.GeneratorToolKit.TokenAsyncType.Declear">
+            <summary>
+            Declear
+            </summary>
+        </member>
+        <member name="F:Codeer.TestAssistant.GeneratorToolKit.TokenAsyncType.Replace">
+            <summary>
+            Replace
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.AttachMethodInvokeInfo">
+            <summary>
+            Attach information to Driver.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.AttachMethodInvokeInfo.MethodInfo">
+            <summary>
+            Method information.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.AttachMethodInvokeInfo.Args">
+            <summary>
+            Execution arguments.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.AttachMethodInvokeInfo.#ctor(System.Reflection.MethodInfo,System.Object[])">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="methodInfo">Method information.</param>
+            <param name="args">Execution arguments.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.AttachMethodInvokeInfo.Invoke">
+            <summary>
+            Attach execution.
+            </summary>
+            <returns>Driver.</returns>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.ControlDriverAttribute">
+            <summary>
+            Attribute to indicate that it is a control driver.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.ControlDriverAttribute.DriverMappingEnabled">
+            <summary>
+            Whether mapping at driver generation is valid.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.ControlDriverAttribute.WindowClassName">
+            <summary>
+            Window class name of the control corresponding to the driver.
+            If there are more than one, please separate them with |.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.ControlDriverAttribute.TypeFullName">
+            <summary>
+            Type full name of the .Net class that the driver corresponds to.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.ControlDriverAttribute.Priority">
+            <summary>
+            If more than one generator is assigned to the target ControlDriver, use the one with the higher priority.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.ControlDriverAttribute.SearchDescendantUserControls">
+            <summary>
+            Flag to go looking for descendant user controls.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.ControlDriverInfo">
+            <summary>
+            Control driver info.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.ControlDriverInfo.ControlDriverTypeFullName">
+            <summary>
+            ControlDriver type full name.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.ControlDriverInfo.SearchDescendantUserControls">
+            <summary>
+            Flag to go looking for descendant user controls.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.ControlDriverInfo.DriverMappingEnabled">
+            <summary>
+            Whether mapping at driver generation is valid.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.ControlDriverInfo.ConstructorArguments">
+            <summary>
+            Constructor Arguments.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.DebugMode">
+            <summary>
+            When used in a generator during tests, allows running in debug mode.
+            Can also be used to force running in async mode.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.DebugMode.IsAllAsync">
+            <summary>
+            Flag to indicate generating all tests in asynchronous mode.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.DriverCoreIdentifyAttribute">
+            <summary>
+            Attributes for specifying Driver's core.
+            Core can specify WindowControl, IAppVarOwner, AppVar, DynamicAppVar.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.IDriverElementNameGenerator">
+            <summary>
+            Interface of generating driver element name.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.IDriverElementNameGenerator.Priority">
+            <summary>
+            Priority. The higher the value, the higher the priority.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.IDriverElementNameGenerator.GenerateName(System.Object)">
+            <summary>
+            Generate name.
+            </summary>
+            <param name="target">Target.</param>
+            <returns>Name.</returns>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorAttribute">
+            <summary>
+            Attribute to indicate that it is a capture code generator.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorAttribute.ControlDriverTypeFullName">
+            <summary>
+            TypeFullName of the corresponding ControlDriver.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorAttribute.Priority">
+            <summary>
+            If more than one generator is assigned to the target ControlDriver, use the one with the higher priority.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorAttribute.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorAttribute.#ctor(System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="controlDriverTypeFullName">TypeFullName of the corresponding ControlDriver.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorAttribute.#ctor(System.String,System.Int32)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="controlDriverTypeFullName">TypeFullName of the corresponding ControlDriver.</param>
+            <param name="priority">If more than one generator is assigned to the target ControlDriver, use the one with the higher priority.</param>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorBase">
+            <summary>
+            Capture code generator base class. 
+            All generators must inherit this class. If you define a child class and create a mapping to the target controls using the plugin XML format, the class will be instantiated in the target application and have Attach() called during the "generate code from interactions" operation.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorBase.ClientProjectExtension">
+            <summary>
+            Client project extension.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorBase.WindowHandle">
+            <summary>
+            Target window handle of the code generation. 
+            Returns IntPtr.Zero for WPF controls.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorBase.ControlObject">
+            <summary>
+            Target control object of the code generation operation.
+            Returns null for native windows.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorBase.Name">
+            <summary>
+            Variable name that is assigned to the control by TestAssistant.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorBase.CaptureSetting">
+            <summary>
+            Capture setting.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorBase.CurrentCode">
+            <summary>
+            The current code.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorBase.Finalize">
+            <summary>
+            Finalizer
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorBase.Dispose">
+            <summary>
+            Dispose.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorBase.Dispose(System.Boolean)">
+            <summary>
+            Dispose.
+            </summary>
+            <param name="disposing">flag.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorBase.Initialize(System.String,System.IntPtr,System.Object,System.Collections.Generic.List{Codeer.TestAssistant.GeneratorToolKit.Sentence})">
+            <summary>
+            Initialization.
+            </summary>
+            <param name="name">Name.</param>
+            <param name="windowHandle">Window handle.</param>
+            <param name="controlObject">Control object.</param>
+            <param name="currentCode">Code buffer.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorBase.AddUsingNamespace(System.String)">
+            <summary>
+            Add using namespace.
+            </summary>
+            <param name="namespace">namespace</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorBase.AddSentence(System.Object[])">
+            <summary>
+            Adds a sentence.
+            </summary>
+            <param name="tokens">Tokens to be included in the sentence.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorBase.AddSentence(Codeer.TestAssistant.GeneratorToolKit.Sentence)">
+            <summary>
+            Adds a sentence.
+            </summary>
+            <param name="sentence">The sentence.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorBase.Optimize(System.Collections.Generic.List{Codeer.TestAssistant.GeneratorToolKit.Sentence})">
+            <summary>
+            Optimization.
+            </summary>
+            <param name="code">Code.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorBase.Attach">
+            <summary>
+            Attach operation. 
+            Causes the test object to attach to the target window.
+            Also attaches events in the case of .NET windows.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorBase.Detach">
+            <summary>
+            Detach operation. 
+            Detaches the test object from the window.
+            Also disconnects events in the case of .NET windows.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorBase.ConvertChildClientPoint(System.Drawing.Point@,System.String@)">
+            <summary>
+            Convert from parent client coordinates to child client coordinates.
+            </summary>
+            <param name="clientPoint">Client coordinates.Convert to child client coordinates.</param>
+            <param name="childUIObject">A child object that is the origin of client coordinates. If not, set null or empty character.</param>
+            <returns>Returns true if converted to child client coordinates.</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorBase.GetCaptureCodeGenerators">
+            <summary>
+            Returns the list of CaptureCodeGeneratorBase currently used.
+            </summary>
+            <returns>Array of currently used CaptureCodeGeneratorBase.</returns>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.IWindowAnalysisMenuAction">
+            <summary>
+            Menu processing at Window analysis.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.IWindowAnalysisMenuAction.GetAction(System.Object,Codeer.TestAssistant.GeneratorToolKit.WindowAnalysisTreeInfo)">
+            <summary>
+            Get Menu processing at Window analysis.
+            </summary>
+            <param name="target">Object to be processed.</param>
+            <param name="info">Tree info in Window analysis.</param>
+            <returns>Menu processing at Window analysis.</returns>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.ItemDriverGetterAttribute">
+            <summary>
+            Attribute indicating that it is a property for obtaining ItemDriver.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.ItemDriverGetterAttribute.ActiveItemKeyProperty">
+            <summary>
+            A property that represents the active item. 
+            You should be able to get the active item when you pass it to the method.
+            The type must match the method argument or to implement the IItemKey interface.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.RequiredDllsAttribute">
+            <summary>
+            Attribute that specifies dll required at runtime.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.RequiredDllsAttribute.Dlls">
+            <summary>
+            Attribute that specifies dll required at runtime.
+            Separate by |.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.RequiredDllsAttribute.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.RequiredDllsAttribute.#ctor(System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="dlls">Attribute that specifies dll required at runtime.</param>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.Sentence">
+            <summary>
+            Represents a set of items related to code generation. 
+            A sentence contains multiple tokens. 
+            Tokens are represented as objects, but you can use any class, value, or structure. 
+            The objects' ToString() values are treated as their code. 
+            However, a few types are treated as having special meaning: TokenAsyn, TokenName, and TokenSeparator.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.Sentence.Owner">
+            <summary>
+            Returns the generator that generated the sentence.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.Sentence.Tokens">
+            <summary>
+            トークン。
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.Sentence.#ctor(Codeer.TestAssistant.GeneratorToolKit.CaptureCodeGeneratorBase,System.Object[])">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="owner">Generator that generated the sentence.</param>
+            <param name="tokens">Tokens.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.Sentence.Equals(System.Object)">
+            <summary>
+            Tests equality.
+            </summary>
+            <param name="obj">Object to compare against.</param>
+            <returns>Comparison result.</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.Sentence.GetHashCode">
+            <summary>
+            Returns this object's hash code.
+            </summary>
+            <returns>The hash code.</returns>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.TokenAsync">
+            <summary>
+            Asynchronous token. 
+            When this token is included, an Async object will be used when a situation is deemed to need asynchronous execution . 
+            Please use DebugMode class if you want to check the operations related to this token during tests while the generator is attached.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.TokenAsync.AsyncType">
+            <summary>
+            Async type.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.TokenAsync.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.TokenAsync.#ctor(Codeer.TestAssistant.GeneratorToolKit.CommaType)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="comma">Comma.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.TokenAsync.#ctor(Codeer.TestAssistant.GeneratorToolKit.TokenAsyncType,Codeer.TestAssistant.GeneratorToolKit.CommaType)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="asyncType">Async type.</param>
+            <param name="comma">Comma.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.TokenAsync.#ctor(System.String,System.String)">
+            <summary>
+            Constructor for TokenAsyncType is 
+            </summary>
+            <param name="textWhenNormal">when not use async.</param>
+            <param name="textWhenAsync">When use async.</param>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.TokenAsync.ToString">
+            <summary>
+            Returns this object's string value.
+            </summary>
+            <returns>Token string value.</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.TokenAsync.Equals(System.Object)">
+            <summary>
+            Tests equality.
+            </summary>
+            <param name="obj">Object to compare against.</param>
+            <returns>Comparison result.</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.TokenAsync.GetHashCode">
+            <summary>
+            Returns this object's hash code.
+            </summary>
+            <returns>The hash code.</returns>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.CommaType">
+            <summary>
+            Can specify whether to add commas before or after a token during code generation.
+            </summary>
+        </member>
+        <member name="F:Codeer.TestAssistant.GeneratorToolKit.CommaType.Non">
+            <summary>
+            No comma.
+            </summary>
+        </member>
+        <member name="F:Codeer.TestAssistant.GeneratorToolKit.CommaType.Before">
+            <summary>
+            Place a comma before the token.
+            </summary>
+        </member>
+        <member name="F:Codeer.TestAssistant.GeneratorToolKit.CommaType.After">
+            <summary>
+            Place a comma after the token.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.TokenName">
+            <summary>
+            A name token. 
+            Used as a variable name when added to a generator.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.TokenName.Name">
+            <summary>
+            The name.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.TokenName.ToString">
+            <summary>
+            Returns this object's string value.
+            </summary>
+            <returns>Token string value.</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.TokenName.Equals(System.Object)">
+            <summary>
+            Tests equality.
+            </summary>
+            <param name="obj">Object to compare against.</param>
+            <returns>Comparison result.</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.TokenName.GetHashCode">
+            <summary>
+            Returns this object's hash code.
+            </summary>
+            <returns>The hash code.</returns>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.TokenSeparator">
+            <summary>
+            A separator token. 
+            Can be added as the only token in a Sentence to produce a blank line. 
+            Optimized to a single line when multiple TokenSeparators occur together.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.TokenSeparator.ToString">
+            <summary>
+            Returns this object's string value.
+            </summary>
+            <returns>Token string value.</returns>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.UserControlDriverIdentifyAttribute">
+            <summary>
+            Attribute indicating that it is an extension method for getting UserControlDriver.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.UserControlDriverIdentifyAttribute.CustomMethod">
+            <summary>
+            Name of the method that supports UserControlDriver identification when generating capture code.
+            T must be defined in the same class.
+            The type is next.
+            <para>public static UserControlDriver AttachFunction(this Driver driver, T identifier);</para>
+            <para>public static T[] CustomFunction(Driver driver);</para>
+            <para></para>
+            <para>public static void AttachFunction(this Driver driver, T1 identifier1, T2 identifier2);</para>
+            <para>public static void CustomFunction(this Driver driver, out T1[] identifier1, out T2[] identifier2);</para>
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.VisualItemState">
+            <summary>
+            Visual item state.
+            </summary>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.VisualItemState.Equals(System.Object)">
+            <summary>
+            Equivalent comparison.
+            </summary>
+            <param name="obj">Comparison.</param>
+            <returns>Is it the same object?</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.VisualItemState.GetHashCode">
+            <summary>
+            Get hash code.
+            </summary>
+            <returns>Hash code.</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.VisualItemState.op_Equality(Codeer.TestAssistant.GeneratorToolKit.VisualItemState,Codeer.TestAssistant.GeneratorToolKit.VisualItemState)">
+            <summary>
+            Is it the same object?
+            </summary>
+            <param name="lhs">lhs</param>
+            <param name="rhs">rhs</param>
+            <returns>Is it the same object?</returns>
+        </member>
+        <member name="M:Codeer.TestAssistant.GeneratorToolKit.VisualItemState.op_Inequality(Codeer.TestAssistant.GeneratorToolKit.VisualItemState,Codeer.TestAssistant.GeneratorToolKit.VisualItemState)">
+            <summary>
+            Is it a different object?
+            </summary>
+            <param name="lhs">lhs</param>
+            <param name="rhs">rhs</param>
+            <returns>Is it a different object?</returns>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.WindowAnalysisTreeInfo">
+            <summary>
+            Tree info in Window analysis.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.WindowAnalysisTreeInfo.WindowAnalysisTreeMode">
+            <summary>
+            Tree mode in Window analysis.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.WindowAnalysisTreeInfo.Name">
+            <summary>
+            Name. It is used at Propety or Field.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.WindowAnalysisTreeInfo.ParentObject">
+            <summary>
+            Parent object. It is used at Propety or Field.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.WindowAnalysisTreeMode">
+            <summary>
+            Tree mode in Window analysis.
+            </summary>
+        </member>
+        <member name="F:Codeer.TestAssistant.GeneratorToolKit.WindowAnalysisTreeMode.Window">
+            <summary>
+            Win32 Window Tree.
+            </summary>
+        </member>
+        <member name="F:Codeer.TestAssistant.GeneratorToolKit.WindowAnalysisTreeMode.Controls">
+            <summary>
+            WinForms Controls.
+            </summary>
+        </member>
+        <member name="F:Codeer.TestAssistant.GeneratorToolKit.WindowAnalysisTreeMode.LogicalTree">
+            <summary>
+            WPF Logical Tree.
+            </summary>
+        </member>
+        <member name="F:Codeer.TestAssistant.GeneratorToolKit.WindowAnalysisTreeMode.VisualTree">
+            <summary>
+            WPF Visual Tree.
+            </summary>
+        </member>
+        <member name="F:Codeer.TestAssistant.GeneratorToolKit.WindowAnalysisTreeMode.Field">
+            <summary>
+            .Net Field.
+            </summary>
+        </member>
+        <member name="F:Codeer.TestAssistant.GeneratorToolKit.WindowAnalysisTreeMode.Property">
+            <summary>
+            .Net Property.
+            </summary>
+        </member>
+        <member name="T:Codeer.TestAssistant.GeneratorToolKit.WindowDriverIdentifyAttribute">
+            <summary>
+            An attribute indicating that it is a WindowsAppFriend extension method for itself to obtain a WindowDriver.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.WindowDriverIdentifyAttribute.WindowClass">
+            <summary>
+            Window class.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.WindowDriverIdentifyAttribute.TypeFullName">
+            <summary>
+            .Net type full name.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.WindowDriverIdentifyAttribute.WindowText">
+            <summary>
+            Window text.
+            </summary>
+        </member>
+        <member name="P:Codeer.TestAssistant.GeneratorToolKit.WindowDriverIdentifyAttribute.CustomMethod">
+            <summary>
+            Name of the method that supports Window identification when generating capture code.
+            It must be defined in the same class.
+            The type is next.
+            identifier can be omitted.
+            <para>public static WindowDriver AttachFunction(this WindowsAppFriend window, T identifier);</para>
+            <para>public static bool CustomFunction(WindowControl window, out T identifier);</para>
+            </summary>
+        </member>
+    </members>
+</doc>
