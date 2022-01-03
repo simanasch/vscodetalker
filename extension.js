@@ -14,30 +14,15 @@ let grpcServerProcess;
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "gyouyomi" is now active!');
-		
-		// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('gyouyomi.helloWorld', function () {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from gyouyomi!');
-		
-		client.getLibraryList("ついなちゃん")
-		.then(results => {
-			// vscode.window.showInformationMessage(res);
-			console.info(results);
-		});
-		client.talk("ついなちゃんやで")
-		.then(res => {
-			vscode.window.showInformationMessage(res);
-			// console.info(results);
-		});
-	});
+	// vscode.window.showInformationMessage('ttsサーバーを起動しました');
+	context.subscriptions.push(vscode.commands.registerCommand(
+		"gyouyomi.talk",
+		talk
+	));
+	context.subscriptions.push(vscode.commands.registerTextEditorCommand(
+		"gyouyomi.getLibraryList",
+		getLibraryList
+	))
 
 	grpcServerProcess = execFile(
 		ttsControllerPath,
@@ -45,12 +30,26 @@ function activate(context) {
 			if (error) {
 				throw error;
 			}
-			console.log("stdout"+ stdout);
-			context.subscriptions.push(disposable);
 		}
 	);
 }
 
+function getLibraryList() {
+	client.getLibraryList("ついなちゃん")
+	.then(results => {
+		// vscode.window.showInformationMessage(res);
+		console.info(results);
+	});
+
+}
+
+function talk() {
+	client.talk("ついなちゃんやで")
+	.then(res => {
+		vscode.window.showInformationMessage(res);
+		// console.info(results);
+	});
+}
 // this method is called when your extension is deactivated
 function deactivate() {}
 

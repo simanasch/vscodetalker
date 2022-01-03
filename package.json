@@ -10,14 +10,15 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:gyouyomi.helloWorld"
+    "onLanguage:markdown"
   ],
   "main": "./extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "gyouyomi.helloWorld",
-        "title": "Hello World"
+        "command": "gyouyomi.talk",
+        "title": "現在の行を読み上げ",
+        "category": "tts"
       }
     ]
   },
