@@ -19,6 +19,11 @@
         "command": "gyouyomi.talk",
         "title": "現在の行を読み上げ",
         "category": "tts"
+      },
+      {
+        "command": "gyouyomi.getLibraryList",
+        "title": "使えるttsライブラリを取得",
+        "category": "tts"
       }
     ]
   },

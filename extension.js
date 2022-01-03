@@ -15,11 +15,11 @@ let grpcServerProcess;
  */
 function activate(context) {
 	// vscode.window.showInformationMessage('ttsサーバーを起動しました');
-	context.subscriptions.push(vscode.commands.registerCommand(
+	context.subscriptions.push(vscode.commands.registerTextEditorCommand(
 		"gyouyomi.talk",
 		talk
 	));
-	context.subscriptions.push(vscode.commands.registerTextEditorCommand(
+	context.subscriptions.push(vscode.commands.registerCommand(
 		"gyouyomi.getLibraryList",
 		getLibraryList
 	))
@@ -35,7 +35,7 @@ function activate(context) {
 }
 
 function getLibraryList() {
-	client.getLibraryList("ついなちゃん")
+	client.getLibraryList()
 	.then(results => {
 		// vscode.window.showInformationMessage(res);
 		console.info(results);
@@ -43,11 +43,11 @@ function getLibraryList() {
 
 }
 
-function talk() {
-	client.talk("ついなちゃんやで")
+function talk(textEditor) {
+	let currentLine = textEditor.document.lineAt(textEditor.selection.start);
+	client.talk(currentLine.text)
 	.then(res => {
 		vscode.window.showInformationMessage(res);
-		// console.info(results);
 	});
 }
 // this method is called when your extension is deactivated
