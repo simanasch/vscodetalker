@@ -22,8 +22,9 @@ function activate(context) {
 	context.subscriptions.push(vscode.commands.registerCommand(
 		"gyouyomi.getLibraryList",
 		getLibraryList
-	))
+	));
 
+	// TODO:tts起動できなかった際にnotification表示
 	grpcServerProcess = execFile(
 		ttsControllerPath,
 		(error, stdout, stderr) => {
@@ -39,19 +40,36 @@ function getLibraryList() {
 	.then(results => {
 		// vscode.window.showInformationMessage(res);
 		console.info(results);
+		// let p = path.resolve(localSettingsFileName);
+		// fs.writeFileSync(localSettingsFileName,JSON.stringify(results));
+		vscode.workspace.getConfiguration().update("gyouyomi.availableEngines", results, true)
+		.then(() => {
+			console.info(vscode.workspace.getConfiguration("gyouyomi.availableEngines"));
+		});
 	});
-
 }
 
 function talk(textEditor) {
+	// let libraryList = JSON.parse(fs.readFileSync(localSettingsFileName).toString());
+	let currentLine = textEditor.document.lineAt(textEditor.selection.start);
+	client.talk(currentLine.text)
+	.then(res => {
+		vscode.window.showInformationMessage("\""+ res + "\"");
+	});
+}
+
+function record(textEditor) {
 	let currentLine = textEditor.document.lineAt(textEditor.selection.start);
 	client.talk(currentLine.text)
 	.then(res => {
 		vscode.window.showInformationMessage(res);
 	});
 }
+
 // this method is called when your extension is deactivated
-function deactivate() {}
+function deactivate() {
+	grpcServerProcess.kill();
+}
 
 module.exports = {
 	activate,

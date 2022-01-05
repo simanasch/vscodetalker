@@ -15,15 +15,15 @@ const packageDefinition = protoLoader.loadSync(
     }
 )
 const ttsProto = grpc.loadPackageDefinition(packageDefinition)
-
 const makeTTSService = (port) => {
   // @ts-ignore
   return new ttsProto.ttscontroller.TTSService('localhost:'+port, grpc.credentials.createInsecure())
 }
+const ttsService = makeTTSService("5001");
 
 const talk = text => {
   return new Promise((resolve, reject) => {
-    makeTTSService("5001")
+    ttsService
     .talk({
       LibraryName: "ついな",
       EngineName: "VOICEROID64",
@@ -43,7 +43,7 @@ const talk = text => {
 
 const getLibraryList = text => {
   return new Promise((resolve, reject) => {
-    makeTTSService("5001")
+    ttsService
     .getSpeechEngineDetail({
       EngineName: "ついな",
     }, (error, response) => {
@@ -58,7 +58,28 @@ const getLibraryList = text => {
   })
 }
 
+const record = text => {
+  return new Promise((resolve, reject) => {
+    ttsService
+    .record({
+      LibraryName: "ついな",
+      EngineName: "VOICEROID64",
+      Body: text,
+      OutputPath: ""
+    }, (error, response) => {
+      if (!error ) {
+        // console.log(response.message) //こんにちわ ID:1太郎
+        resolve(response.detailItem);
+      } else {
+        console.error(error);
+        reject(error);
+      }
+    })
+  })
+}
+
 module.exports = {
   getLibraryList,
-  talk
+  talk,
+  record
 }
