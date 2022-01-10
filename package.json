@@ -78,6 +78,7 @@
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.4.5",
-    "google-protobuf": "^3.19.1"
+    "google-protobuf": "^3.19.1",
+    "iconv-lite": "^0.6.3"
   }
 }

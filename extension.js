@@ -2,6 +2,8 @@ const { execFile } = require('child_process');
 const path = require('path');
 const vscode = require('vscode');
 const client = require("./src/client.js");
+const fs = require("fs");
+const iconv = require('iconv-lite');
 
 let ttsControllerPath = path.join(__dirname,"bin","SpeechGRpcServer.exe");
 let grpcServerProcess;
