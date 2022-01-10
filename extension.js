@@ -60,14 +60,14 @@ function getLibraryList() {
  * 現在のカーソル行を読み上げる
  */
 function talk(textEditor) {
-	let currentLine = textEditor.document.lineAt(textEditor.selection.start);
+	let ttsText = getTtsText(textEditor);
 	let config = vscode.workspace.getConfiguration("gyouyomi");
 	// デフォルトで使用するライブラリ名、利用可能なライブラリ名から読み上げに使用するライブラリの設定値を取得
 	let engine = getTtsEngine(config.get("defaultLibraryName"), config.get("availableEngines"));
 
-	client.talk(currentLine.text, engine.LibraryName, engine.EngineName)
+	client.talk(ttsText, engine.LibraryName, engine.EngineName)
 	.then(res => {
-		vscode.window.showInformationMessage("\""+ res + "\"");
+		vscode.window.showInformationMessage("\""+ res + "\"を再生しました");
 	});
 }
 
@@ -77,22 +77,37 @@ function talk(textEditor) {
  * 現在のカーソル行を読み上げ+録音する
  */
 function record(textEditor) {
-	let currentLine = textEditor.document.lineAt(textEditor.selection.start);
+	let ttsText = getTtsText(textEditor);
 	let config = vscode.workspace.getConfiguration("gyouyomi");
 	// デフォルトで使用するライブラリ名、利用可能なライブラリ名から読み上げに使用するライブラリの設定値を取得
 	let engine = getTtsEngine(config.get("defaultLibraryName"), config.get("availableEngines"));
 	let currentFilePath = path.dirname(textEditor.document.fileName);
-	let pathConfig = config.get("defaultSavePath","tts");
-	let saveToPath = generateRecordPath(path.join(currentFilePath,pathConfig), engine.LibraryName, currentLine.text);
+	let pathConfig = config.get("defaultSavePath",path.join(currentFilePath,"tts"));
+	let saveToPath = generateRecordPath(pathConfig, engine.LibraryName, ttsText);
 
-	client.record(currentLine.text, engine.LibraryName, engine.EngineName, saveToPath)
+	client.record(ttsText, engine.LibraryName, engine.EngineName, saveToPath)
 	.then(res => {
+		if(config.get("saveTextFileOnRecord")) {
+			const buf = iconv.encode(engine.LibraryName+"＞"+ttsText, "Shift_JIS");
+			fs.writeFileSync(res.OutputPath.replace(/\.wav$/,".txt"),buf);
+		}
 		vscode.window.showInformationMessage("\"" + res.OutputPath + "\"を保存しました");
 	});
 }
 
+/**
+ * 読み上げ部分の取得
+ * 選択範囲がある場合は最初の選択範囲、ない場合はカーソル行を返す
+ * @param {vscode.TextEditor} textEditor 
+ * @returns {String}
+ */
+const getTtsText = textEditor => {
+	return isBlank(textEditor.document.getText(textEditor.selection))
+		? textEditor.document.lineAt(textEditor.selection.start).text
+		: textEditor.document.getText(textEditor.selection)
+}
+
 const getTtsEngine = (libraryName, availableEngines) => {
-	const config = vscode.workspace.getConfiguration("gyouyomi");
 	let engines = availableEngines.filter(i => i.LibraryName === libraryName);
 	return engines.length > 0 ? engines[0] : availableEngines[0];
 }
@@ -102,7 +117,7 @@ const generateRecordPath = (dirName, ...args) => {
 	return path.join(dirName, args.join("_") + ".wav");
 }
 
-// const isBlank = t => t===undefined || t === ""
+const isBlank = t => t===undefined || t === ""
 
 // this method is called when your extension is deactivated
 function deactivate() {

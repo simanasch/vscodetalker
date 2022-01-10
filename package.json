@@ -48,11 +48,16 @@
           "gyouyomi.defaultSavePath": {
             "type": "string",
             "default": "tts",
-            "description": "音声録音時の.wavファイル出力先 デフォルトではtts配下"
+            "description": "音声録音時の.wavファイル出力先\n例:デフォルトでは(読み上げしたファイルのあるフォルダ)/tts配下"
           },
           "gyouyomi.availableEngines": {
             "type": "array",
             "description": "使用可能なttsのリスト"
+          },
+          "gyouyomi.saveTextFileOnRecord": {
+            "type": "boolean",
+            "default": false,
+            "description": "音声録音時の同名テキストファイル生成有無"
           }
         }
       }
