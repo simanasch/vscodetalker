@@ -1,6 +1,5 @@
 const path = require('path');
 const PROTO_PATH = path.join(__dirname,'proto','TTSController.proto');
-console.info(PROTO_PATH);
 const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
 
@@ -21,59 +20,48 @@ const makeTTSService = (port) => {
 }
 const ttsService = makeTTSService("5001");
 
-const talk = text => {
+const talk = (text, libraryName, engineName) => {
+
   return new Promise((resolve, reject) => {
-    ttsService
-    .talk({
-      LibraryName: "ついな",
-      EngineName: "VOICEROID64",
-      Body: text,
-      OutputPath: ""
-    }, (error, response) => {
-      if (!error && response.IsSuccess) {
-        console.log(response.message) //こんにちわ ID:1太郎
+   ttsService.talk(
+      {
+        LibraryName: libraryName,
+        EngineName: engineName,
+        Body: text,
+        OutputPath: ""
+      },
+      (error, response) => {
+        if(error) reject(error);
         resolve(text);
-      } else {
-        console.error(error);
-        reject(error);
-      }
-    })
-  })
+      })
+    }
+  )
 }
 
-const getLibraryList = text => {
+const getLibraryList = () => {
   return new Promise((resolve, reject) => {
     ttsService
     .getSpeechEngineDetail({
       EngineName: "ついな",
     }, (error, response) => {
-      if (!error ) {
-        // console.log(response.message) //こんにちわ ID:1太郎
-        resolve(response.detailItem);
-      } else {
-        console.error(error);
-        reject(error);
-      }
+      if(error) reject(error);
+      resolve(response.detailItem);
     })
   })
 }
 
-const record = text => {
+const record = (text, LibraryName, EngineName, path) => {
   return new Promise((resolve, reject) => {
     ttsService
     .record({
-      LibraryName: "ついな",
-      EngineName: "VOICEROID64",
+      LibraryName: LibraryName,
+      EngineName: EngineName,
       Body: text,
-      OutputPath: ""
-    }, (error, response) => {
-      if (!error ) {
-        // console.log(response.message) //こんにちわ ID:1太郎
-        resolve(response.detailItem);
-      } else {
-        console.error(error);
-        reject(error);
-      }
+      OutputPath: path
+    },
+    (error, response) => {
+      if(error) reject(error);
+      resolve(response);
     })
   })
 }

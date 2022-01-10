@@ -18,12 +18,17 @@
       {
         "command": "gyouyomi.talk",
         "title": "現在の行を読み上げ",
-        "category": "tts"
+        "category": "gyouyomi"
+      },
+      {
+        "command": "gyouyomi.record",
+        "title": "現在の行を読み上げて録音",
+        "category": "gyouyomi"
       },
       {
         "command": "gyouyomi.getLibraryList",
         "title": "使えるttsライブラリを取得",
-        "category": "tts"
+        "category": "gyouyomi"
       }
     ],
     "configuration": [
@@ -42,7 +47,7 @@
           },
           "gyouyomi.defaultSavePath": {
             "type": "string",
-            "default": "./tts",
+            "default": "tts",
             "description": "音声録音時の.wavファイル出力先 デフォルトではtts配下"
           },
           "gyouyomi.availableEngines": {
