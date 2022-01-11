@@ -1,3 +1,4 @@
+// grpcを利用し、各種ttsの操作をするバックエンド(c#)部分を呼ぶ処理類
 const path = require('path');
 const PROTO_PATH = path.join(__dirname,'proto','TTSController.proto');
 const grpc = require('@grpc/grpc-js');
@@ -20,6 +21,19 @@ const makeTTSService = (port) => {
 }
 const ttsService = makeTTSService("5001");
 
+// 利用可能なライブラリ取得のgrpc service call
+const getLibraryList = () => {
+  return new Promise((resolve, reject) => {
+    ttsService
+    .getSpeechEngineDetail({
+    }, (error, response) => {
+      if(error) reject(error);
+      resolve(response.detailItem);
+    })
+  })
+}
+
+// 音声再生のgrpc service call
 const talk = (text, libraryName, engineName) => {
 
   return new Promise((resolve, reject) => {
@@ -38,18 +52,7 @@ const talk = (text, libraryName, engineName) => {
   )
 }
 
-const getLibraryList = () => {
-  return new Promise((resolve, reject) => {
-    ttsService
-    .getSpeechEngineDetail({
-      EngineName: "ついな",
-    }, (error, response) => {
-      if(error) reject(error);
-      resolve(response.detailItem);
-    })
-  })
-}
-
+// 音声録音のgrpc service call
 const record = (text, LibraryName, EngineName, path) => {
   return new Promise((resolve, reject) => {
     ttsService
