@@ -1,8 +1,13 @@
-# gyouyomi README
+# gyouyomi
 
-This is the README for your extension "gyouyomi". After writing up a brief description, we recommend including the following sections.
+vsCode内のテキストを各種日本語向けの音声合成エンジンで読み上げたりできる拡張機能
 
-## Features
+## 機能(Features)
+
+ - [x] 選択範囲の読み上げ
+ - [x] 選択範囲の読み上げ+録音
+   - [x] +同名テキストファイルの保存
+ - [ ] 
 
 Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
 
@@ -12,41 +17,27 @@ For example if there is an image subfolder under your extension project workspac
 
 > Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
 
-## Requirements
+## 動作環境(Requirements)
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+windows10以降
+## 設定(Extension Settings)
 
-## Extension Settings
+以下の設定ができます
+* `gyouyomi.availableEngines`: 使用可能な音声合成ライブラリのリスト。
+* `gyouyomi.DefaultLibraryName`: デフォルトの音声合成ライブラリのプリセット名、一致するプリセット名の音声合成ライブラリは読み上げライブラリの選択時に一番上に来ます
+* `gyouyomi.defaultSavePath`: 音声録音時の.wavファイル出力先
+## 既知の問題点(Known Issues)
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+* 録音時
+  * 録音中に再生した別の音声が録音されている
+    * 仕様です、音声録音時、スピーカーから再生している音声をそのまま録音しているため起こります
+  * (logicool G533で確認)録音したファイルを再生時、音量が小さくなる
 
-For example:
+## リリースノート(Release Notes)
 
-This extension contributes the following settings:
+### 0.1.0
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
+初期公開バージョン
 -----------------------------------------------------------------------------------------------------------
 
 ## Working with Markdown
