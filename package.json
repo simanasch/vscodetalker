@@ -6,6 +6,9 @@
   "engines": {
     "vscode": "^1.63.0"
   },
+  "repository": {
+    "url": "https://github.com/simanasch/vscodetalker"
+  },
   "categories": [
     "Other"
   ],
@@ -80,6 +83,7 @@
     ]
   },
   "scripts": {
+    "vscode:prepublish": "npm install && npm run compile && npm prune --production",
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "node ./test/runTest.js"

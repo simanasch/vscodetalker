@@ -4,14 +4,15 @@ vsCode内のテキストを各種日本語向けの音声合成エンジンで�
 
 ## 機能(Features)
 
- - [x] 選択範囲の読み上げ
- - [x] 選択範囲の読み上げ+録音
-   - [x] +同名テキストファイルの保存
- - [ ] ボイスプリセットを含む行をまとめて
-   - [ ] 読み上げ
-   - [ ] 読み上げ+録音
+ - [x] 使用可能な音声合成ライブラリの取得
+ - [x] 選択範囲orカーソルのある行に対しての処理
+   - [x] 読み上げ
+   - [x] 読み上げ+録音
+ - [x] ボイスプリセットを含む行の一括処理
+   - [x] 読み上げ
+   - [x] 読み上げ+録音
 
-ボイスプリセットを含む行は以下サンプルです
+ボイスプリセットを含む行は以下サンプルです  
 名前＞テストです
 ## 動作環境(Requirements)
 
@@ -19,9 +20,11 @@ windows10以降
 ## 設定(Extension Settings)
 
 以下の設定ができます
-* `vsCodeTalker.availableEngines`: 使用可能な音声合成ライブラリのリスト。
-* `vsCodeTalker.DefaultLibraryName`: デフォルトの音声合成ライブラリのプリセット名、一致するプリセット名の音声合成ライブラリは読み上げライブラリの選択時に一番上に来ます
+* `vsCodeTalker.availableEngines`: 使用可能な音声合成ライブラリのリスト
+* `vsCodeTalker.defaultLibraryName`: デフォルトの音声合成ライブラリのプリセット名、一致するプリセット名の音声合成ライブラリは読み上げライブラリの選択時に一番上に来ます
 * `vsCodeTalker.defaultSavePath`: 音声録音時の.wavファイル出力先
+* `vsCodeTalker.saveTextFileOnRecord`: 音声録音時、読み上げ内容を含むテキストファイルを生成するか
+* `vsCodeTalker.voicePresetSeparator`:ボイスプリセットの区切り文字として使う文字列、デフォルトでは「＞」
 ## 既知の問題点(Known Issues)
 
 * 録音時
