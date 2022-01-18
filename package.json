@@ -1,6 +1,6 @@
 {
-  "name": "gyouyomi",
-  "displayName": "gyouyomi",
+  "name": "vscodetalker",
+  "displayName": "vsCodeTalker",
   "description": "",
   "version": "0.0.1",
   "engines": {
@@ -17,60 +17,60 @@
   "contributes": {
     "commands": [
       {
-        "command": "gyouyomi.talk",
+        "command": "vsCodeTalker.talk",
         "title": "現在の行を読み上げ",
-        "category": "gyouyomi"
+        "category": "vsCodeTalker"
       },
       {
-        "command": "gyouyomi.record",
+        "command": "vsCodeTalker.record",
         "title": "現在の行を読み上げて録音",
-        "category": "gyouyomi"
+        "category": "vsCodeTalker"
       },
       {
-        "command": "gyouyomi.talkAllLineHasSeparator",
+        "command": "vsCodeTalker.talkAllLineHasSeparator",
         "title": "ファイル内のボイスプリセットを含む行を読み上げ",
-        "category": "gyouyomi"
+        "category": "vsCodeTalker"
       },
       {
-        "command": "gyouyomi.recordAllLineHasSeparator",
+        "command": "vsCodeTalker.recordAllLineHasSeparator",
         "title": "ファイル内のボイスプリセットを含む行を録音し読み上げ",
-        "category": "gyouyomi"
+        "category": "vsCodeTalker"
       },
       {
-        "command": "gyouyomi.getLibraryList",
+        "command": "vsCodeTalker.getLibraryList",
         "title": "使えるttsライブラリを取得",
-        "category": "gyouyomi"
+        "category": "vsCodeTalker"
       }
     ],
     "configuration": [
       {
-        "title": "gyouyomi",
+        "title": "vsCodeTalker",
         "properties": {
-          "gyouyomi.servicePortNumber": {
+          "vsCodeTalker.servicePortNumber": {
             "type": "integer",
             "default": 5001,
             "description": "ttsサーバーで使用するポート番号、通常は変更不要"
           },
-          "gyouyomi.defaultLibraryName": {
+          "vsCodeTalker.defaultLibraryName": {
             "type": "string",
             "default": "ついな",
             "description": "デフォルトで読み上げに使うttsライブラリのプリセット名"
           },
-          "gyouyomi.defaultSavePath": {
+          "vsCodeTalker.defaultSavePath": {
             "type": "string",
             "default": "tts",
             "description": "音声録音時の.wavファイル出力先\n例:デフォルトでは(読み上げしたファイルのあるフォルダ)/tts配下"
           },
-          "gyouyomi.availableEngines": {
+          "vsCodeTalker.availableEngines": {
             "type": "array",
             "description": "使用可能なttsのリスト"
           },
-          "gyouyomi.saveTextFileOnRecord": {
+          "vsCodeTalker.saveTextFileOnRecord": {
             "type": "boolean",
             "default": false,
             "description": "音声録音時、読み上げ内容を含むテキストファイルを生成するか"
           },
-          "gyouyomi.voicePresetSeparator": {
+          "vsCodeTalker.voicePresetSeparator": {
             "type": "string",
             "default": "＞",
             "description": "ボイスプリセットの区切り文字として使う文字列、デフォルトでは「＞」"

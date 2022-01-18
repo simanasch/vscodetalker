@@ -32,27 +32,27 @@ const getDocumentEOL = (textEditor) => {
  */
 function activate(context) {
 	context.subscriptions.push(vscode.commands.registerCommand(
-		"gyouyomi.getLibraryList",
+		"vsCodeTalker.getLibraryList",
 		getLibraryList
 	));
 
 	context.subscriptions.push(vscode.commands.registerTextEditorCommand(
-		"gyouyomi.talk",
+		"vsCodeTalker.talk",
 		talk
 	));
 
 	context.subscriptions.push(vscode.commands.registerTextEditorCommand(
-		"gyouyomi.record",
+		"vsCodeTalker.record",
 		record
 	));
 
 	context.subscriptions.push(vscode.commands.registerTextEditorCommand(
-		"gyouyomi.talkAllLineHasSeparator",
+		"vsCodeTalker.talkAllLineHasSeparator",
 		talkAllLineHasSeparator
 	));
 
 	context.subscriptions.push(vscode.commands.registerTextEditorCommand(
-		"gyouyomi.recordAllLineHasSeparator",
+		"vsCodeTalker.recordAllLineHasSeparator",
 		recordAllLineHasSeparator
 	));
 
@@ -69,7 +69,7 @@ function activate(context) {
 }
 
 /**
- * gyouyomi.getLibraryListコマンドの実体
+ * vsCodeTalker.getLibraryListコマンドの実体
  * 現在のpcで使用できるttsエンジンの一覧を更新する
  */
 function getLibraryList() {
@@ -78,7 +78,7 @@ function getLibraryList() {
 		console.info(results);
 		// settings.jsonに保存している使用可能なライブラリの一覧を更新する
 		// pcごとに1設定あればいいのでグローバル設定に保存
-		vscode.workspace.getConfiguration().update("gyouyomi.availableEngines", results.map(t => {
+		vscode.workspace.getConfiguration().update("vsCodeTalker.availableEngines", results.map(t => {
 			return {
 				EngineName: t.EngineName,
 				LibraryName: t.LibraryName
@@ -88,13 +88,13 @@ function getLibraryList() {
 }
 
 /**
- * gyouyomi.talkコマンドの実体
+ * vsCodeTalker.talkコマンドの実体
  * @param {vscode.TextEditor} textEditor 
  * 現在のカーソル行を読み上げる
  */
 async function talk(textEditor) {
 	let ttsText = getTtsText(textEditor);
-	let config = vscode.workspace.getConfiguration("gyouyomi");
+	let config = vscode.workspace.getConfiguration("vsCodeTalker");
 
 	// quickPickで読み上げに使用するttsエンジンを選択する
 	const engine = await selectTtsEngine(config);
@@ -120,7 +120,7 @@ async function talk(textEditor) {
  * ボイスプリセットを含む行を読み上げる
  */
 async function talkAllLineHasSeparator(textEditor) {
-	let config = vscode.workspace.getConfiguration("gyouyomi");
+	let config = vscode.workspace.getConfiguration("vsCodeTalker");
 	let allLines = textEditor.document.getText().split(getDocumentEOL(textEditor));
 	let ttsPresetSeparator = config.get("voicePresetSeparator");
 	let availableEngines = config.get("availableEngines");
@@ -137,7 +137,7 @@ async function talkAllLineHasSeparator(textEditor) {
  * ボイスプリセットを含む行を読み上げる
  */
  async function recordAllLineHasSeparator(textEditor) {
-	let config = vscode.workspace.getConfiguration("gyouyomi");
+	let config = vscode.workspace.getConfiguration("vsCodeTalker");
 	let allLines = textEditor.document.getText().split(getDocumentEOL(textEditor));
 	let ttsPresetSeparator = config.get("voicePresetSeparator");
 	let availableEngines = config.get("availableEngines");
@@ -175,13 +175,13 @@ function mapLinesToRequest(lines, separator, availableEngines, savePath)  {
 } 
 
 /**
- * gyouyomi.recordタスクの実体
+ * vsCodeTalker.recordタスクの実体
  * @param {vscode.TextEditor} textEditor 
  * 現在のカーソル行を読み上げ+録音する
  */
 async function record(textEditor) {
 	let ttsText = getTtsText(textEditor);
-	let config = vscode.workspace.getConfiguration("gyouyomi");
+	let config = vscode.workspace.getConfiguration("vsCodeTalker");
 	let currentFilePath = path.dirname(textEditor.document.fileName);
 	let pathConfig = config.get("defaultSavePath",path.join(currentFilePath,"tts"));
 	// quickPickで読み上げに使用するttsエンジンを選択する
