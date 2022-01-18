@@ -34,38 +34,29 @@ const getLibraryList = () => {
 }
 
 // 音声再生のgrpc service call
-const talk = (text, libraryName, engineName) => {
+const talk = (request) => {
 
   return new Promise((resolve, reject) => {
    ttsService.talk(
-      {
-        LibraryName: libraryName,
-        EngineName: engineName,
-        Body: text,
-        OutputPath: ""
-      },
-      (error, response) => {
+      request,
+      (error) => {
         if(error) reject(error);
-        resolve(text);
+        resolve(request.Body);
       })
     }
   )
 }
 
 // 音声録音のgrpc service call
-const record = (text, LibraryName, EngineName, path) => {
+const record = (request) => {
   return new Promise((resolve, reject) => {
-    ttsService
-    .record({
-      LibraryName: LibraryName,
-      EngineName: EngineName,
-      Body: text,
-      OutputPath: path
-    },
-    (error, response) => {
-      if(error) reject(error);
-      resolve(response);
-    })
+    ttsService.record(
+      request,
+      (error, response) => {
+        if(error) reject(error);
+        resolve(response);
+      }
+    )
   })
 }
 

@@ -27,6 +27,16 @@
         "category": "gyouyomi"
       },
       {
+        "command": "gyouyomi.talkAllLineHasSeparator",
+        "title": "ファイル内のボイスプリセットを含む行を読み上げ",
+        "category": "gyouyomi"
+      },
+      {
+        "command": "gyouyomi.recordAllLineHasSeparator",
+        "title": "ファイル内のボイスプリセットを含む行を録音し読み上げ",
+        "category": "gyouyomi"
+      },
+      {
         "command": "gyouyomi.getLibraryList",
         "title": "使えるttsライブラリを取得",
         "category": "gyouyomi"
@@ -58,7 +68,12 @@
           "gyouyomi.saveTextFileOnRecord": {
             "type": "boolean",
             "default": false,
-            "description": "音声録音時の同名テキストファイル生成有無"
+            "description": "音声録音時、読み上げ内容を含むテキストファイルを生成するか"
+          },
+          "gyouyomi.voicePresetSeparator": {
+            "type": "string",
+            "default": "＞",
+            "description": "ボイスプリセットの区切り文字として使う文字列、デフォルトでは「＞」"
           }
         }
       }
