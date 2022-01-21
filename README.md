@@ -2,6 +2,30 @@
 
 vsCode内のテキストを各種日本語向けの音声合成エンジンで読み上げたりできる拡張機能
 
+## 使い方(Usage)
+事前に以下「対応している音声合成エンジン」セクション内いずれかのインストールが必要です
+1. プレーンテキスト(.txtなど)、マークダウン(.md)を開く
+2. コマンドパレットを開き、"vsCodeTalker:利用可能なttsライブラリを取得"を実行
+3. 以降、"vsCodeTalker"の他コマンドを実行時に各種音声合成ライブラリの立ち上げと読み上げができるようになります
+
+### 対応している音声合成エンジン
+windows 10 64bitで動作確認済みのもの
+* [VOICEVOX](https://voicevox.hiroshiba.jp)
+* Voiceroid2(64bit版のみ)
+* [A.I.Voice](https://aivoice.jp/)
+* CeVIO AI
+
+### コマンド一覧
+* vsCodeTalker.getLibraryList 
+  * 利用可能なttsライブラリを取得 初回起動後に実行すると以下のコマンドが使えるようになります
+* vsCodeTalker.talk
+  * 現在の行を読み上げ
+* vsCodeTalker.record
+  * 現在の行を読み上げて録音
+* vsCodeTalker.talkAllLineHasSeparator
+  * ファイル内のボイスプリセットを含む行を読み上げ
+* vsCodeTalker.recordAllLineHasSeparator
+  * ファイル内のボイスプリセットを含む行を録音し読み上げ
 ## 機能(Features)
 
  - [x] 使用可能な音声合成ライブラリの取得

@@ -42,7 +42,7 @@
       },
       {
         "command": "vsCodeTalker.getLibraryList",
-        "title": "使えるttsライブラリを取得",
+        "title": "利用可能なttsライブラリを取得",
         "category": "vsCodeTalker"
       }
     ],
