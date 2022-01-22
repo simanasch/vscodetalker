@@ -1,4 +1,4 @@
-const { execFile } = require('child_process');
+const { spawn } = require('child_process');
 const path = require('path');
 const vscode = require('vscode');
 const client = require("./src/client.js");
@@ -57,12 +57,14 @@ function activate(context) {
 	));
 
 	// TODO:tts起動できなかった際にnotification表示
-	grpcServerProcess = execFile(
-		ttsControllerPath,
-		(error, stdout, stderr) => {
-			if (error) {
-				vscode.window.showInformationMessage("ttsサーバーの起動に失敗しました");
-				throw error;
+	grpcServerProcess = spawn(
+		ttsControllerPath
+	);
+	grpcServerProcess.stdout.once("data"
+		,(data) => {
+			console.info("successfully spawn " + iconv.decode(data, "Shift_JIS"));
+			if(isEmpty(vscode.workspace.getConfiguration("vsCodeTalker").get("availableEngines"))) {
+				getLibraryList();
 			}
 		}
 	);
