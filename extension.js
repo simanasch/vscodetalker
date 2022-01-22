@@ -75,15 +75,21 @@ function activate(context) {
 function getLibraryList() {
 	client.getLibraryList()
 	.then(results => {
-		console.info(results);
-		// settings.jsonに保存している使用可能なライブラリの一覧を更新する
-		// pcごとに1設定あればいいのでグローバル設定に保存
-		vscode.workspace.getConfiguration().update("vsCodeTalker.availableEngines", results.map(t => {
+		let availableEngines = results.map(t => {
 			return {
 				EngineName: t.EngineName,
 				LibraryName: t.LibraryName
 			}
-		}), true)
+		});
+		vscode.window.showInformationMessage("使用可能な音声合成ライブラリのリストを更新しました");
+		// settings.jsonに保存している使用可能なライブラリの一覧を更新する
+		// pcごとに1設定あればいいのでグローバル設定に保存
+		vscode.workspace.getConfiguration().update("vsCodeTalker.availableEngines", availableEngines, true)
+		return availableEngines;
+	})
+	.catch(e => {
+		console.error(e);
+		vscode.window.showWarningMessage("音声合成ライブラリの一覧取得に失敗しました");
 	});
 }
 
@@ -259,7 +265,9 @@ function makeTtsRequest(text, libraryName, engineName, path="") {
 		};
 }
 
-const isBlank = t => t===undefined || t === ""
+const isBlank = t => t === undefined || t === ""
+
+const isEmpty = l => !Array.isArray(l) || l.length <= 0
 
 // this method is called when your extension is deactivated
 function deactivate() {
