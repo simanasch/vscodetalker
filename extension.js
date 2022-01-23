@@ -20,7 +20,7 @@ const translateEngineName = (t,m) => !m[t] ? t : m[t];
  */
 const getDocumentEOL = (textEditor) => {
 	if(textEditor.document.eol === 1) {
-		return "\r";
+		return "\n";
 	} else {
 		return "\r\n";
 	}
