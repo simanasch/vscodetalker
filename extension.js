@@ -1,4 +1,4 @@
-const { spawn } = require('child_process');
+const { spawn, exec } = require('child_process');
 const path = require('path');
 const vscode = require('vscode');
 const client = require("./src/client.js");
@@ -36,6 +36,11 @@ function activate(context) {
 		getLibraryList
 	));
 
+	context.subscriptions.push(vscode.commands.registerCommand(
+		"vsCodeTalker.openDestinationFolder",
+		openDestinationFolder
+	));
+
 	context.subscriptions.push(vscode.commands.registerTextEditorCommand(
 		"vsCodeTalker.talk",
 		talk
@@ -56,10 +61,12 @@ function activate(context) {
 		recordAllLineHasSeparator
 	));
 
-	// TODO:tts起動できなかった際にnotification表示
 	grpcServerProcess = spawn(
 		ttsControllerPath
 	);
+
+	// ttsのサーバープロセスの起動後処理
+	// 使用可能なttsライブラリの一覧がない場合、自動でgetLibraryList()を実行する
 	grpcServerProcess.stdout.once("data"
 		,(data) => {
 			console.info("successfully spawn " + iconv.decode(data, "Shift_JIS"));
@@ -111,15 +118,50 @@ async function talk(textEditor) {
 		// 入力完了
 		let request = makeTtsRequest(ttsText, engine.LibraryName ,engine.EngineName);
 		client.talk(request)
-		// client.talk(ttsText, engine.LibraryName, engine.EngineName)
 		.then(res => {
-			// showQuickPick()
-			vscode.window.showInformationMessage("\""+ res + "\"を再生しました");
+			return showTtsToast("\""+ res + "\"を再生しました");
 		});
 	} else {
-		// 入力がキャンセルされた
-		vscode.window.showInformationMessage(`再生をキャンセルしました`);
+		// 入力がキャンセルされた場合の処理
+		return showTtsToast(`再生をキャンセルしました`);
 	}
+}
+
+/**
+ * 保存先のフォルダパスを取得
+ * @returns {string} 保存先のフォルダのパス
+ */
+function getTtsRecordFolderPath() {
+	let config = vscode.workspace.getConfiguration("vsCodeTalker");
+	let ttsRecordFolder = config.get("ttsRecordFileFolder");
+	if(isBlank(ttsRecordFolder)) {
+		ttsRecordFolder = path.join(process.env.TMP,"tts");
+	}
+	return path.win32.resolve(ttsRecordFolder).replace('\\mnt\\c\\', 'c:\\\\');
+}
+
+/**
+ * vscodetalker.openDestinationFolderの内容
+ * 音声保存先のフォルダをエクスプローラーを使用して開く
+ */
+function openDestinationFolder() {
+	return exec(`explorer  "${getTtsRecordFolderPath()}"`);
+}
+
+function getNotifyOnRead() {
+	return vscode.workspace.getConfiguration("vsCodeTalker").get("notifyOnRead") === true;
+}
+
+function showTtsToast(body) {
+	// 通知オフになってる場合はメッセージ表示しない
+	if(!getNotifyOnRead()) return;
+	return vscode.window.showInformationMessage(body,"通知をオフにする")
+	.then(clicked => {
+		if(clicked) {
+			vscode.workspace.getConfiguration("vsCodeTalker").update("notifyOnRead",false,true);
+			return vscode.window.showInformationMessage(`"vscodetalker.notifyOnRead"をチェックすると通知を有効にできます`)
+		}
+	})
 }
 
 /**
@@ -133,10 +175,10 @@ async function talkAllLineHasSeparator(textEditor) {
 	let ttsPresetSeparator = config.get("voicePresetSeparator");
 	let availableEngines = config.get("availableEngines");
 
-	for(let request of mapLinesToRequest(allLines, ttsPresetSeparator, availableEngines)) {
+	for(let request of mapLinesToRequest(allLines, ttsPresetSeparator, availableEngines,"")) {
 		await client.talk(request);
 	}
-	vscode.window.showInformationMessage("ファイル全体を読み上げました");
+	return showTtsToast("ファイル全体を読み上げました");
 }
 
 /**
@@ -149,23 +191,28 @@ async function talkAllLineHasSeparator(textEditor) {
 	let allLines = textEditor.document.getText().split(getDocumentEOL(textEditor));
 	let ttsPresetSeparator = config.get("voicePresetSeparator");
 	let availableEngines = config.get("availableEngines");
-	let currentFilePath = path.dirname(textEditor.document.fileName);
-	let pathConfig = config.get("defaultSavePath",path.join(currentFilePath,"tts"));
+	let ttsRecordFolder = getTtsRecordFolderPath();
 
-	for(let request of mapLinesToRequest(allLines, ttsPresetSeparator, availableEngines, pathConfig)) {
+	for(let request of mapLinesToRequest(allLines, ttsPresetSeparator, availableEngines, ttsRecordFolder)) {
 		await client.record(request)
 		.then((res) => {
-			if(config.get("saveTextFileOnRecord")) {
-				const buf = iconv.encode(res.LibraryName+"＞"+res.Body, "Shift_JIS");
-				fs.writeFileSync(res.OutputPath.replace(/\.wav$/,".txt"),buf);
-			}
+			// 録音後の後処理
+			// 設定で有効化されている場合、読み上げ内容をテキストファイルとして保存する
+			saveTtsBodyToText(res);
 		});
 	}
-	vscode.window.showInformationMessage("ファイル全体を読み上げ&録音しました");
+	return showTtsToast("ファイル全体を読み上げ&録音しました");
 }
 
-
-function mapLinesToRequest(lines, separator, availableEngines, savePath)  {
+/**
+ * 
+ * @param {Array<string>} lines 
+ * @param {string} separator 
+ * @param {Array<Object>} availableEngines 
+ * @param {string} savePath 
+ * @returns Array<Object>
+ */
+function mapLinesToRequest(lines, separator, availableEngines, savePath) {
 	let availableEngineNames = availableEngines.map(engine => engine.LibraryName);
 	// プリセットが存在する行のみ読み上げる
 	let ttsLines  = lines.filter(line => {
@@ -182,6 +229,15 @@ function mapLinesToRequest(lines, separator, availableEngines, savePath)  {
 	});
 } 
 
+function saveTtsBodyToText(ttsResponse) {
+	let config = vscode.workspace.getConfiguration("vsCodeTalker");
+	if(config.get("saveTextFileOnRecord")) {
+		const buf = iconv.encode(ttsResponse.LibraryName+"＞"+ttsResponse.Body, "Shift_JIS");
+		fs.writeFileSync(ttsResponse.OutputPath.replace(/\.wav$/,".txt"),buf);
+	}
+	return;
+}
+
 /**
  * vsCodeTalker.recordタスクの実体
  * @param {vscode.TextEditor} textEditor 
@@ -190,26 +246,21 @@ function mapLinesToRequest(lines, separator, availableEngines, savePath)  {
 async function record(textEditor) {
 	let ttsText = getTtsText(textEditor);
 	let config = vscode.workspace.getConfiguration("vsCodeTalker");
-	let currentFilePath = path.dirname(textEditor.document.fileName);
-	let pathConfig = config.get("defaultSavePath",path.join(currentFilePath,"tts"));
+	let ttsRecordFolder = getTtsRecordFolderPath();
 	// quickPickで読み上げに使用するttsエンジンを選択する
 	const engine = await selectTtsEngine(config);
 	if (engine) {
-		let saveToPath = generateRecordPath(pathConfig, engine.LibraryName, ttsText);
+		let saveToPath = generateRecordPath(ttsRecordFolder, engine.LibraryName, ttsText);
 
 		let request = makeTtsRequest(ttsText, engine.LibraryName ,engine.EngineName, saveToPath);
 		client.record(request)
-		// client.record(ttsText, engine.LibraryName, engine.EngineName, saveToPath)
 		.then(res => {
-			if(config.get("saveTextFileOnRecord")) {
-				const buf = iconv.encode(engine.LibraryName+"＞"+ttsText, "Shift_JIS");
-				fs.writeFileSync(res.OutputPath.replace(/\.wav$/,".txt"),buf);
-			}
-			vscode.window.showInformationMessage("\"" + res.OutputPath + "\"を保存しました");
+			saveTtsBodyToText(res);
+			return showTtsToast("\"" + res.OutputPath + "\"を保存しました");
 		});
 	} else {
-		// 入力がキャンセルされた
-		vscode.window.showInformationMessage(`録音をキャンセルしました`);
+		// 入力がキャンセルされた場合、toastで通知
+		showTtsToast(`録音をキャンセルしました`);
 	}
 }
 
@@ -258,6 +309,7 @@ const generateRecordPath = (dirName, ...args) => {
 	// todo:ファイル名に命名規則をつけられるようにする
 	return path.join(dirName, args.join("_") + ".wav");
 }
+
 function makeTtsRequest(text, libraryName, engineName, path="") {
 	return {
 			LibraryName: libraryName,
@@ -267,11 +319,12 @@ function makeTtsRequest(text, libraryName, engineName, path="") {
 		};
 }
 
+// TODO:utilの関数群を別ファイルにする
 const isBlank = t => t === undefined || t === ""
 
 const isEmpty = l => !Array.isArray(l) || l.length <= 0
 
-// this method is called when your extension is deactivated
+// 拡張機能を無効にした際に呼ばれる関数
 function deactivate() {
 	// grpcServerProcess.kill();
 }

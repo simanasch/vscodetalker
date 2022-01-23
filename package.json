@@ -41,6 +41,11 @@
         "category": "vsCodeTalker"
       },
       {
+        "command": "vsCodeTalker.openDestinationFolder",
+        "title": "音声保存先のフォルダを開く",
+        "category": "vsCodeTalker"
+      },
+      {
         "command": "vsCodeTalker.getLibraryList",
         "title": "利用可能なttsライブラリを取得",
         "category": "vsCodeTalker"
@@ -50,29 +55,34 @@
       {
         "title": "vsCodeTalker",
         "properties": {
-          "vsCodeTalker.servicePortNumber": {
-            "type": "integer",
-            "default": 5001,
-            "description": "ttsサーバーで使用するポート番号、通常は変更不要"
+          "vsCodeTalker.availableEngines": {
+            "type": "array",
+            "description": "使用可能なttsのリスト"
           },
           "vsCodeTalker.defaultLibraryName": {
             "type": "string",
             "default": "ついな",
             "description": "デフォルトで読み上げに使うttsライブラリのプリセット名"
           },
-          "vsCodeTalker.defaultSavePath": {
+          "vsCodeTalker.ttsRecordFileFolder": {
             "type": "string",
-            "default": "tts",
-            "description": "音声録音時の.wavファイル出力先\n例:デフォルトでは(読み上げしたファイルのあるフォルダ)/tts配下"
+            "default": "",
+            "description": "音声録音時の.wavファイル出力先\n例:デフォルトでは'%USERPROFILE%\\Appdata\\Local\\Temp\\tts'配下"
           },
-          "vsCodeTalker.availableEngines": {
-            "type": "array",
-            "description": "使用可能なttsのリスト"
+          "vsCodeTalker.notifyOnRead": {
+            "type": "boolean",
+            "default": true,
+            "description": "音声の再生/録音後にメッセージを表示するか"
           },
           "vsCodeTalker.saveTextFileOnRecord": {
             "type": "boolean",
             "default": false,
             "description": "音声録音時、読み上げ内容を含むテキストファイルを生成するか"
+          },
+          "vsCodeTalker.servicePortNumber": {
+            "type": "integer",
+            "default": 5001,
+            "description": "ttsサーバーで使用するポート番号、通常は変更不要"
           },
           "vsCodeTalker.voicePresetSeparator": {
             "type": "string",

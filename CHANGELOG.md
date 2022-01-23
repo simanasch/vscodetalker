@@ -22,3 +22,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [0.2.1]
 
  - この変更履歴ファイルを追加
+
+## [0.3.0]
+
+ - 音声再生/録音後の通知切り替えを追加
+ - 音声保存先のフォルダを開く処理を追加
+ - READMEを更新した

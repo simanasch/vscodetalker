@@ -26,6 +26,8 @@ windows 10 64bitで動作確認済みのもの
   * ファイル内のボイスプリセットを含む行を読み上げ
 * vsCodeTalker.recordAllLineHasSeparator
   * ファイル内のボイスプリセットを含む行を録音し読み上げ
+* vsCodeTalker.openDestinationFolder
+  * 音声保存先のフォルダを開く
 ## 機能(Features)
 
  - [x] 使用可能な音声合成ライブラリの取得
@@ -38,6 +40,17 @@ windows 10 64bitで動作確認済みのもの
 
 ボイスプリセットを含む行は以下サンプルです  
 名前＞テストです
+
+### todo/実装予定
+
+ - [x] 使用可能な音声合成ライブラリ取得の自動化
+ - [ ] 紹介動画を追加
+ - [ ] 設定サンプルを作成
+   - [ ] このREADME自体をサンプルにすればいいのでは?
+ - [ ] デフォルトの保存先を改善する(%USERPROFILE%\\Documents\\ 配下とか…)
+ - [ ] 保存先を開く機能を追加
+ - [ ] 対応ソフトの追加
+   - [ ] cevio cs7
 ## 動作環境(Requirements)
 
 windows10以降
@@ -46,15 +59,20 @@ windows10以降
 以下の設定ができます
 * `vsCodeTalker.availableEngines`: 使用可能な音声合成ライブラリのリスト
 * `vsCodeTalker.defaultLibraryName`: デフォルトの音声合成ライブラリのプリセット名、一致するプリセット名の音声合成ライブラリは読み上げライブラリの選択時に一番上に来ます
-* `vsCodeTalker.defaultSavePath`: 音声録音時の.wavファイル出力先
+* `vsCodeTalker.notifyOnRead`: 音声の再生/録音後にメッセージを表示するか
 * `vsCodeTalker.saveTextFileOnRecord`: 音声録音時、読み上げ内容を含むテキストファイルを生成するか
+* `vsCodeTalker.ttsRecordFileFolder`: 音声録音時の.wavファイル出力先
 * `vsCodeTalker.voicePresetSeparator`:ボイスプリセットの区切り文字として使う文字列、デフォルトでは「＞」
 ## 既知の問題点(Known Issues)
 
 * 録音時
   * 録音中に再生した別の音声が録音されている
     * 仕様です、音声録音時にスピーカーから再生している音声をそのまま録音しているため起こります
-  * (logicool G533で確認)録音したファイルを再生時、音量が小さくなる
+  * (logicool G533で確認)録音したファイルを再生時、音量が小さくなる?
+* 読み上げ中に、別の読み上げを実行すると変な挙動になる
+  * VOICEROID2,A.I.Voice → 音声再生中に別の読み上げを実行させると一時停止になる
+  * VOICEVOX → 多重再生になる
+  * Cevio AI → 前に実行した読み上げを中断し、次の読み上げを実行
 
 ## リリースノート(Release Notes)
 
@@ -74,3 +92,9 @@ windows10以降
 ## [0.2.1]
 
  - この変更履歴ファイルを追加
+
+## [0.3.0]
+
+ - 音声再生/録音後の通知切り替えを追加
+ - 音声保存先のフォルダを開く処理を追加
+ - READMEを更新した
