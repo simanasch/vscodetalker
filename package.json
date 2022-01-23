@@ -22,12 +22,12 @@
     "commands": [
       {
         "command": "vsCodeTalker.talk",
-        "title": "現在の行を読み上げ",
+        "title": "選択範囲/現在行を読み上げ",
         "category": "vsCodeTalker"
       },
       {
         "command": "vsCodeTalker.record",
-        "title": "現在の行を読み上げて録音",
+        "title": "選択範囲/現在行を読み上げて録音",
         "category": "vsCodeTalker"
       },
       {
@@ -57,7 +57,7 @@
         "properties": {
           "vsCodeTalker.availableEngines": {
             "type": "array",
-            "description": "使用可能なttsのリスト"
+            "description": "使用可能な音声合成ライブラリのリスト"
           },
           "vsCodeTalker.defaultLibraryName": {
             "type": "string",
