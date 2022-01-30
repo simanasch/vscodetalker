@@ -1,6 +1,7 @@
 # vsCodeTalker
 
 vsCode内のテキストを各種日本語向けの音声合成エンジンで読み上げたりできる拡張機能
+動画での概要説明が[ニコニコ動画](https://www.nicovideo.jp/watch/sm39970656)にあります
 
 <!--
 四国めたん＞Visual Studio Code内のテキストを読み上げたり録音する拡張機能を作りました。
