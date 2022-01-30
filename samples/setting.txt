@@ -1,0 +1,121 @@
+# 注意: このファイルの文字コードは必ず UTF-8 にしてください
+# 設定の書き方: https://github.com/oov/forcepser/wiki/%E8%A8%AD%E5%AE%9A%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6(0.1beta15%E4%BB%A5%E9%99%8D)
+
+# この設定ファイルは かんしくん v1.4 以降対応です。
+
+# ==== グローバルセクション ====
+
+# ◆ 音声ファイルを拡張編集に自動挿入したあと、後ろに確保する余白の大きさをミリ秒単位で指定
+padding = 200
+
+# ◆ 音声ファイルを拡張編集に投げ込む前に、音声ファイルを destdir で指定したフォルダーへ移動する
+# 'off' だと移動しない、'move' だと移動する、'copy' だとコピーする
+filemove = 'move'
+
+# ◆ 最終的な音声ファイルの配置場所
+# [注意！] これを変更すると AviUtl のプロジェクトファイルをフォルダーごと移動したときにファイルが正しく読み込まれなくなります。
+destdir = '''%PROJECTDIR%'''
+
+# ◆ 音声ファイルを拡張編集に投げ込む前に、テキストファイルを削除する
+# true だと削除する、false だと削除しない
+deletetext = true
+
+# ==== [[rule]] セクション ====
+
+# 「琴葉 茜」のためのルール
+[[rule]]
+layer = 2
+encoding = '''sjis'''
+dir = '''%TEMPDIR%'''
+file = '''茜_*.wav'''
+text = '''^茜(?:| - .+?)＞'''
+modifier = '''
+  -- セリフからボイスプリセットタグを除去
+  text = re.gsub(text, "^.*?＞", "")
+  -- セリフからルビを除去
+  text = re.gsub(text, "＜＜(.*?)｜.*?＞＞", "${1}")
+  -- ファイル名を整形
+  filename = os.date("%y%m%d_%H%M%S") .. [==[_茜_]==] .. tofilename(text, 10) .. ".wav"
+'''
+
+# 「結月 ゆかり（雫）」のためのルール
+[[rule]]
+layer = 5
+encoding = '''sjis'''
+dir = '''%TEMPDIR%'''
+filere = '''^雫(?:| - .+?)_.*?\.[Ww][Aa][Vv]$'''
+modifier = '''
+  -- セリフからボイスプリセットタグを除去
+  text = re.gsub(text, "^.*?＞", "")
+  -- セリフからルビを除去
+  text = re.gsub(text, "＜＜(.*?)｜.*?＞＞", "${1}")
+  -- ファイル名を整形
+  filename = os.date("%y%m%d_%H%M%S") .. [==[_雫_]==] .. tofilename(text, 10) .. ".wav"
+'''
+
+# 「きりたん」のためのルール
+[[rule]]
+layer = 2
+encoding = '''sjis'''
+dir = '''%TEMPDIR%'''
+file = '''きりたん_*.wav'''
+text = '''^きりたん(?:| - .+?)＞'''
+modifier = '''
+  -- セリフからボイスプリセットタグを除去
+  text = re.gsub(text, "^.*?＞", "")
+  -- セリフからルビを除去
+  text = re.gsub(text, "＜＜(.*?)｜.*?＞＞", "${1}")
+  -- ファイル名を整形
+  filename = os.date("%y%m%d_%H%M%S") .. [==[_きりたん_]==] .. tofilename(text, 10) .. ".wav"
+'''
+
+# 「IA」のためのルール
+[[rule]]
+layer = 7
+encoding = '''sjis'''
+dir = '''%TEMPDIR%'''
+file = '''IA_*.wav'''
+modifier = '''
+  -- セリフからルビを除去
+  text = re.gsub(text, "｜?([^｜《》]*)《.*?》", "${1}")
+  -- ファイル名を整形
+  filename = os.date("%y%m%d_%H%M%S") .. [==[_IA_]==] .. tofilename(text, 10) .. ".wav"
+'''
+
+# 「ONE」のためのルール
+[[rule]]
+layer = 7
+encoding = '''sjis'''
+dir = '''%TEMPDIR%'''
+file = '''ONE_*.wav'''
+modifier = '''
+  -- セリフからルビを除去
+  text = re.gsub(text, "｜?([^｜《》]*)《.*?》", "${1}")
+  -- ファイル名を整形
+  filename = os.date("%y%m%d_%H%M%S") .. [==[_ONE_]==] .. tofilename(text, 10) .. ".wav"
+'''
+
+# 「四国めたん」のためのルール
+[[rule]]
+layer = 9
+encoding = '''sjis'''
+dir = '''%TEMPDIR%'''
+filere = '''^四国めたん(?:|（.+?）)_.*?\.[Ww][Aa][Vv]$'''
+modifier = '''
+  -- ファイル名を整形
+  filename = os.date("%y%m%d_%H%M%S") .. [==[_四国めたん_]==] .. tofilename(text, 10) .. ".wav"
+'''
+
+# 「ずんだもん」のためのルール
+[[rule]]
+layer = 11
+encoding = '''sjis'''
+dir = '''%TEMPDIR%'''
+filere = '''^ずんだもん(?:|（.+?）)_.*?\.[Ww][Aa][Vv]$'''
+modifier = '''
+  -- ファイル名を整形
+  filename = os.date("%y%m%d_%H%M%S") .. [==[_ずんだもん_]==] .. tofilename(text, 10) .. ".wav"
+'''
+
+# 以下の行は消さないでください
+# forcepserconfig:W3sibmFtZSI6IlZPSUNFUk9JRDIiLCJleGVOYW1lIjoiVm9pY2Vyb2lkRWRpdG9yLmV4ZSIsImJpbiI6IkM6XFxQcm9ncmFtIEZpbGVzXFxBSFNcXFZPSUNFUk9JRDJcXFZvaWNlcm9pZEVkaXRvci5leGUiLCJmaWxlIjoiVk9JQ0VST0lEMl8qLndhdiIsImZvbGRlciI6IiVURU1QRElSJSIsIm1vZGlmaWVycyI6WyJhaVRhbGtWb2ljZVByZXNldFRhZyIsImFpVGFsa1J1YnkiXSwiYXNhc01vZGUiOiJhdXRvc2F2ZSIsImVkaXRhYmxlQ29tbW9uRGlyIjpmYWxzZSwiY29tbW9uRGlyIjoiJVRFTVBESVIlIiwiZ2tleSI6MSwiY2hhcmFjdGVycyI6W3sib25seU9uZSI6ZmFsc2UsIm5hbWUiOiLnkLTokYkg6IycIiwiZWRpdGFibGVOYW1lIjpmYWxzZSwibmlja05hbWUiOiLojJwiLCJmaWxlIjoiVk9JQ0VST0lEMl8qLndhdiIsImVkaXRhYmxlRmlsZSI6ZmFsc2UsImVuY29kaW5nIjoic2ppcyIsImRpciI6IiIsImVkaXRhYmxlRGlyIjpmYWxzZSwidXNlQ29tbW9uRGlyIjp0cnVlLCJwcmVzZXQiOiLojJwiLCJkZXRlY3RUeXBlIjoidm9pY2VQcmVzZXRUZXh0IiwibW9kaWZpZXJzIjpbImFpVGFsa1ZvaWNlUHJlc2V0VGFnIiwiYWlUYWxrUnVieSJdLCJsYXllciI6MiwiZ2tleSI6Mn1dfSx7Im5hbWUiOiJBLkkuVk9JQ0UiLCJleGVOYW1lIjoiQUlWb2ljZUVkaXRvci5leGUiLCJiaW4iOiJDOlxcUHJvZ3JhbSBGaWxlc1xcQUlcXEFJVm9pY2VcXEFJVm9pY2VFZGl0b3JcXEFJVm9pY2VFZGl0b3IuZXhlIiwiZmlsZSI6IiIsImZvbGRlciI6IiVURU1QRElSJSIsIm1vZGlmaWVycyI6WyJhaVRhbGtWb2ljZVByZXNldFRhZyIsImFpVGFsa1J1YnkiXSwiYXNhc01vZGUiOiJib290b25seSIsImVkaXRhYmxlQ29tbW9uRGlyIjpmYWxzZSwiY29tbW9uRGlyIjoiJVRFTVBESVIlIiwiZ2tleSI6MywiY2hhcmFjdGVycyI6W3sib25seU9uZSI6ZmFsc2UsIm5hbWUiOiLntZDmnIgg44KG44GL44KK77yI6Zur77yJIiwiZWRpdGFibGVOYW1lIjpmYWxzZSwibmlja05hbWUiOiLpm6siLCJmaWxlIjoiIiwiZWRpdGFibGVGaWxlIjpmYWxzZSwiZW5jb2RpbmciOiJzamlzIiwiZGlyIjoiIiwiZWRpdGFibGVEaXIiOmZhbHNlLCJ1c2VDb21tb25EaXIiOnRydWUsInByZXNldCI6IumbqyIsImRldGVjdFR5cGUiOiJ2b2ljZVByZXNldEZpbGUiLCJtb2RpZmllcnMiOlsiYWlUYWxrVm9pY2VQcmVzZXRUYWciLCJhaVRhbGtSdWJ5Il0sImxheWVyIjo1LCJna2V5Ijo0fV19LHsibmFtZSI6IkNlVklPIEFJIiwiZXhlTmFtZSI6IkNlVklPIEFJLmV4ZSIsImJpbiI6IkM6XFxQcm9ncmFtIEZpbGVzXFxDZVZJT1xcQ2VWSU8gQUlcXENlVklPIEFJLmV4ZSIsIm1vZGlmaWVycyI6WyJjZXZpb1J1YnlKUCIsImNldmlvUnVieUVOIl0sImZpbGUiOiIiLCJmb2xkZXIiOiIlVEVNUERJUiUiLCJhc2FzTW9kZSI6ImF1dG9zYXZlIiwiZWRpdGFibGVDb21tb25EaXIiOmZhbHNlLCJjb21tb25EaXIiOiIlVEVNUERJUiUiLCJna2V5Ijo1LCJjaGFyYWN0ZXJzIjpbeyJvbmx5T25lIjpmYWxzZSwibmFtZSI6IklBIiwiZWRpdGFibGVOYW1lIjpmYWxzZSwibmlja05hbWUiOiJJQSIsImZpbGUiOiIqX0lBXyoud2F2IiwiZWRpdGFibGVGaWxlIjpmYWxzZSwiZW5jb2RpbmciOiJzamlzIiwiZGlyIjoiIiwiZWRpdGFibGVEaXIiOmZhbHNlLCJ1c2VDb21tb25EaXIiOnRydWUsInByZXNldCI6IiIsImRldGVjdFR5cGUiOiJmaWxlIiwibW9kaWZpZXJzIjpbImNldmlvUnVieUpQIl0sImxheWVyIjo3LCJna2V5Ijo2fV19LHsibmFtZSI6IlZPSUNFVk9YIiwiZXhlTmFtZSI6IlZPSUNFVk9YLmV4ZSIsImJpbiI6IkM6XFxQYXRoXFxUb1xcVk9JQ0VWT1guZXhlIiwibW9kaWZpZXJzIjpbXSwiZmlsZSI6IiIsImZvbGRlciI6IiVURU1QRElSJSIsImFzYXNNb2RlIjoiYXV0b3NhdmUiLCJlZGl0YWJsZUNvbW1vbkRpciI6ZmFsc2UsImNvbW1vbkRpciI6IiVURU1QRElSJSIsImdrZXkiOjcsImNoYXJhY3RlcnMiOlt7Im9ubHlPbmUiOmZhbHNlLCJuYW1lIjoi5Zub5Zu944KB44Gf44KTIiwiZWRpdGFibGVOYW1lIjpmYWxzZSwibmlja05hbWUiOiLlm5vlm73jgoHjgZ/jgpMiLCJmaWxlIjoiKl/lm5vlm73jgoHjgZ/jgpNfKi53YXYiLCJlZGl0YWJsZUZpbGUiOmZhbHNlLCJlbmNvZGluZyI6InV0ZjgiLCJkaXIiOiIiLCJlZGl0YWJsZURpciI6ZmFsc2UsInVzZUNvbW1vbkRpciI6dHJ1ZSwicHJlc2V0IjoiIiwiZGV0ZWN0VHlwZSI6InZvaWNlVm94U3R5bGUiLCJtb2RpZmllcnMiOltdLCJsYXllciI6OSwiZ2tleSI6OH1dfV0=.597604e728287f5a
