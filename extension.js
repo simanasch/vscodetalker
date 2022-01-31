@@ -4,6 +4,7 @@ const vscode = require('vscode');
 const client = require("./src/client.js");
 const fs = require("fs");
 const iconv = require('iconv-lite');
+const { isTruthy, isBlank, isEmpty, invertKeyValue } = require('./src/util.js');
 
 let ttsControllerPath = path.join(__dirname,"bin","SpeechGRpcServer.exe");
 let grpcServerProcess;
@@ -12,7 +13,6 @@ let grpcServerProcess;
 const engineLabelTranslations = {
 	"VOICEROID64": "VOICEROID2"
 }
-const invertKeyValue = (o,r={})  => Object.keys(o).map(k => r[o[k]]=k) && r;
 const translateEngineName = (t,m) => !m[t] ? t : m[t];
 /**
  * @description 引数のtextEditorの改行文字列を返す
@@ -108,23 +108,25 @@ function getLibraryList() {
  * 現在のカーソル行を読み上げる
  */
 async function talk(textEditor) {
-	let ttsText = getTtsText(textEditor);
 	let config = vscode.workspace.getConfiguration("vsCodeTalker");
+	let ttsText = getTtsText(textEditor);
 
-	// quickPickで読み上げに使用するttsエンジンを選択する
-	const engine = await selectTtsEngine(config);
-	// 結果を表示する
-	if (engine) {
-		// 入力完了
-		let request = makeTtsRequest(ttsText, engine.LibraryName ,engine.EngineName);
-		client.talk(request)
-		.then(res => {
-			return showTtsToast("\""+ res + "\"を再生しました");
-		});
-	} else {
-		// 入力がキャンセルされた場合の処理
-		return showTtsToast(`再生をキャンセルしました`);
+	let request = makeTtsRequestFromLine(ttsText, config.get("voicePresetSeparator"), config.get("availableEngines"));
+	// 読み上げ内容にボイスプリセットがない場合の処理
+	if(isBlank(request.LibraryName)) {
+		// 読み上げに使用するttsエンジンを選択してもらう
+		const engine = await selectTtsEngine(config);
+		if (engine) {
+			request = makeTtsRequest(ttsText, engine.LibraryName ,engine.EngineName);
+		} else {
+			// 入力がキャンセルされた場合の処理
+			return showTtsToast(`再生をキャンセルしました`);
+		}
 	}
+	client.talk(request)
+	.then(res => {
+		return showTtsToast("\""+ res + "\"を再生しました");
+	});
 }
 
 /**
@@ -215,10 +217,9 @@ async function talkAllLineHasSeparator(textEditor) {
 function mapLinesToRequest(lines, separator, availableEngines, savePath) {
 	let availableEngineNames = availableEngines.map(engine => engine.LibraryName);
 	// プリセットが存在する行のみ読み上げる
-	let ttsLines  = lines.filter(line => {
-		return line.includes(separator) && availableEngineNames.includes(line.split(separator)[0]);
-	});
-	return ttsLines.map(line => {
+	return lines
+	.filter(line => line.includes(separator) && availableEngineNames.includes(line.split(separator)[0]))
+	.map(line => {
 		let saveToPath = "";
 		let [presetName, body] = line.split(separator);
 		let engine = availableEngines.find(engine=> engine["LibraryName"] === presetName);
@@ -227,7 +228,8 @@ function mapLinesToRequest(lines, separator, availableEngines, savePath) {
 		}
 		return makeTtsRequest(body, presetName ,engine.EngineName, saveToPath);
 	});
-} 
+}
+
 
 function saveTtsBodyToText(ttsResponse) {
 	let config = vscode.workspace.getConfiguration("vsCodeTalker");
@@ -247,21 +249,26 @@ async function record(textEditor) {
 	let ttsText = getTtsText(textEditor);
 	let config = vscode.workspace.getConfiguration("vsCodeTalker");
 	let ttsRecordFolder = getTtsRecordFolderPath();
-	// quickPickで読み上げに使用するttsエンジンを選択する
-	const engine = await selectTtsEngine(config);
-	if (engine) {
-		let saveToPath = generateRecordPath(ttsRecordFolder, engine.LibraryName, ttsText);
 
-		let request = makeTtsRequest(ttsText, engine.LibraryName ,engine.EngineName, saveToPath);
-		client.record(request)
-		.then(res => {
-			saveTtsBodyToText(res);
-			return showTtsToast("\"" + res.OutputPath + "\"を保存しました");
-		});
-	} else {
-		// 入力がキャンセルされた場合、toastで通知
-		showTtsToast(`録音をキャンセルしました`);
+	let request = makeTtsRequestFromLine(ttsText, config.get("voicePresetSeparator"), config.get("availableEngines"));
+	// 読み上げ内容にボイスプリセットがない場合の処理
+	if(isBlank(request.LibraryName)) {
+		// 読み上げに使用するttsエンジンを選択してもらう
+		const engine = await selectTtsEngine(config);
+		if (engine) {
+			request = makeTtsRequest(ttsText, engine.LibraryName ,engine.EngineName);
+		} else {
+			// 入力がキャンセルされた場合の処理
+			return showTtsToast(`録音をキャンセルしました`);
+		}
 	}
+	request.OutputPath = generateRecordPath(ttsRecordFolder, request.LibraryName, request.Body);
+
+	client.record(request)
+	.then(res => {
+		saveTtsBodyToText(res);
+		return showTtsToast("\"" + res.OutputPath + "\"を保存しました");
+	});
 }
 
 /**
@@ -271,9 +278,29 @@ async function record(textEditor) {
  * @returns {String}
  */
 const getTtsText = textEditor => {
-	return isBlank(textEditor.document.getText(textEditor.selection))
-		? textEditor.document.lineAt(textEditor.selection.start).text
-		: textEditor.document.getText(textEditor.selection)
+	if(isBlank(textEditor.document.getText(textEditor.selection))) {
+		return textEditor.document.lineAt(textEditor.selection.start).text
+	} else {
+		return textEditor.document.getText(textEditor.selection);
+	}
+}
+
+/**
+ * 読み上げ対象の文字列から、ttsRequestを返す
+ * @param {string} line
+ * @param {string} separator ボイスプリセットの区切り文字。
+ * @param {Array<Object>} presets 
+ * @return {Object} ttsRequest
+ */
+const makeTtsRequestFromLine = (line, separator, presets) => {
+	let splitRegExp = new RegExp("\(\(.+?\)" + separator + "\)?\(.+\)");
+	let [presetName,body] = splitRegExp.exec(line).slice(2);
+	let preset = presets.find(p => p.LibraryName === presetName);
+	if(isTruthy(preset)) {
+		return makeTtsRequest(body, preset.LibraryName, preset.EngineName);
+	} else {
+		return makeTtsRequest(body, "", "");
+	}
 }
 
 /**
@@ -316,13 +343,8 @@ function makeTtsRequest(text, libraryName, engineName, path="") {
 			EngineName: engineName,
 			Body: text,
 			OutputPath: path
-		};
+	};
 }
-
-// TODO:utilの関数群を別ファイルにする
-const isBlank = t => t === undefined || t === ""
-
-const isEmpty = l => !Array.isArray(l) || l.length <= 0
 
 // 拡張機能を無効にした際に呼ばれる関数
 function deactivate() {
