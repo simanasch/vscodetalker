@@ -4,7 +4,7 @@ const vscode = require('vscode');
 const client = require("./src/client.js");
 const fs = require("fs");
 const iconv = require('iconv-lite');
-const { isTruthy, isBlank, isEmpty, invertKeyValue } = require('./src/util.js');
+const { isTruthy, isEmpty, invertKeyValue } = require('./src/util.js');
 
 let ttsControllerPath = path.join(__dirname,"bin","SpeechGRpcServer.exe");
 let grpcServerProcess;
@@ -113,7 +113,7 @@ async function talk(textEditor) {
 
 	let request = makeTtsRequestFromLine(ttsText, config.get("voicePresetSeparator"), config.get("availableEngines"));
 	// 読み上げ内容にボイスプリセットがない場合の処理
-	if(isBlank(request.LibraryName)) {
+	if(!isTruthy(request.LibraryName)) {
 		// 読み上げに使用するttsエンジンを選択してもらう
 		const engine = await selectTtsEngine(config);
 		if (engine) {
@@ -136,7 +136,7 @@ async function talk(textEditor) {
 function getTtsRecordFolderPath() {
 	let config = vscode.workspace.getConfiguration("vsCodeTalker");
 	let ttsRecordFolder = config.get("ttsRecordFileFolder");
-	if(isBlank(ttsRecordFolder)) {
+	if(!isTruthy(ttsRecordFolder)) {
 		ttsRecordFolder = path.join(process.env.TMP,"tts");
 	}
 	return path.win32.resolve(ttsRecordFolder).replace('\\mnt\\c\\', 'c:\\\\');
@@ -223,7 +223,7 @@ function mapLinesToRequest(lines, separator, availableEngines, savePath) {
 		let saveToPath = "";
 		let [presetName, body] = line.split(separator);
 		let engine = availableEngines.find(engine=> engine["LibraryName"] === presetName);
-		if(!isBlank(savePath)) {
+		if(isTruthy(savePath)) {
 			saveToPath = generateRecordPath(savePath, engine.LibraryName, body);
 		}
 		return makeTtsRequest(body, presetName ,engine.EngineName, saveToPath);
@@ -252,7 +252,7 @@ async function record(textEditor) {
 
 	let request = makeTtsRequestFromLine(ttsText, config.get("voicePresetSeparator"), config.get("availableEngines"));
 	// 読み上げ内容にボイスプリセットがない場合の処理
-	if(isBlank(request.LibraryName)) {
+	if(!isTruthy(request.LibraryName)) {
 		// 読み上げに使用するttsエンジンを選択してもらう
 		const engine = await selectTtsEngine(config);
 		if (engine) {
@@ -278,7 +278,7 @@ async function record(textEditor) {
  * @returns {String}
  */
 const getTtsText = textEditor => {
-	if(isBlank(textEditor.document.getText(textEditor.selection))) {
+	if(!isTruthy(textEditor.document.getText(textEditor.selection))) {
 		return textEditor.document.lineAt(textEditor.selection.start).text
 	} else {
 		return textEditor.document.getText(textEditor.selection);
