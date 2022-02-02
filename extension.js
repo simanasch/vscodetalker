@@ -15,6 +15,11 @@ const engineLabelTranslations = {
 }
 const translateEngineName = (t,m) => !m[t] ? t : m[t];
 /**
+ * この拡張機能の設定取得をする
+ * @returns {vscode.WorkspaceConfiguration}
+ */
+const getConfig = () => vscode.workspace.getConfiguration("vsCodeTalker")
+/**
  * @description 引数のtextEditorの改行文字列を返す
  * @param {vscode.TextEditor} textEditor
  */
@@ -80,9 +85,10 @@ function activate(context) {
 /**
  * vsCodeTalker.getLibraryListコマンドの実体
  * 現在のpcで使用できるttsエンジンの一覧を更新する
+ * @returns {Promise<Array<Object>>}
  */
 function getLibraryList() {
-	client.getLibraryList()
+	return client.getLibraryList()
 	.then(results => {
 		let availableEngines = results.map(t => {
 			return {
@@ -99,42 +105,58 @@ function getLibraryList() {
 	.catch(e => {
 		console.error(e);
 		vscode.window.showWarningMessage("音声合成ライブラリの一覧取得に失敗しました");
+		return [];
 	});
 }
 
 /**
  * vsCodeTalker.talkコマンドの実体
  * @param {vscode.TextEditor} textEditor 
+ * @return {Promise}
  * 現在のカーソル行を読み上げる
  */
 async function talk(textEditor) {
-	let config = vscode.workspace.getConfiguration("vsCodeTalker");
-	let ttsText = getTtsText(textEditor);
-
-	let request = makeTtsRequestFromLine(ttsText, config.get("voicePresetSeparator"), config.get("availableEngines"));
-	// 読み上げ内容にボイスプリセットがない場合の処理
-	if(!isTruthy(request.LibraryName)) {
-		// 読み上げに使用するttsエンジンを選択してもらう
-		const engine = await selectTtsEngine(config);
-		if (engine) {
-			request = makeTtsRequest(ttsText, engine.LibraryName ,engine.EngineName);
-		} else {
-			// 入力がキャンセルされた場合の処理
-			return showTtsToast(`再生をキャンセルしました`);
-		}
-	}
-	client.talk(request)
+	let config = getConfig();
+	// 読み上げ対象の行の内容を取得
+	const ttsText = getTtsText(textEditor);
+	// 読み上げ内容がボイスプリセットを含む場合はそのまま読み上げ
+	let request =  await getPresetForLine(ttsText,config);
+	if(!isTruthy(request)) return;
+	return client.talk(request)
 	.then(res => {
 		return showTtsToast("\""+ res + "\"を再生しました");
 	});
 }
 
 /**
+ * 行の内容から読み上げ内容を取得する
+ * 読み上げ内容にボイスプリセットが含まれる場合は同期でttsRequestを返す、
+ * そうでない場合はユーザーにttsエンジンを選択してもらう(キャンセル時はtoastを表示しundefinedを返す)
+ * @param {string} ttsText 
+ * @param {vscode.WorkspaceConfiguration} config 
+ * @returns {Promise<Object>}
+ */
+async function getPresetForLine(ttsText, config = getConfig()) {
+	let { preset, body } = getEngineFromLine(ttsText, config);
+
+	// 読み上げ内容にボイスプリセットがない場合の処理
+	if(!isTruthy(preset)) {
+		// 読み上げに使用するttsエンジンを選択してもらう
+		preset = await selectTtsEngine(config);
+		if (!preset) {
+			// 入力がキャンセルされた場合の処理
+			return showTtsToast(`再生/録音をキャンセルしました`);
+		}
+	}
+	return makeTtsRequest(body, preset.LibraryName, preset.EngineName);
+}
+
+/**
  * 保存先のフォルダパスを取得
+ * @param {vscode.WorkspaceConfiguration} config 指定がなかったら呼び出し時に取得
  * @returns {string} 保存先のフォルダのパス
  */
-function getTtsRecordFolderPath() {
-	let config = vscode.workspace.getConfiguration("vsCodeTalker");
+function getTtsRecordFolderPath(config=getConfig()) {
 	let ttsRecordFolder = config.get("ttsRecordFileFolder");
 	if(!isTruthy(ttsRecordFolder)) {
 		ttsRecordFolder = path.join(process.env.TMP,"tts");
@@ -172,7 +194,7 @@ function showTtsToast(body) {
  * ボイスプリセットを含む行を読み上げる
  */
 async function talkAllLineHasSeparator(textEditor) {
-	let config = vscode.workspace.getConfiguration("vsCodeTalker");
+	let config = getConfig();
 	let allLines = textEditor.document.getText().split(getDocumentEOL(textEditor));
 	let ttsPresetSeparator = config.get("voicePresetSeparator");
 	let availableEngines = config.get("availableEngines");
@@ -189,11 +211,11 @@ async function talkAllLineHasSeparator(textEditor) {
  * ボイスプリセットを含む行を読み上げる
  */
  async function recordAllLineHasSeparator(textEditor) {
-	let config = vscode.workspace.getConfiguration("vsCodeTalker");
+	let config = getConfig();
 	let allLines = textEditor.document.getText().split(getDocumentEOL(textEditor));
 	let ttsPresetSeparator = config.get("voicePresetSeparator");
 	let availableEngines = config.get("availableEngines");
-	let ttsRecordFolder = getTtsRecordFolderPath();
+	let ttsRecordFolder = getTtsRecordFolderPath(config);
 
 	for(let request of mapLinesToRequest(allLines, ttsPresetSeparator, availableEngines, ttsRecordFolder)) {
 		await client.record(request)
@@ -232,7 +254,8 @@ function mapLinesToRequest(lines, separator, availableEngines, savePath) {
 
 
 function saveTtsBodyToText(ttsResponse) {
-	let config = vscode.workspace.getConfiguration("vsCodeTalker");
+	const config = getConfig();
+
 	if(config.get("saveTextFileOnRecord")) {
 		const buf = iconv.encode(ttsResponse.LibraryName+"＞"+ttsResponse.Body, "Shift_JIS");
 		fs.writeFileSync(ttsResponse.OutputPath.replace(/\.wav$/,".txt"),buf);
@@ -246,25 +269,15 @@ function saveTtsBodyToText(ttsResponse) {
  * 現在のカーソル行を読み上げ+録音する
  */
 async function record(textEditor) {
-	let ttsText = getTtsText(textEditor);
-	let config = vscode.workspace.getConfiguration("vsCodeTalker");
-	let ttsRecordFolder = getTtsRecordFolderPath();
-
-	let request = makeTtsRequestFromLine(ttsText, config.get("voicePresetSeparator"), config.get("availableEngines"));
-	// 読み上げ内容にボイスプリセットがない場合の処理
-	if(!isTruthy(request.LibraryName)) {
-		// 読み上げに使用するttsエンジンを選択してもらう
-		const engine = await selectTtsEngine(config);
-		if (engine) {
-			request = makeTtsRequest(ttsText, engine.LibraryName ,engine.EngineName);
-		} else {
-			// 入力がキャンセルされた場合の処理
-			return showTtsToast(`録音をキャンセルしました`);
-		}
-	}
+	let config = getConfig();
+	// 読み上げ対象の行の内容を取得
+	const ttsText = getTtsText(textEditor);
+	const ttsRecordFolder = getTtsRecordFolderPath(config);
+	// 読み上げ内容がボイスプリセットを含む場合はそのまま読み上げ
+	let request =  await getPresetForLine(ttsText,config);
+	if(!isTruthy(request)) return;
 	request.OutputPath = generateRecordPath(ttsRecordFolder, request.LibraryName, request.Body);
-
-	client.record(request)
+	return client.record(request)
 	.then(res => {
 		saveTtsBodyToText(res);
 		return showTtsToast("\"" + res.OutputPath + "\"を保存しました");
@@ -286,21 +299,18 @@ const getTtsText = textEditor => {
 }
 
 /**
- * 読み上げ対象の文字列から、ttsRequestを返す
+ * 読み上げ対象の文字列とworkspace configから{ボイスプリセット、読み上げ内容}を返す
  * @param {string} line
- * @param {string} separator ボイスプリセットの区切り文字。
- * @param {Array<Object>} presets 
- * @return {Object} ttsRequest
+ * @param {vscode.WorkspaceConfiguration} config ボイスプリセットの区切り文字。
+ * @return {Object} 読み上げ内容にpresetが含まれない場合、presetの値はundefinedを返す
  */
-const makeTtsRequestFromLine = (line, separator, presets) => {
+const getEngineFromLine = (line, config) => {
+	let separator = config.get("voicePresetSeparator");
+	let presets = config.get("availableEngines");
 	let splitRegExp = new RegExp("\(\(.+?\)" + separator + "\)?\(.+\)");
 	let [presetName,body] = splitRegExp.exec(line).slice(2);
 	let preset = presets.find(p => p.LibraryName === presetName);
-	if(isTruthy(preset)) {
-		return makeTtsRequest(body, preset.LibraryName, preset.EngineName);
-	} else {
-		return makeTtsRequest(body, "", "");
-	}
+	return {preset, body};
 }
 
 /**
