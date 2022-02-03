@@ -6,7 +6,6 @@ const path = require('path');
 const fs = require("fs");
 
 const { engineLabelTranslations, isTruthy, invertKeyValue, translateEngineName } = require('./util.js');
-const { makeTtsRequest } = require("./grpc")
 
 /**
  * この拡張機能の設定取得をする
@@ -33,11 +32,10 @@ const getDocumentEOL = (textEditor) => {
  * @return {Object} 読み上げ内容にpresetが含まれない場合、presetの値はundefinedを返す
  */
 const getEngineFromLine = (line, config) => {
-  let separator = config.get("voicePresetSeparator");
-  let presets = config.get("availableEngines");
-  let splitRegExp = new RegExp("\(\(.+?\)" + separator + "\)?\(.+\)");
+  let splitRegExp = new RegExp("\(\(.+?\)" + config.get("voicePresetSeparator") + "\)?\(.+\)");
   let [presetName, body] = splitRegExp.exec(line).slice(2);
-  let preset = presets.find(p => p.LibraryName === presetName);
+  let preset = config.get("availableEngines")
+    .find(p => p.LibraryName === presetName);
   return { preset, body };
 }
 
@@ -46,29 +44,18 @@ function getNotifyOnRead(config = getConfig()) {
 }
 
 /**
- * 行の内容から読み上げ内容を取得する
- * 読み上げ内容にボイスプリセットが含まれる場合は同期でttsRequestを返す、
- * そうでない場合はユーザーにttsエンジンを選択してもらう(キャンセル時はtoastを表示しundefinedを返す)
- * @param {string} ttsText 
+ * 音声合成エンジンを手動で選択する際の処理
  * @param {vscode.WorkspaceConfiguration} config 
  * @returns {Promise<Object>}
  */
-async function getPresetForLine(ttsText, config = getConfig()) {
-  let { preset, body } = getEngineFromLine(ttsText, config);
-
-  // 読み上げ内容にボイスプリセットがない場合の処理
-  if (!isTruthy(preset)) {
-    // 読み上げに使用するttsエンジンを選択してもらう
-    preset = await selectTtsEngine(config);
-    if (!preset) {
-      // 入力がキャンセルされた場合の処理
-      return showTtsToast(`再生/録音をキャンセルしました`);
-    }
+async function promptEngine(config) {
+  let preset = await selectTtsEngine(config);
+  if (!preset) {
+    // 入力がキャンセルされた場合の処理
+    return showTtsToast(`再生/録音をキャンセルしました`);
   }
-  return makeTtsRequest(body, preset.LibraryName, preset.EngineName);
+  return preset;
 }
-
-
 
 /**
  * 読み上げ部分の取得
@@ -113,8 +100,6 @@ const selectTtsEngine = config => {
     })
 }
 
-
-
 function showTtsToast(body) {
   // 通知オフになってる場合はメッセージ表示しない
   if (!getNotifyOnRead()) return;
@@ -156,13 +141,13 @@ function saveTtsBodyToText(ttsResponse, config) {
 
 
 module.exports = {
+  generateRecordPath,
   getConfig,
   getDocumentEOL,
   getEngineFromLine,
   getTtsRecordFolderPath,
-  generateRecordPath,
-  saveTtsBodyToText,
-  getPresetForLine,
   getTtsText,
+  promptEngine,
+  saveTtsBodyToText,
   showTtsToast,
 }

@@ -1,7 +1,14 @@
 const vscode = require('vscode');
 const client = require("../grpc/client.js");
 const { isTruthy } = require('../util/util.js');
-const { getEngineFromLine, getPresetForLine, showTtsToast, getTtsRecordFolderPath, generateRecordPath, saveTtsBodyToText } = require("../util/vscode");
+const { 
+  getEngineFromLine,
+  showTtsToast,
+  getTtsRecordFolderPath,
+  generateRecordPath,
+  saveTtsBodyToText,
+  promptEngine
+} = require("../util/vscode");
 const { makeTtsRequest } = require('../util/grpc');
 
 /**
@@ -13,10 +20,15 @@ const { makeTtsRequest } = require('../util/grpc');
  */
 async function record(ttsLine, config) {
   // 読み上げ内容がボイスプリセットを含む場合はそのまま読み上げ
-  let request = await getPresetForLine(ttsLine, config);
-  if (!isTruthy(request)) return;
-  const ttsRecordFolder = getTtsRecordFolderPath(config);
-  request.OutputPath = generateRecordPath(ttsRecordFolder, request.LibraryName, request.Body);
+  let { preset, body } = getEngineFromLine(ttsLine, config);
+  if (!isTruthy(preset) ) {
+    // 読み上げ内容がボイスプリセットを含まない場合は音声合成エンジンをユーザーに選択してもらう
+    preset = await promptEngine(config);
+  }
+  if(!isTruthy(preset)) return;
+  // リクエスト内容を生成
+  let filepath = generateRecordPath(getTtsRecordFolderPath(config), preset.LibraryName, body);
+  let request = makeTtsRequest(body, preset.LibraryName, preset.EngineName, filepath);
   return client.record(request)
     .then(res => {
       saveTtsBodyToText(res, config);
@@ -32,7 +44,7 @@ async function record(ttsLine, config) {
  */
 async function recordLines(ttsLines, config) {
   for (let ttsLine of ttsLines) {
-    let { preset, body } = await getEngineFromLine(ttsLine, config);
+    let { preset, body } = getEngineFromLine(ttsLine, config);
     if (!isTruthy(preset)) continue;
     let filepath = generateRecordPath(getTtsRecordFolderPath(config), preset.LibraryName, body);
     await client.record(makeTtsRequest(body, preset.LibraryName, preset.EngineName, filepath))

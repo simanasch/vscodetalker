@@ -1,7 +1,7 @@
 const vscode = require('vscode');
 const client = require("../grpc/client.js");
-const { isTruthy,  } = require('../util/util.js');
-const { getEngineFromLine, getPresetForLine, showTtsToast} = require("../util/vscode");
+const { isTruthy } = require('../util/util.js');
+const { getEngineFromLine, showTtsToast, promptEngine } = require("../util/vscode");
 const { makeTtsRequest } = require('../util/grpc');
 
 /**
@@ -13,8 +13,14 @@ const { makeTtsRequest } = require('../util/grpc');
  */
 async function talk(ttsLine, config) {
   // 読み上げ内容がボイスプリセットを含む場合はそのまま読み上げ
-  let request =  await getPresetForLine(ttsLine,config);
-  if(!isTruthy(request)) return;
+  let { preset, body } = getEngineFromLine(ttsLine, config);
+  if (!isTruthy(preset) ) {
+    // 読み上げ内容がボイスプリセットを含まない場合は音声合成エンジンをユーザーに選択してもらう
+    preset = await promptEngine(config);
+  }
+  if(!isTruthy(preset)) return;
+  // リクエスト内容を生成
+  let request = makeTtsRequest(body, preset.LibraryName, preset.EngineName);
   return client.talk(request)
   .then(res => {
     return showTtsToast("\""+ res + "\"を再生しました");
@@ -30,7 +36,7 @@ async function talk(ttsLine, config) {
 async function talkLines(ttsLines, config) {
 
   for(let ttsLine of ttsLines) {
-    let { preset, body } =  await getEngineFromLine(ttsLine,config);
+    let { preset, body } = getEngineFromLine(ttsLine,config);
     if(!isTruthy(preset)) continue;
     await client.talk(makeTtsRequest(body, preset.LibraryName, preset.EngineName));
   }
