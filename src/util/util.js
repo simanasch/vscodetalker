@@ -20,8 +20,18 @@ const isEmpty = l => !isTruthy(l) || l.length <= 0
  */
 const invertKeyValue = (o,r={})  => Object.keys(o).map(k => r[o[k]]=k) && r;
 
+
+// エンジン名の変換定義
+const engineLabelTranslations = {
+	"VOICEROID64": "VOICEROID2"
+}
+const translateEngineName = (t,m) => !m[t] ? t : m[t];
+
+
 module.exports = {
+  engineLabelTranslations,
   invertKeyValue,
   isEmpty,
-  isTruthy
+  isTruthy,
+  translateEngineName,
 }

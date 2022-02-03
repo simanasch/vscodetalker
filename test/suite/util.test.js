@@ -1,6 +1,6 @@
-// src/util.jsに対するテスト
+// src/util/util.jsに対するテスト
 const assert = require('assert');
-const util = require('../../src/util');
+const util = require('../../src/util/util');
 
 suite('util関数に対するテスト', () => {
 

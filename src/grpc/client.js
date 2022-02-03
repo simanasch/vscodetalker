@@ -1,6 +1,6 @@
 // grpcを利用し、各種ttsの操作をするバックエンド(c#)部分を呼ぶ処理類
 const path = require('path');
-const PROTO_PATH = path.join(__dirname,'proto','TTSController.proto');
+const PROTO_PATH = path.join(__dirname,'../','proto','TTSController.proto');
 const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
 
