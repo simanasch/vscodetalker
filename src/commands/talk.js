@@ -23,7 +23,7 @@ async function talk(ttsLine, config) {
   let request = makeTtsRequest(body, preset.LibraryName, preset.EngineName);
   return client.talk(request)
   .then(res => {
-    return showTtsToast("\""+ res + "\"を再生しました");
+    return showTtsToast("\""+ res + "\"を再生しました", config);
   });
 }
 
@@ -40,7 +40,7 @@ async function talkLines(ttsLines, config) {
     if(!isTruthy(preset)) continue;
     await client.talk(makeTtsRequest(body, preset.LibraryName, preset.EngineName));
   }
-  return showTtsToast("ファイル全体を読み上げました");
+  return showTtsToast("ファイル全体を読み上げました", config);
 }
 
 module.exports = {

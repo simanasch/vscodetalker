@@ -34,13 +34,8 @@ const getDocumentEOL = (textEditor) => {
 const getEngineFromLine = (line, config) => {
   let splitRegExp = new RegExp("\(\(.+?\)" + config.get("voicePresetSeparator") + "\)?\(.+\)");
   let [presetName, body] = splitRegExp.exec(line).slice(2);
-  let preset = config.get("availableEngines")
-    .find(p => p.LibraryName === presetName);
+  let preset = config.get("availableEngines").find(p => p.LibraryName === presetName);
   return { preset, body };
-}
-
-function getNotifyOnRead(config = getConfig()) {
-  return isTruthy(config.get("notifyOnRead"));
 }
 
 /**
@@ -52,14 +47,15 @@ async function promptEngine(config) {
   let preset = await selectTtsEngine(config);
   if (!preset) {
     // 入力がキャンセルされた場合の処理
-    return showTtsToast(`再生/録音をキャンセルしました`);
+    return showTtsToast(`再生/録音をキャンセルしました`, config);
   }
   return preset;
 }
 
 /**
- * 読み上げ部分の取得
- * 選択範囲がある場合は最初の選択範囲、ない場合はカーソル行を返す
+ * @description 読み上げ部分の取得
+ * 選択範囲がある場合は最初の選択範囲内のテキスト、
+ * ない場合はカーソル行を返す
  * @param {vscode.TextEditor} textEditor 
  * @returns {String}
  */
@@ -74,7 +70,7 @@ const getTtsText = textEditor => {
 /**
  * @description 引数のワークスペース設定から音声合成エンジン選択のquickPickを作成する
  * @param {vscode.WorkspaceConfiguration} config 
- * @returns {Object}
+ * @returns {Thenable<Object>}
  */
 const selectTtsEngine = config => {
   let defaultLibraryName = config.get("defaultLibraryName");
@@ -97,12 +93,19 @@ const selectTtsEngine = config => {
         // @ts-ignore
         "EngineName": translateEngineName(result.description, invertKeyValue(engineLabelTranslations))
       }
-    })
+    });
 }
 
-function showTtsToast(body) {
+/**
+ * 各コマンド実行後のtoast表示
+ * 実行時、コンフィグの値からtoast表示が必要か取得する
+ * @param {string} body 
+ * @param {vscode.WorkspaceConfiguration} config 
+ * @returns {Thenable<string|undefined>|undefined}
+ */
+function showTtsToast(body, config) {
   // 通知オフになってる場合はメッセージ表示しない
-  if (!getNotifyOnRead()) return;
+  if (!isTruthy(config.get("notifyOnRead"))) return;
   return vscode.window.showInformationMessage(body, "通知をオフにする")
     .then(clicked => {
       if (clicked) {

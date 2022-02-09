@@ -32,7 +32,7 @@ async function record(ttsLine, config) {
   return client.record(request)
     .then(res => {
       saveTtsBodyToText(res, config);
-      return showTtsToast("\"" + res.OutputPath + "\"を保存しました");
+      return showTtsToast("\"" + res.OutputPath + "\"を保存しました", config);
     });
 }
 
@@ -54,7 +54,7 @@ async function recordLines(ttsLines, config) {
         saveTtsBodyToText(res, config);
       });
   }
-  return showTtsToast("ファイル全体を読み上げ&録音しました");
+  return showTtsToast("ファイル全体を読み上げ&録音しました", config);
 }
 
 module.exports = {
