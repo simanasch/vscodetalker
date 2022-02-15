@@ -25,7 +25,7 @@ const invertKeyValue = (o,r={})  => Object.keys(o).map(k => r[o[k]]=k) && r;
 const engineLabelTranslations = {
 	"VOICEROID64": "VOICEROID2"
 }
-const translateEngineName = (t,m) => !m[t] ? t : m[t];
+const getIfExist = (t,m) => m[t] || t
 
 
 module.exports = {
@@ -33,5 +33,5 @@ module.exports = {
   invertKeyValue,
   isEmpty,
   isTruthy,
-  translateEngineName,
+  getIfExist,
 }

@@ -5,7 +5,7 @@ const iconv = require('iconv-lite');
 const path = require('path');
 const fs = require("fs");
 
-const { engineLabelTranslations, isTruthy, invertKeyValue, translateEngineName } = require('./util.js');
+const { engineLabelTranslations, isTruthy, invertKeyValue, getIfExist } = require('./util.js');
 
 /**
  * この拡張機能の設定取得をする
@@ -76,7 +76,7 @@ const selectTtsEngine = config => {
   let defaultLibraryName = config.get("defaultLibraryName");
   let quickPickItems = config.get("availableEngines").map(t => {
     return {
-      "description": translateEngineName(t.EngineName, engineLabelTranslations),
+      "description": getIfExist(t.EngineName, engineLabelTranslations),
       "label": t.LibraryName
     }
   }).sort(t => t.label === defaultLibraryName ? -1 : 0)
@@ -91,7 +91,7 @@ const selectTtsEngine = config => {
         // @ts-ignore
         "LibraryName": result.label,
         // @ts-ignore
-        "EngineName": translateEngineName(result.description, invertKeyValue(engineLabelTranslations))
+        "EngineName": getIfExist(result.description, invertKeyValue(engineLabelTranslations))
       }
     });
 }
@@ -117,12 +117,13 @@ function showTtsToast(body, config) {
 
 /**
  * 保存先のフォルダパスを取得
- * @param {vscode.WorkspaceConfiguration} config 指定がなかったら呼び出し時に取得
+ * @param {vscode.WorkspaceConfiguration} config
  * @returns {string} 保存先のフォルダのパス
  */
 function getTtsRecordFolderPath(config) {
   let ttsRecordFolder = config.get("ttsRecordFileFolder");
   if (!isTruthy(ttsRecordFolder)) {
+    // 保存先フォルダの設定が存在しない場合、%USERPROFILE%/Local/temp/tts配下に保存する
     ttsRecordFolder = path.join(process.env.TMP, "tts");
   }
   return path.win32.resolve(ttsRecordFolder).replace('\\mnt\\c\\', 'c:\\\\');
@@ -133,9 +134,14 @@ const generateRecordPath = (dirName, ...args) => {
   return path.join(dirName, args.join("_") + ".wav");
 }
 
-// 
+/**
+ * tts読み上げ内容のテキストファイルを保存する
+ * @param {Object} ttsResponse
+ * @param {vscode.WorkspaceConfiguration} config
+ * @returns {void}
+ */
 function saveTtsBodyToText(ttsResponse, config) {
-  if (config.get("saveTextFileOnRecord")) {
+  if (isTruthy(config.get("saveTextFileOnRecord"))) {
     const buf = iconv.encode(ttsResponse.LibraryName + config.get("voicePresetSeparator") + ttsResponse.Body, "Shift_JIS");
     fs.writeFileSync(ttsResponse.OutputPath.replace(/\.wav$/, ".txt"), buf);
   }
