@@ -32,7 +32,7 @@ const getDocumentEOL = (textEditor) => {
  * @return {Object} 読み上げ内容にpresetが含まれない場合、presetの値はundefinedを返す
  */
 const getEngineFromLine = (line, config) => {
-  let splitRegExp = new RegExp("\(\(.+?\)" + config.get("voicePresetSeparator") + "\)?\(.+\)");
+  let splitRegExp = new RegExp("\(\(.*?\)" + config.get("voicePresetSeparator") + "\)?\(.+\)");
   let [presetName, body] = splitRegExp.exec(line).slice(2);
   let preset = config.get("availableEngines").find(p => p.LibraryName === presetName);
   return { preset, body };
