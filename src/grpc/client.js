@@ -3,6 +3,7 @@ const path = require('path');
 const PROTO_PATH = path.join(__dirname,'../','proto','TTSController.proto');
 const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
+const { getTTSServicePortNumber } = require('../util/vscode');
 
 const packageDefinition = protoLoader.loadSync(
     PROTO_PATH,
@@ -19,7 +20,7 @@ const makeTTSService = (port) => {
   // @ts-ignore
   return new ttsProto.ttscontroller.TTSService('localhost:'+port, grpc.credentials.createInsecure())
 }
-const ttsService = makeTTSService("5001");
+const ttsService = makeTTSService(getTTSServicePortNumber());
 
 // 利用可能なライブラリ取得のgrpc service call
 const getLibraryList = () => {
@@ -34,13 +35,15 @@ const getLibraryList = () => {
 }
 
 // 音声再生のgrpc service call
-const talk = (request) => {
+const talk = async (request) => {
 
-  return new Promise((resolve, reject) => {
-   ttsService.talk(
+  return await new Promise((resolve, reject) => {
+    // このtalk呼び出しを遅らせたい
+    ttsService.talk(
       request,
       (error) => {
         if(error) reject(error);
+        // TODO:c#側で読み上げ内容を返すようにする
         resolve(request.Body);
       })
     }
@@ -48,8 +51,8 @@ const talk = (request) => {
 }
 
 // 音声録音のgrpc service call
-const record = (request) => {
-  return new Promise((resolve, reject) => {
+const record = async (request) => {
+  return await new Promise((resolve, reject) => {
     ttsService.record(
       request,
       (error, response) => {

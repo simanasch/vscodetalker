@@ -4,7 +4,7 @@ const vscode = require('vscode');
 const client = require("./src/grpc/client.js");
 const iconv = require('iconv-lite');
 const { isEmpty } = require('./src/util/util.js');
-const { getConfig, getDocumentEOL, getTtsText, getTtsRecordFolderPath } = require("./src/util/vscode");
+const { getConfig, getDocumentEOL, getTtsText, getTtsRecordFolderPath, getTTSServicePortNumber } = require("./src/util/vscode");
 const { talk, talkLines } = require('./src/commands/talk')
 const { record, recordLines } = require('./src/commands/record')
 let ttsControllerPath = path.join(__dirname, "bin", "SpeechGRpcServer.exe");
@@ -46,7 +46,8 @@ function activate(context) {
   ));
 
   grpcServerProcess = spawn(
-    ttsControllerPath
+    ttsControllerPath,
+    ["--port", getTTSServicePortNumber()]
   );
 
   // ttsのサーバープロセスの起動後処理

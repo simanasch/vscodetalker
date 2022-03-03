@@ -15,6 +15,11 @@ const { engineLabelTranslations, isTruthy, invertKeyValue, getIfExist } = requir
 const getConfig = () => vscode.workspace.getConfiguration("vsCodeTalker")
 
 /**
+ * ttsサービスに使用するポート番号を返す
+ */
+const getTTSServicePortNumber = () => getConfig().get("servicePortNumber")
+
+/**
  * @description 引数のtextEditorの改行文字列を返す
  * @param {vscode.TextEditor} textEditor
  */
@@ -159,6 +164,7 @@ module.exports = {
   getDocumentEOL,
   getEngineFromLine,
   getTtsRecordFolderPath,
+  getTTSServicePortNumber,
   getTtsText,
   promptEngine,
   saveTtsBodyToText,
