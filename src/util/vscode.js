@@ -4,6 +4,7 @@ const vscode = require('vscode');
 const iconv = require('iconv-lite');
 const path = require('path');
 const fs = require("fs");
+const sanitize = require('sanitize-filename');
 
 const { engineLabelTranslations, isTruthy, invertKeyValue, getIfExist } = require('./util.js');
 
@@ -131,7 +132,10 @@ function getTtsRecordFolderPath(config) {
 
 const generateRecordPath = (dirName, ...args) => {
   // todo:ファイル名に命名規則をつけられるようにする
-  return path.join(dirName, args.join("_") + ".wav");
+  return path.join(
+    dirName,
+    // ファイル名はサニタイズする
+    sanitize(args.join("_"),{ replacement: "_" }) + ".wav");
 }
 
 /**
