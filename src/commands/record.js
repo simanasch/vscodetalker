@@ -43,7 +43,7 @@ async function record(ttsLine, config) {
  * ボイスプリセットを含む行を読み上げ、録音ファイルを作成する
  */
 async function recordLines(ttsLines, config) {
-  for (let ttsLine of ttsLines) {
+  for (let ttsLine of ttsLines.filter(l => isTruthy(l))) {
     let { preset, body } = getEngineFromLine(ttsLine, config);
     if (!isTruthy(preset)) continue;
     let filepath = generateRecordPath(getTtsRecordFolderPath(config), preset.LibraryName, body);

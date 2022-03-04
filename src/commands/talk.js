@@ -1,6 +1,6 @@
 const vscode = require('vscode');
 const client = require("../grpc/client.js");
-const { isTruthy } = require('../util/util.js');
+const { isTruthy, isEmpty } = require('../util/util.js');
 const { getEngineFromLine, showTtsToast, promptEngine } = require("../util/vscode");
 const { makeTtsRequest } = require('../util/grpc');
 
@@ -35,7 +35,7 @@ async function talk(ttsLine, config) {
  */
 async function talkLines(ttsLines, config) {
 
-  for(let ttsLine of ttsLines) {
+  for(let ttsLine of ttsLines.filter(l => isTruthy(l))) {
     let { preset, body } = getEngineFromLine(ttsLine,config);
     if(!isTruthy(preset)) continue;
     await client.talk(makeTtsRequest(body, preset.LibraryName, preset.EngineName));
