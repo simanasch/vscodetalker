@@ -1,6 +1,6 @@
 const vscode = require('vscode');
 const client = require("../grpc/client.js");
-const { isTruthy, isEmpty } = require('../util/util.js');
+const { isTruthy } = require('../util/util.js');
 const { getEngineFromLine, showTtsToast, promptEngine } = require("../util/vscode");
 const { makeTtsRequest } = require('../util/grpc');
 
@@ -23,7 +23,7 @@ async function talk(ttsLine, config) {
   let request = makeTtsRequest(body, preset.LibraryName, preset.EngineName);
   return client.talk(request)
   .then(res => {
-    return showTtsToast("\""+ res + "\"を再生しました", config);
+    return showTtsToast("\""+ res.Body + "\"を再生しました", config);
   });
 }
 

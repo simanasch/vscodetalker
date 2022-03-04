@@ -41,10 +41,9 @@ const talk = async (request) => {
     // このtalk呼び出しを遅らせたい
     ttsService.talk(
       request,
-      (error) => {
+      (error, response) => {
         if(error) reject(error);
-        // TODO:c#側で読み上げ内容を返すようにする
-        resolve(request.Body);
+        resolve(response);
       })
     }
   )
