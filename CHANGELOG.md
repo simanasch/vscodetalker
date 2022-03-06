@@ -14,6 +14,7 @@
 ### Changed
  - 参照先のライブラリの更新反映[TTSController](https://github.com/ksasao/TTSController)
    - VOICEVOXのアップデートで追加された話者対応
+   - aviutlで使える形式へのリサンプリングを自前の実装に変更
 ## [0.4.2]
 ### Added
  - ファイル名に使用できない文字列があっても音声録音できるようにした
