@@ -2,7 +2,7 @@
   "name": "vscodetalker",
   "displayName": "vsCodeTalker",
   "description": "各種音声合成ライブラリでvsCode内のテキストを読み上げ(+録音)する",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "engines": {
     "vscode": "^1.63.0"
   },
