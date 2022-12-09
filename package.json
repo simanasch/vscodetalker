@@ -98,7 +98,8 @@
     "vscode:prepublish": "npm install && npm prune --production",
     "lint": "eslint .",
     "pretest": "npm run lint",
-    "test": "node ./test/runTest.js"
+    "test": "node ./test/runTest.js",
+    "deploy": "vsce publish --yarn"
   },
   "devDependencies": {
     "@types/glob": "^7.1.4",
@@ -106,6 +107,7 @@
     "@types/node": "14.x",
     "@types/vscode": "^1.63.0",
     "@vscode/test-electron": "^1.6.2",
+    "@vscode/vsce": "^2.15.0",
     "eslint": "^8.1.0",
     "glob": "^7.1.7",
     "grpc-tools": "^1.11.2",
