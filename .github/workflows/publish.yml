@@ -19,7 +19,8 @@ jobs:
         run: npm install
       - name: Publish vsCodeTalker
         run: |
-          echo $VSCE_PAT
+          echo $TEST
           npm run deploy
         env:
-          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+          TEST: ${{secrets.TEST}}
+          VSCE_PAT: ${{secrets.VSCE_PAT}}
