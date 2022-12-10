@@ -95,7 +95,6 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm prune --omit=dev",
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "node ./test/runTest.js",
