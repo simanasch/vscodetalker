@@ -95,11 +95,11 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm prune --production",
+    "vscode:prepublish": "npm prune --omit=dev",
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "node ./test/runTest.js",
-    "deploy": "vsce publish"
+    "deploy": "vsce publish --skip-duplicate"
   },
   "devDependencies": {
     "@types/glob": "^7.1.4",
