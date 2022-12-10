@@ -5,13 +5,11 @@ on:
   release:
     types:
     - created
+
 jobs:
   publish:
     name: 拡張機能を公開(vsCode)
-    strategy:
-      matrix:
-        os: [ windows-latest ]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
     steps:
       - name: Checkout
