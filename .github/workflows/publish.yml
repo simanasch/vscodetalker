@@ -7,20 +7,18 @@ on:
 
 jobs:
   publish:
-    name: 拡張機能を公開(vsCode)
+    name: 拡張機能を公開_vsCode
     runs-on: windows-latest
     # if: startsWith(github.ref, 'refs/tags/')
     steps:
-      - name: Checkout
+      - name: リポジトリのチェックアウト
         uses: actions/checkout@v3
-      - name: Install Node.js
+      - name: Nodeをインストール
         uses: actions/setup-node@v3
-      - name: Install node_modules
+      - name: node_modulesのインストール
         run: npm install
-      - name: Publish vsCodeTalker
+      - name: 拡張機能を公開
         run: |
-          echo $TEST
           npm run deploy
         env:
-          TEST: ${{secrets.TEST}}
           VSCE_PAT: ${{secrets.VSCE_PAT}}
