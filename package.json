@@ -2,7 +2,7 @@
   "name": "vscodetalker",
   "displayName": "vsCodeTalker",
   "description": "各種音声合成ライブラリでvsCode内のテキストを読み上げ(+録音)する",
-  "version": "0.4.9",
+  "version": "0.4.11",
   "engines": {
     "vscode": "^1.63.0"
   },
@@ -95,11 +95,11 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm install && npm prune --production",
+    "vscode:prepublish": "npm prune --production",
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "node ./test/runTest.js",
-    "deploy": "vsce publish --yarn"
+    "deploy": "vsce publish"
   },
   "devDependencies": {
     "@types/glob": "^7.1.4",

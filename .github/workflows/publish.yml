@@ -1,10 +1,10 @@
 on:
-  # push:
-  #   branches:
-  #   - main
+  push:
+    branches:
+    - main
   release:
-    types: [published]
-
+    types:
+    - created
 jobs:
   publish:
     name: 拡張機能を公開(vsCode)
@@ -12,6 +12,7 @@ jobs:
       matrix:
         os: [ windows-latest ]
     runs-on: ${{ matrix.os }}
+    if: startsWith(github.ref, 'refs/tags/')
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -19,7 +20,6 @@ jobs:
         uses: actions/setup-node@v3
       - name: Publish vsCodeTalker
         run: |
-          npm run vscode:prepublish
           npm run deploy
         env:
-          VSCE_TOKEN: ${{ secrets.VSCE_PAT }}
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
