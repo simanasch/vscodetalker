@@ -10,6 +10,10 @@
  - 依存先バイナリを初回実行時にダウンロードするよう変更？
  - 出力ファイル名のフォーマットをかんしくんのデフォルト設定に合わせる
 
+## [0.4.11]
+- 参照先のライブラリの更新
+- automationを追加
+
 ## [0.4.3]
 ### Changed
  - 参照先のライブラリの更新反映[TTSController](https://github.com/ksasao/TTSController)
