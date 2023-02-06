@@ -14,4 +14,4 @@ jobs:
           GH_TOKEN: ${{secrets.READ_SPEECHGRPCSERVER}}
       - name: 参照先バイナリをzipから解凍
         run: |
-          7z x  "${{ github.workspace }}\bin\*.zip"  -o"${{ github.workspace }}\bin"
+          7z x  "${{ github.workspace }}\bin\*.zip"  -o"${{ github.workspace }}\bin" -aoa
