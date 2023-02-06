@@ -1,0 +1,17 @@
+on: [push]
+
+jobs:
+  downloadBinary:
+    name: 参照先バイナリのダウンロードとunzip
+    runs-on: windows-latest
+    steps:
+      - name: リポジトリのチェックアウト
+        uses: actions/checkout@v3
+      - name: 参照するバイナリのzipファイルをダウンロード
+        run: |
+          gh release download --repo simanasch/SpeechGRpcServer v0.0.1 -D "${{ github.workspace }}\bin" -p *.zip
+        env:
+          GH_TOKEN: ${{secrets.READSPEECHGRPCSERVER2023FEB}}
+      - name: 参照先バイナリをzipから解凍
+        run: |
+          7z x  "${{ github.workspace }}\bin\*.zip"  -o"${{ github.workspace }}\bin"
