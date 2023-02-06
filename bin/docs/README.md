@@ -78,7 +78,7 @@
 - [x] 音声出力デバイス選択
 
 ## ライブラリ
-以下のライブラリを使用して実装しています、ライセンスの詳細は[thirdPirtyLicenses](./docs/thirdPirtyLicenses.md)を参照ください
+以下のライブラリを使用して実装しています、ライセンスの詳細は[thirdPirtyLicenses](./thirdPirtyLicenses.md)を参照ください
 
 Codeer.Friendly
 Google.Protobuf
