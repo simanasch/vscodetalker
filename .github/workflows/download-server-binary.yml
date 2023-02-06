@@ -11,7 +11,7 @@ jobs:
         run: |
           gh release download --repo simanasch/SpeechGRpcServer v0.0.1 -D "${{ github.workspace }}\bin" -p *.zip
         env:
-          GH_TOKEN: ${{secrets.READSPEECHGRPCSERVER2023FEB}}
+          GH_TOKEN: ${{secrets.READ_SPEECHGRPCSERVER}}
       - name: 参照先バイナリをzipから解凍
         run: |
           7z x  "${{ github.workspace }}\bin\*.zip"  -o"${{ github.workspace }}\bin"
