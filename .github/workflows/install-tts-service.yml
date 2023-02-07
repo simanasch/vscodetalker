@@ -1,17 +1,23 @@
-on: [push]
+name: ttsサービス(c#)のインストール
+on:
+  push:
+  workflow_call:
 
 jobs:
   downloadBinary:
-    name: 参照先バイナリのダウンロードとunzip
+    name: ttsサービスのダウンロードとunzip
     runs-on: windows-latest
     steps:
       - name: リポジトリのチェックアウト
         uses: actions/checkout@v3
-      - name: 参照するバイナリのzipファイルをダウンロード
+      - name: ttsサービスのファイル削除
+        run: |
+          del "${{github.workspace}}\bin\*.*" /Q & rd "${{github.workspace}}\bin\ja"/q
+      - name: ttsサービスのzipファイルをダウンロード
         run: |
           gh release download --repo simanasch/SpeechGRpcServer v0.0.1 -D "${{ github.workspace }}\bin" -p *.zip
         env:
           GH_TOKEN: ${{secrets.READ_SPEECHGRPCSERVER}}
-      - name: 参照先バイナリをzipから解凍
+      - name: ttsサービスをzipから解凍
         run: |
           7z x  "${{ github.workspace }}\bin\*.zip"  -o"${{ github.workspace }}\bin" -aoa
