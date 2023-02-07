@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v3
       - name: ttsサービスのファイル削除
         run: |
-          del "${{github.workspace}}\bin\*.*" /Q & rd "${{github.workspace}}\bin\ja"/q
+          Get-ChildItem "${{github.workspace}}\bin\*.*" -exclude docs |Remove-Item
       - name: ttsサービスのzipファイルをダウンロード
         run: |
           gh release download --repo simanasch/SpeechGRpcServer v0.0.1 -D "${{ github.workspace }}\bin" -p *.zip
