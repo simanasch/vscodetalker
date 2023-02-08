@@ -98,6 +98,7 @@
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "node ./test/runTest.js",
+    "package": "vsce package",
     "deploy": "vsce publish --skip-duplicate"
   },
   "devDependencies": {

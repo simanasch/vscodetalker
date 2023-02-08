@@ -1,3 +1,5 @@
+name: vsceデプロイ
+run-name: vsceへの公開:${{ github.ref }}
 on:
   push:
     branches:
@@ -7,11 +9,25 @@ on:
 
 jobs:
   downloadBinary:
-    uses: simanasch/vscodetalker/.github/workflows/install-tts-service.yml@downloadBinary
+    name: ttsサービスのダウンロードとunzip
+    runs-on: windows-latest
+    steps:
+      - name: リポジトリのチェックアウト
+        uses: actions/checkout@v3
+      - name: ttsサービスのファイル削除
+        run: |
+          Get-ChildItem "${{github.workspace}}\bin\*.*" -exclude docs |Remove-Item
+      - name: ttsサービスのzipファイルをダウンロード
+        run: |
+          gh release download --repo simanasch/SpeechGRpcServer v0.0.1 -D "${{ github.workspace }}\bin" -p *.zip
+        env:
+          GH_TOKEN: ${{secrets.READ_SPEECHGRPCSERVER}}
+      - name: ttsサービスをzipから解凍
+        run: |
+          7z x  "${{ github.workspace }}\bin\*.zip"  -o"${{ github.workspace }}\bin" -aoa
   publish:
     name: 拡張機能を公開_vsCode
     runs-on: windows-latest
-    # if: startsWith(github.ref, 'refs/tags/')
     steps:
       - name: Nodeをインストール
         uses: actions/setup-node@v3
@@ -22,3 +38,14 @@ jobs:
           npm run deploy
         env:
           VSCE_PAT: ${{secrets.VSCE_PAT}}
+  saveArtifact:
+    name: ビルド内容の保存
+    runs-on: windows-latest
+    steps:
+      - name: 拡張機能のパッケージを作成
+        run: vsce package
+      - name: ビルド内容を保存
+        uses: actions/upload-artifact@v3
+        with:
+          name: vscePackage
+          path: ./*.vsix

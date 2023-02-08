@@ -1,6 +1,5 @@
 name: ttsサービス(c#)のインストール
 on:
-  push:
   workflow_call:
 
 jobs:
