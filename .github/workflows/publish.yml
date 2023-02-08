@@ -8,12 +8,16 @@ on:
     types: [ prereleased, released]
 
 jobs:
-  downloadBinary:
-    name: ttsサービスのダウンロードとunzip
+  publish:
+    name: vsceデプロイ
     runs-on: windows-latest
     steps:
       - name: リポジトリのチェックアウト
         uses: actions/checkout@v3
+      - name: Nodeをインストール
+        uses: actions/setup-node@v3
+      - name: node_modulesのインストール
+        run: npm install
       - name: ttsサービスのファイル削除
         run: |
           Get-ChildItem "${{github.workspace}}\bin\*.*" -exclude docs |Remove-Item
@@ -25,23 +29,11 @@ jobs:
       - name: ttsサービスをzipから解凍
         run: |
           7z x  "${{ github.workspace }}\bin\*.zip"  -o"${{ github.workspace }}\bin" -aoa
-  publish:
-    name: 拡張機能を公開_vsCode
-    runs-on: windows-latest
-    steps:
-      - name: Nodeをインストール
-        uses: actions/setup-node@v3
-      - name: node_modulesのインストール
-        run: npm install
       - name: 拡張機能を公開
         run: |
           npm run deploy
         env:
           VSCE_PAT: ${{secrets.VSCE_PAT}}
-  saveArtifact:
-    name: ビルド内容の保存
-    runs-on: windows-latest
-    steps:
       - name: 拡張機能のパッケージを作成
         run: vsce package
       - name: ビルド内容を保存
