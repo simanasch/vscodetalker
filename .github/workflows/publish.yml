@@ -29,15 +29,15 @@ jobs:
       - name: ttsサービスをzipから解凍
         run: |
           7z x  "${{ github.workspace }}\bin\*.zip"  -o"${{ github.workspace }}\bin" -aoa
-      - name: 拡張機能を公開
-        run: |
-          npm run deploy
-        env:
-          VSCE_PAT: ${{secrets.VSCE_PAT}}
       - name: 拡張機能のパッケージを作成
-        run: vsce package
+        run: npm run package
       - name: ビルド内容を保存
         uses: actions/upload-artifact@v3
         with:
           name: vscePackage
           path: ./*.vsix
+      - name: 拡張機能を公開
+        run: |
+          npm run deploy
+        env:
+          VSCE_PAT: ${{secrets.VSCE_PAT}}
