@@ -34,6 +34,7 @@ message SpeechEngineRequest {
   string EngineName = 1;
 }
 
+// TODO:追加先のlayerを追加
 message ttsRequest {
   string LibraryName = 1;
   string EngineName = 2;

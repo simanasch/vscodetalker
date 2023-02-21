@@ -1,23 +1,26 @@
-name: vsceデプロイ
-run-name: vsceへの公開:${{ github.ref }}
+name: 拡張機能のビルド、デプロイ
+run-name: build:${{ github.ref }}
 on:
   push:
     branches:
     - master
+    - develop
   release:
     types: [ prereleased, released]
 
 jobs:
-  publish:
-    name: vsceデプロイ
+  build:
+    name: 拡張機能のビルド
     runs-on: windows-latest
     steps:
       - name: リポジトリのチェックアウト
         uses: actions/checkout@v3
       - name: Nodeをインストール
         uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
       - name: node_modulesのインストール
-        run: npm install
+        run: npm ci
       - name: ttsサービスのファイル削除
         run: |
           Get-ChildItem "${{github.workspace}}\bin\*.*" -exclude docs |Remove-Item
@@ -37,6 +40,8 @@ jobs:
           name: vscePackage
           path: ./*.vsix
       - name: 拡張機能を公開
+      # 当面masterにpushした時だけ動かす
+        if: ${{ github.ref_name == 'master' && github.event_name == 'push' }}
         run: |
           npm run deploy
         env:
