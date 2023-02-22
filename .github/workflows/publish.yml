@@ -26,7 +26,8 @@ jobs:
           Get-ChildItem "${{github.workspace}}\bin\*.*" -exclude docs |Remove-Item
       - name: ttsサービスのzipファイルをダウンロード
         run: |
-          gh release download --repo simanasch/SpeechGRpcServer v0.0.1 -D "${{ github.workspace }}\bin" -p *.zip
+          # バージョン指定なしの場合、最新のリリースを取得する
+          gh release download --repo simanasch/vsCodeTalkerLanguageServer  -D "${{ github.workspace }}\bin" -p *.zip
         env:
           GH_TOKEN: ${{secrets.READ_SPEECHGRPCSERVER}}
       - name: ttsサービスをzipから解凍
@@ -40,7 +41,7 @@ jobs:
           name: vscePackage
           path: ./*.vsix
       - name: 拡張機能を公開
-      # 当面masterにpushした時だけ動かす
+        # 当面masterにpushした時だけ動かす
         if: ${{ github.ref_name == 'master' && github.event_name == 'push' }}
         run: |
           npm run deploy
