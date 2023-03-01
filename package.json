@@ -62,8 +62,19 @@
           },
           "vsCodeTalker.defaultLibraryName": {
             "type": "string",
-            "default": "ついな",
+            "default": "",
             "description": "デフォルトで読み上げに使うttsライブラリのプリセット名"
+          },
+          "vsCodeTalker.aviutlIntegrationType": {
+            "type": "String",
+            "enum": ["なし", "音声のみ", "音声+テキスト", "字幕準備"],
+            "default": "なし",
+            "description": "録音ファイルのaviutl拡張編集への連携方式"
+          },
+          "vsCodeTalker.defaultAviutlLayer": {
+            "type": "integer",
+            "default": 0,
+            "description": "aviutl拡張編集への連携時、録音したファイルを追加するレイヤー番号"
           },
           "vsCodeTalker.ttsRecordFileFolder": {
             "type": "string",
