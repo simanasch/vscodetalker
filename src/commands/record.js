@@ -29,7 +29,12 @@ async function record(ttsLine, config) {
   // リクエスト内容を生成
   let filepath = generateRecordPath(getTtsRecordFolderPath(config), preset.LibraryName, body);
   let layer = preset.layer ? preset.layer : config.get("defaultAviutlLayer");
-  let request = makeTtsRequest(body, preset.LibraryName, preset.EngineName, filepath, layer);
+  let aviutlConfig = {
+    isEnabled : config.get("aviutlIntegrationType") !== 'なし',
+    layer: layer,
+    fileDropType : config.get("aviutlIntegrationType")
+  }
+  let request = makeTtsRequest(body, preset.LibraryName, preset.EngineName, filepath, aviutlConfig);
   return client.record(request)
     .then(res => {
       saveTtsBodyToText(res, config);
@@ -49,7 +54,12 @@ async function recordLines(ttsLines, config) {
     if (!isTruthy(preset)) continue;
     let filepath = generateRecordPath(getTtsRecordFolderPath(config), preset.LibraryName, body);
     let layer = preset.layer ? preset.layer : config.get("defaultAviutlLayer");
-    await client.record(makeTtsRequest(body, preset.LibraryName, preset.EngineName, filepath, layer))
+    let aviutlConfig = {
+      isEnabled : config.get("aviutlIntegrationType") !== 'なし',
+      layer: layer,
+      fileDropType : config.get("aviutlIntegrationType")
+    }
+    await client.record(makeTtsRequest(body, preset.LibraryName, preset.EngineName, filepath, aviutlConfig))
       .then((res) => {
         // 録音後の後処理
         // 設定で有効化されている場合、読み上げ内容をテキストファイルとして保存する
