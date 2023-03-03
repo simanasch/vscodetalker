@@ -34,12 +34,19 @@ message SpeechEngineRequest {
   string EngineName = 1;
 }
 
-// TODO:追加先のlayerを追加
+// 音声合成エンジン呼び出し時のリクエスト内容
 message ttsRequest {
+  // aviutl連携の設定
+  message aviutlIntegrationConfig {
+    bool isEnabled = 1;
+    int32 AviutlLayer = 2;
+    string fileDropType = 3;
+  }
   string LibraryName = 1;
   string EngineName = 2;
   string Body = 3;
   string OutputPath = 4;
+  aviutlIntegrationConfig Config = 5;
 }
 
 message ttsResult {
