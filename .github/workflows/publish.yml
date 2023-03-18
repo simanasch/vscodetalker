@@ -35,7 +35,7 @@ jobs:
           GH_TOKEN: ${{secrets.READ_SPEECHGRPCSERVER}}
       - name: ttsサービスをzipから解凍
         run: |
-          7z x  "${{ github.workspace }}\bin\*.zip"  -o"${{ github.workspace }}\bin" -aoa
+          7z e "${{ github.workspace }}\bin\*.zip"  -o"${{ github.workspace }}\bin" -aoa
       - name: 拡張機能のパッケージを作成
         run: npm run package
       - name: ビルド内容を保存
