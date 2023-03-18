@@ -8,6 +8,9 @@ on:
   release:
     types: [ prereleased, released]
 
+env:
+  LANGUAGE_SERVER_VERSION: v0.0.3-alpha6
+
 jobs:
   build:
     name: 拡張機能のビルド
@@ -27,7 +30,7 @@ jobs:
       - name: ttsサービスのzipファイルをダウンロード
         run: |
           # バージョン指定なしの場合、最新のリリースを取得する
-          gh release download --repo simanasch/vsCodeTalkerLanguageServer  -D "${{ github.workspace }}\bin" -p *.zip
+          gh release download ${{env.LANGUAGE_SERVER_VERSION}} --repo simanasch/vsCodeTalkerLanguageServer  -D "${{ github.workspace }}\bin" -p *.zip
         env:
           GH_TOKEN: ${{secrets.READ_SPEECHGRPCSERVER}}
       - name: ttsサービスをzipから解凍
