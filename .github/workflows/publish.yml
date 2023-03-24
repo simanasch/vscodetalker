@@ -9,7 +9,7 @@ on:
     types: [ prereleased, released]
 
 env:
-  LANGUAGE_SERVER_VERSION: v0.0.3-alpha6
+  LANGUAGE_SERVER_VERSION: v0.0.4
 
 jobs:
   build:
