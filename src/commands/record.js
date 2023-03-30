@@ -11,8 +11,6 @@ const {
 } = require("../util/vscode");
 const { makeTtsRequest } = require('../util/grpc');
 
-const AVIUTL_INTEGRATION_DEFAULT_LAYER = 0;
-
 /**
  * vsCodeTalker.talkコマンドの実体
  * @param {string} ttsLine 
@@ -30,7 +28,7 @@ async function record(ttsLine, config) {
   if(!isTruthy(preset)) return;
   // リクエスト内容を生成
   let filepath = generateRecordPath(getTtsRecordFolderPath(config), preset.LibraryName, body);
-  let layer = config.get("aviutlIntegrationMapLibraryNameToLayer")[preset.LibraryName] || AVIUTL_INTEGRATION_DEFAULT_LAYER;
+  let layer = config.get("aviutlIntegrationMapLibraryNameToLayer")[preset.LibraryName] || config.get("aviutlIntegrationDefaultLayer");
   let aviutlConfig = {
     isEnabled : config.get("aviutlIntegrationType") !== 'なし',
     AviutlLayer: layer,
@@ -55,7 +53,7 @@ async function recordLines(ttsLines, config) {
     let { preset, body } = getEngineFromLine(ttsLine, config);
     if (!isTruthy(preset)) continue;
     let filepath = generateRecordPath(getTtsRecordFolderPath(config), preset.LibraryName, body);
-    let layer = config.get("aviutlIntegrationMapLibraryNameToLayer")[preset.LibraryName] || AVIUTL_INTEGRATION_DEFAULT_LAYER;
+    let layer = config.get("aviutlIntegrationMapLibraryNameToLayer")[preset.LibraryName] || config.get("aviutlIntegrationDefaultLayer");
     let aviutlConfig = {
       isEnabled : config.get("aviutlIntegrationType") !== 'なし',
       AviutlLayer: layer,

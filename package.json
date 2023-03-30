@@ -67,7 +67,7 @@
           },
           "vsCodeTalker.aviutlIntegrationType": {
             "type": "string",
-            "enum": ["なし", "音声のみ", "音声+テキスト", "字幕準備"],
+            "enum": ["なし", "音声のみ", "音声+テキスト", "音声+テキスト+音素"],
             "default": "なし",
             "description": "録音ファイルのaviutl拡張編集への連携方式"
           },
@@ -78,9 +78,13 @@
               "description": "追加先のレイヤー番号"
             },
             "default": {
-              "デフォルト":0
             },
             "description": "aviutl拡張編集への連携時、録音ファイルの追加先となるレイヤー番号\n録音時のライブラリ名がキーと一致する場合、設定したレイヤーに録音ファイルを追加します"
+          },
+          "vsCodeTalker.aviutlIntegrationDefaultLayer": {
+            "type": "integer",
+            "default": 0,
+            "description": "aviutl拡張編集への連携時、録音ファイルの追加先となるレイヤー番号のデフォルト値"
           },
           "vsCodeTalker.ttsRecordFileFolder": {
             "type": "string",
