@@ -2,7 +2,7 @@
   "name": "vscodetalker",
   "displayName": "vsCodeTalker",
   "description": "各種音声合成ライブラリでvsCode内のテキストを読み上げ(+録音)する",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "engines": {
     "vscode": "^1.63.0"
   },
@@ -67,7 +67,7 @@
           },
           "vsCodeTalker.aviutlIntegrationType": {
             "type": "string",
-            "enum": ["なし", "音声のみ", "音声+テキスト", "音声+テキスト+音素"],
+            "enum": ["なし", "音声のみ", "音声+テキスト"],
             "default": "なし",
             "description": "録音ファイルのaviutl拡張編集への連携方式"
           },
