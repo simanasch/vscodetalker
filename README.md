@@ -32,7 +32,8 @@ windows 10 64bitで動作確認済みのもの
   * 読み上げの前にVOICEVOX本体を立ち上げておく必要あり
 * Voiceroid2(64bit版のみ)
 * [A.I.Voice](https://aivoice.jp/)
-* CeVIO AI
+* [CeVIO AI](https://cevio.jp/products_cevio_ai/)
+* [CeVIO CS7](https://cevio.jp/product/ccs/)
 
 <!-- 
 四国めたん＞次は対応状況よ。
