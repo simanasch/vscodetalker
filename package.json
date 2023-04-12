@@ -2,7 +2,7 @@
   "name": "vscodetalker",
   "displayName": "vsCodeTalker",
   "description": "各種音声合成ライブラリでvsCode内のテキストを読み上げ(+録音)する",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "engines": {
     "vscode": "^1.63.0"
   },
@@ -141,5 +141,6 @@
     "google-protobuf": "^3.19.1",
     "iconv-lite": "^0.6.3",
     "sanitize-filename": "^1.6.3"
-  }
+  },
+  "overrides": { "xml2js": "^0.5.0" } 
 }
