@@ -33,6 +33,8 @@ windows 10 64bitで動作確認済みのもの
 * [A.I.Voice](https://aivoice.jp/)
 * [CeVIO AI](https://cevio.jp/products_cevio_ai/)
 * [CeVIO CS7](https://cevio.jp/product/ccs/)
+* [voicepeak](https://www.ah-soft.com/voice/)
+  * コマンドラインの仕様上、現状では部分的な対応となります(ボイスプリセットの種類のみ指定可)
 
 <!-- 
 四国めたん＞次は対応状況よ。
